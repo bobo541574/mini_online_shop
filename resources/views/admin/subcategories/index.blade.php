@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'category' => ''
+        'subcategory' => ''
     ]
 ])
 
@@ -14,13 +14,13 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('categories')
+                        @lang('subcategories')
                     </h4>
                     <div>
-                        <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary align-self-center">
+                        <a href="{{ route('subcategories.create') }}" class="btn btn-sm btn-primary align-self-center">
                             @lang('create')
                         </a>
-                        <a href="{{ route('categories.trashed') }}" class="btn btn-sm btn-secondary align-self-center">
+                        <a href="{{ route('subcategories.trashed') }}" class="btn btn-sm btn-secondary align-self-center">
                             @lang('trashed')
                         </a>
                     </div>
@@ -42,6 +42,9 @@
                                 @lang('name')
                             </th>
                             <th class="h5 fw-bold">
+                                @lang('category')
+                            </th>
+                            <th class="h5 fw-bold">
                                 @lang('status')
                             </th>
                             <th class="h5 fw-bold">
@@ -50,13 +53,16 @@
                         </tr>
                     </thead>
                     <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                        @foreach ($categories as $category)
+                        @foreach ($subcategories as $subcategory)
                         <tr>
                             <td>
-                                {{ $category->name }}
+                                {{ $subcategory->name }}
                             </td>
                             <td>
-                                @if ($category->active)
+                                {{ $subcategory->category_name }}
+                            </td>
+                            <td>
+                                @if ($subcategory->active)
                                     <i class="fas fa-circle text-success align-middle text-sm mr-2"></i>
                                     <span class="">@lang('active')</span>
                                 @else
@@ -65,16 +71,16 @@
                                 @endif
                             </td>
                             <td class="d-flex justify-content-around">
-                                <a href="{{ route('categories.edit', $category) }}" class="" title="@lang('category_edit')">
+                                <a href="{{ route('subcategories.edit', $subcategory) }}" class="" title="@lang('subcategory_edit')">
                                     <div class="my-2">
                                         <i class="align-middle text-warning" data-feather="edit"></i>
                                     </div>
                                 </a>
 
-                                <form action="{{ route('categories.to-trash', $category) }}" method="post" class="inline">
+                                <form action="{{ route('subcategories.to-trash', $subcategory) }}" method="post" class="inline">
                                     @csrf
                                     @method('PUT')
-                                    <button class="border-0 text-danger bg-light" title="@lang('category_remove')">
+                                    <button class="border-0 text-danger bg-light" title="@lang('subcategory_remove')">
                                         <div class="my-2">
                                             <i class="align-middle" data-feather="trash"></i>
                                         </div>

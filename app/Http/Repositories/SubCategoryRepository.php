@@ -4,7 +4,7 @@ namespace App\Http\Repositories;
 
 use App\Models\Category;
 
-class CategoryRepository
+class SubCategoryRepository
 {
     public function model()
     {
@@ -16,9 +16,15 @@ class CategoryRepository
         return $this->model()->whereNull('parent_id')->orderBy('name_' . session('locale'))->get();
     }
 
+    public function getAllSubCategories()
+    {
+        return $this->model()->whereNotNull('parent_id')->orderBy('name_' . session('locale'))->get();
+    }
+
     public function store($request)
     {
         return $this->model()->create([
+            'parent_id' => $request->parent_id,
             'name_en' => $request->name_en,
             'name_mm' => $request->name_mm,
             'slug' => strtoslug($request->name_en),
@@ -27,9 +33,10 @@ class CategoryRepository
         ]);
     }
 
-    public function update($request, $category)
+    public function update($request, $subcategory)
     {
-        return $category->update([
+        return $subcategory->update([
+            'parent_id' => $request->parent_id,
             'name_en' => $request->name_en,
             'name_mm' => $request->name_mm,
             'slug' => strtoslug($request->name_en),
@@ -41,30 +48,30 @@ class CategoryRepository
 
     public function destroy($slug)
     {
-        $category = $this->model()->onlyTrashed()->where('slug', $slug)->first();
+        $subcategory = $this->model()->onlyTrashed()->where('slug', $slug)->first();
 
-        return $category->forceDelete();
+        return $subcategory->forceDelete();
     }
 
-    public function toTrash($category)
+    public function toTrash($subcategory)
     {
-        $category->active = 0;
-        $category->save();
+        $subcategory->active = 0;
+        $subcategory->save();
 
-        return $category->delete();
+        return $subcategory->delete();
     }
 
     public function trashed()
     {
-        return $this->model()->onlyTrashed()->whereNull('parent_id')->get();
+        return $this->model()->onlyTrashed()->whereNotNull('parent_id')->get();
     }
 
     public function restore($slug)
     {
-        $category = $this->model()->onlyTrashed()->where('slug', $slug)->first();
-        $category->active = 1;
-        $category->save();
+        $subcategory = $this->model()->onlyTrashed()->where('slug', $slug)->first();
+        $subcategory->active = 1;
+        $subcategory->save();
 
-        return $category->restore();
+        return $subcategory->restore();
     }
 }

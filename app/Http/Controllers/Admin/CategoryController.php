@@ -47,9 +47,9 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('status', 'category_updated');
     }
 
-    public function destroy(Category $category)
+    public function destroy($slug)
     {
-        $this->categoryRepository->destroy($category);
+        $this->categoryRepository->destroy($slug);
 
         return redirect()->route('categories.index')->with('status', 'category_deleted');
     }
@@ -66,5 +66,17 @@ class CategoryController extends Controller
         $categories = $this->categoryRepository->trashed();
 
         return view('admin.categories.trashed', compact('categories'));
+    }
+
+    public function restore($slug)
+    {
+        $this->categoryRepository->restore($slug);
+
+        return redirect()->route('categories.index')->with('status', 'category_restored');
+    }
+
+    public function restoreAll()
+    {
+        //
     }
 }

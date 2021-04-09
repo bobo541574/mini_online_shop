@@ -8,6 +8,7 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -60,4 +61,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('categories/trash-list', [CategoryController::class, 'trashed'])->name('categories.trashed');
     Route::post('categories/{category:slug}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
     Route::post('categories/restore', [CategoryController::class, 'restoreAll'])->name('categories.restore-all');
+    // Subcategory
+    Route::get('subcategories', [SubCategoryController::class, 'index'])->name('subcategories.index');
+    Route::get('subcategories/create', [SubCategoryController::class, 'create'])->name('subcategories.create');
+    Route::post('subcategories', [SubCategoryController::class, 'store'])->name('subcategories.store');
+    Route::get('subcategories/{subcategory:slug}/edit', [SubCategoryController::class, 'edit'])->name('subcategories.edit');
+    Route::put('subcategories/{subcategory:slug}', [SubCategoryController::class, 'update'])->name('subcategories.update');
+    Route::delete('subcategories/{subcategory:slug}', [SubCategoryController::class, 'destroy'])->name('subcategories.destroy');
+    Route::put('subcategories/{subcategory:slug}/to-trash', [SubCategoryController::class, 'toTrash'])->name('subcategories.to-trash');
+    Route::get('subcategories/trash-list', [SubCategoryController::class, 'trashed'])->name('subcategories.trashed');
+    Route::post('subcategories/{subcategory:slug}/restore', [SubCategoryController::class, 'restore'])->name('subcategories.restore');
+    Route::post('subcategories/restore', [SubCategoryController::class, 'restoreAll'])->name('subcategories.restore-all');
 });

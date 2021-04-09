@@ -6,12 +6,12 @@
 
         <ul class="sidebar-nav">
             <li class="sidebar-header">
-                For Admin
+                @lang('admin')
             </li>
 
             <li class="sidebar-item active">
                 <a class="sidebar-link" href="index.html">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">@lang('dashboard')</span>
                 </a>
             </li>
 
@@ -58,7 +58,7 @@
                 </a>
                 <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('categories.index') }}">Categories</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Sub-Categories</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('subcategories.index') }}">Sub-Categories</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Brands</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">Products</a></li>
                     </li>
