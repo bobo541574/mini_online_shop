@@ -57,7 +57,7 @@
                     <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Products</span>
                 </a>
                 <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">Categories</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('categories.index') }}">Categories</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Sub-Categories</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Brands</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">Products</a></li>

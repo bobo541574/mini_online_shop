@@ -34,9 +34,9 @@
                         <a href="#" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="post" class="py-2">
+                        <form action="{{ route('logout') }}" method="post" class="">
                             @csrf
-                            <button type="submit" class="border-0 bg-light nav-link">Logout</button>
+                            <button type="submit" class="border-0 bg-success nav-link fw-bold">Logout</button>
                         </form>
                     </li>
                 @else

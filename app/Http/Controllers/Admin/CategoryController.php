@@ -54,8 +54,17 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('status', 'category_deleted');
     }
 
+    public function toTrash(Category $category)
+    {
+        $this->categoryRepository->toTrash($category);
+
+        return redirect()->route('categories.index')->with('status', 'category_deleted');
+    }
+
     public function trashed()
     {
-        return $this->categoryRepository->trashed();
+        $categories = $this->categoryRepository->trashed();
+
+        return view('admin.categories.trashed', compact('categories'));
     }
 }

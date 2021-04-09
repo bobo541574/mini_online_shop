@@ -2,6 +2,13 @@
 
 @section('content')
 
+@include('admin.layouts.breadcrumb', [
+    'items' => [
+        'category' => route('categories.index'),
+        'edit' => null
+    ]
+])
+
 <div class="row">
     <div class="col-md-8 mx-auto">
         <div class="card">
