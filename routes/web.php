@@ -1,15 +1,19 @@
 <?php
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\SubCategoryController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\Admin\PermissionAssignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +51,31 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Admin Section
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'permissions'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    // Permission
+    Route::get('permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::get('permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
+    Route::post('permissions', [PermissionController::class, 'store'])->name('permissions.store');
+    Route::get('permissions/{permission:slug}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
+    Route::put('permissions/{permission:slug}', [PermissionController::class, 'update'])->name('permissions.update');
+    Route::delete('permissions/{permission:slug}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+
+    // Role
+    Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
+    Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
+    Route::post('roles', [RoleController::class, 'store'])->name('roles.store');
+    Route::get('roles/{role:slug}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+    Route::put('roles/{role:slug}', [RoleController::class, 'update'])->name('roles.update');
+    Route::delete('roles/{role:slug}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+    // Permission Assign
+    Route::get('assigns', [PermissionAssignController::class, 'index'])->name('assigns.index');
+    Route::get('assigns/create', [PermissionAssignController::class, 'create'])->name('assigns.create');
+    Route::post('assigns', [PermissionAssignController::class, 'store'])->name('assigns.store');
+    Route::get('assigns/{role:slug}/edit', [PermissionAssignController::class, 'edit'])->name('assigns.edit');
+    Route::put('assigns/{role:slug}', [PermissionAssignController::class, 'update'])->name('assigns.update');
 
     // Category
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -61,6 +88,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('categories/trash-list', [CategoryController::class, 'trashed'])->name('categories.trashed');
     Route::post('categories/{category:slug}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
     Route::post('categories/restore', [CategoryController::class, 'restoreAll'])->name('categories.restore-all');
+
     // Subcategory
     Route::get('subcategories', [SubCategoryController::class, 'index'])->name('subcategories.index');
     Route::get('subcategories/create', [SubCategoryController::class, 'create'])->name('subcategories.create');

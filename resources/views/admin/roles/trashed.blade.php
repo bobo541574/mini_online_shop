@@ -4,7 +4,8 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'subcategory' => ''
+        'category' => route('categories.index'),
+        'trashed' => null
     ]
 ])
 
@@ -14,22 +15,17 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('subcategories')
+                        @lang('categories')
                     </h4>
-                    <div>
-                        <a href="{{ route('subcategories.create') }}" class="btn btn-sm btn-primary align-self-center">
-                            @lang('create')
-                        </a>
-                        <a href="{{ route('subcategories.trashed') }}" class="btn btn-sm btn-secondary align-self-center">
-                            @lang('trashed')
-                        </a>
-                    </div>
+                    <a href="{{ route('categories.index') }}" class="btn btn-sm btn-primary align-self-center">
+                        @lang('back')
+                    </a>
                 </div>
                 @if (session('status'))
                 <div class="alert alert-warning alert-dismissible mt-3 mb-0" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <div class="alert-message">
-                        <strong>@lang(session('status'))</strong>
+                        <strong>{{ session('status') }}</strong>
                     </div>
                 </div>
                 @endif
@@ -42,9 +38,6 @@
                                 @lang('name')
                             </th>
                             <th class="h5 fw-bold">
-                                @lang('category')
-                            </th>
-                            <th class="h5 fw-bold">
                                 @lang('status')
                             </th>
                             <th class="h5 fw-bold">
@@ -53,16 +46,13 @@
                         </tr>
                     </thead>
                     <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                        @foreach ($subcategories as $subcategory)
+                        @foreach ($categories as $category)
                         <tr>
                             <td>
-                                {{ $subcategory->name }}
+                                {{ $category->name }}
                             </td>
                             <td>
-                                {{ $subcategory->category_name }}
-                            </td>
-                            <td>
-                                @if ($subcategory->active)
+                                @if ($category->active)
                                     <i class="fas fa-circle text-success align-middle text-sm mr-2"></i>
                                     <span class="">@lang('active')</span>
                                 @else
@@ -71,18 +61,18 @@
                                 @endif
                             </td>
                             <td class="d-flex justify-content-around">
-                                <a href="{{ route('subcategories.edit', $subcategory) }}" class="" title="@lang('subcategory_edit')">
+                                <a href="{{ route('categories.edit', $category) }}" class="" title="@lang('category_restore')">
                                     <div class="my-2">
-                                        <i class="align-middle text-warning" data-feather="edit"></i>
+                                        <i class="align-middle text-warning" data-feather="refresh-cw"></i>
                                     </div>
                                 </a>
 
-                                <form action="{{ route('subcategories.to-trash', $subcategory) }}" method="post" class="inline">
+                                <form action="{{ route('categories.destroy', $category) }}" method="post" class="inline">
                                     @csrf
-                                    @method('PUT')
-                                    <button class="border-0 text-danger bg-light" title="@lang('subcategory_remove')">
+                                    @method('DELETE')
+                                    <button class="border-0 text-danger bg-light" title="@lang('category_delete')">
                                         <div class="my-2">
-                                            <i class="align-middle" data-feather="trash"></i>
+                                            <i class="align-middle" data-feather="trash-2"></i>
                                         </div>
                                     </button>
                                 </form>
@@ -91,9 +81,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
-                    {{ $subcategories->links() }}
-                </div> 
             </div>
         </div>
     </div>

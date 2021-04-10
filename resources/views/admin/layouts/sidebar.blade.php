@@ -27,6 +27,21 @@
                 </a>
             </li>
 
+            <li class="sidebar-header">
+                User Maintenance
+            </li>
+            <li class="sidebar-item">
+                <a data-bs-target="#users" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">User</span>
+                </a>
+                <ul id="users" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('permissions.index') }}">Permissions</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('roles.index') }}">Roles</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('assigns.index') }}">Permission Assign</a></li>
+                    </li>
+                </ul>
+            </li>
+
             {{-- <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-invoice.html">
                     <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
@@ -53,10 +68,10 @@
                 Products Maintenance
             </li>
             <li class="sidebar-item">
-                <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                <a data-bs-target="#products" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Products</span>
                 </a>
-                <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                <ul id="products" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('categories.index') }}">Categories</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('subcategories.index') }}">Sub-Categories</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Brands</a></li>

@@ -18,7 +18,7 @@ class SubCategoryRepository
 
     public function getAllSubCategories()
     {
-        return $this->model()->whereNotNull('parent_id')->orderBy('name_' . session('locale'))->get();
+        return $this->model()->whereNotNull('parent_id')->orderBy('name_' . session('locale'))->paginate(10);
     }
 
     public function store($request)

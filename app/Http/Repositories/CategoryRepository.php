@@ -13,7 +13,7 @@ class CategoryRepository
 
     public function getAllCategories()
     {
-        return $this->model()->whereNull('parent_id')->orderBy('name_' . session('locale'))->get();
+        return $this->model()->whereNull('parent_id')->orderBy('name_' . session('locale'))->paginate(10);
     }
 
     public function store($request)

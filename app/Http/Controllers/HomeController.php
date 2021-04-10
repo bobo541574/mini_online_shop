@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\State;
 use App\Models\Contact;
 use App\services\Address;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteCollection;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $address = new Address(config('address'));
+        $routes = new RouteCollection();
+        dd($routes);
 
-        $contacts = new Contact();
-
-        return $address->findAddress($contacts->find(1));
-
-        $states = State::all();
-
-        foreach ($states as $state) {
-            echo $state->name;
-        }
+        $user = new User();
+        $user->giveAllPermissionsTo('create-category');
+        dd(Auth::hasRole());
     }
 }
