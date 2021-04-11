@@ -50,7 +50,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Admin Section
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'permissions'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // User

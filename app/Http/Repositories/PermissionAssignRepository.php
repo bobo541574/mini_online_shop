@@ -38,4 +38,9 @@ class PermissionAssignRepository
 
         return $role->permissions()->sync($request->permission);
     }
+
+    public function update($request, $role)
+    {
+        return $role->permissions()->sync($request->permission);
+    }
 }
