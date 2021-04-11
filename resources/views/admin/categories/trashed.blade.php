@@ -17,7 +17,7 @@
                     <h4 class="text fw-bold">
                         @lang('categories')
                     </h4>
-                    <a href="{{ route('categories.index') }}" class="btn btn-sm btn-primary align-self-center">
+                    <a href="{{ route('categories.index') }}" class="btn btn-sm btn-dark align-self-center">
                         @lang('back')
                     </a>
                 </div>
@@ -61,11 +61,14 @@
                                 @endif
                             </td>
                             <td class="d-flex justify-content-around">
-                                <a href="{{ route('categories.edit', $category) }}" class="" title="@lang('category_restore')">
-                                    <div class="my-2">
-                                        <i class="align-middle text-warning" data-feather="refresh-cw"></i>
-                                    </div>
-                                </a>
+                                <form action="{{ route('categories.restore', $category) }}" method="post" class="inline">
+                                    @csrf
+                                    <button class="border-0 text-danger bg-light" title="@lang('category_restore')">
+                                        <div class="my-2">
+                                            <i class="align-middle text-warning" data-feather="refresh-cw"></i>
+                                        </div>
+                                    </button>
+                                </form>
 
                                 <form action="{{ route('categories.destroy', $category) }}" method="post" class="inline">
                                     @csrf

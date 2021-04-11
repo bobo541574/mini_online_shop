@@ -75,7 +75,7 @@
                 <ul id="products" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('categories.index') }}">@lang('categories')</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('subcategories.index') }}">@lang('subcategories')</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">@lang('brands')</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('brands.index') }}">@lang('brands')</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">@lang('products')</a></li>
                     </li>
                 </ul>

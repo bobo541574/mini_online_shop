@@ -48,7 +48,7 @@
                         <label for="permission" class="form-label fw-bold">@lang('permission')</label>
                         <div class="row mt-1">
                             @foreach ($permissions as $key => $permission)
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-2">
                                 <span class="fw-bold">@lang($key)</span>
                                 <hr class="my-2 w-75 border border-dark">
                                 @foreach ($permission as $p)

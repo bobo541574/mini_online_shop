@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -50,7 +51,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Admin Section
-Route::group(['prefix' => 'admin', 'middleware' => 'permissions'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // User
@@ -107,4 +108,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'permissions'], function () {
     Route::get('subcategories/trash-list', [SubCategoryController::class, 'trashed'])->name('subcategories.trashed');
     Route::post('subcategories/{subcategory:slug}/restore', [SubCategoryController::class, 'restore'])->name('subcategories.restore');
     Route::post('subcategories/restore', [SubCategoryController::class, 'restoreAll'])->name('subcategories.restore-all');
+
+    // Brand
+    Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
+    Route::get('brands/create', [BrandController::class, 'create'])->name('brands.create');
+    Route::post('brands', [BrandController::class, 'store'])->name('brands.store');
+    Route::get('brands/{brand:slug}/edit', [BrandController::class, 'edit'])->name('brands.edit');
+    Route::put('brands/{brand:slug}', [BrandController::class, 'update'])->name('brands.update');
+    Route::delete('brands/{brand:slug}', [BrandController::class, 'destroy'])->name('brands.destroy');
+    Route::put('brands/{brand:slug}/to-trash', [BrandController::class, 'toTrash'])->name('brands.to-trash');
+    Route::get('brands/trash-list', [BrandController::class, 'trashed'])->name('brands.trashed');
+    Route::post('brands/{brand:slug}/restore', [BrandController::class, 'restore'])->name('brands.restore');
+    Route::post('brands/restore', [BrandController::class, 'restoreAll'])->name('brands.restore-all');
 });

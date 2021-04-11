@@ -17,7 +17,7 @@
                     <h4 class="text fw-bold">
                         @lang('subcategories')
                     </h4>
-                    <a href="{{ route('subcategories.index') }}" class="btn btn-sm btn-primary align-self-center">
+                    <a href="{{ route('subcategories.index') }}" class="btn btn-sm btn-dark align-self-center">
                         @lang('back')
                     </a>
                 </div>
@@ -71,7 +71,7 @@
                                     @csrf
                                     <button class="border-0 text-danger bg-light" title="@lang('subcategory_restore')">
                                         <div class="my-2">
-                                            <i class="align-middle text-warning" data-feather="refresh-ccw"></i>
+                                            <i class="align-middle text-warning" data-feather="refresh-cw"></i>
                                         </div>
                                     </button>
                                 </form>
