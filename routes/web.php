@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LocalizationController;
@@ -51,8 +50,16 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Admin Section
-Route::group(['prefix' => 'admin', 'middleware' => 'permissions'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    // User
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('users', [UserController::class, 'store'])->name('users.store');
+    Route::get('users/{user:user_name}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('users/{user:user_name}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('users/{user:user_name}', [UserController::class, 'destroy'])->name('users.destroy');
 
     // Permission
     Route::get('permissions', [PermissionController::class, 'index'])->name('permissions.index');
