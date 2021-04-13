@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
 'items' => [
-'assign' => route('assigns.index'),
+'assign' => route('assigns.permissions-index'),
 'create' => null
 ]
 ])
@@ -18,7 +18,7 @@
                     <h4 class="text fw-bold">
                         @lang('assign_create')
                     </h4>
-                    <a href="{{ route('assigns.index') }}" class="btn btn-sm btn-dark align-self-center">
+                    <a href="{{ route('assigns.permissions-index') }}" class="btn btn-sm btn-dark align-self-center">
                         @lang('back')
                     </a>
                 </div>

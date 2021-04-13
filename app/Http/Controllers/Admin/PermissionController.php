@@ -20,7 +20,7 @@ class PermissionController extends Controller
 
     public function index()
     {
-        $permissions = Permission::with('roles')->paginate(10);
+        $permissions = $this->permissionRepository->getAll();
 
         return view('admin.permissions.index', compact('permissions'));
     }

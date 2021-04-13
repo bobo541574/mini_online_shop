@@ -19,7 +19,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = $this->roleRepository->getAllRoles();
+        $roles = $this->roleRepository->getAll();
 
         return view('admin.roles.index', compact('roles'));
     }

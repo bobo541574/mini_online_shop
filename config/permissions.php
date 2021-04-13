@@ -26,11 +26,11 @@ return [
         ['name_en' => 'Role Delete', 'name_mm' => 'အသုံးပြုခွင့် ဖြတ်သိမ်းရန်', 'slug' => 'roles-delete'],
     ],
     'Assign' => [
-        ['name_en' => 'Permission & Role Assign List', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက် စရင်း', 'slug' => 'assigns-index'],
-        ['name_en' => 'Permission & Role Assign Create', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ပြုလုပ်ရန်', 'slug' => 'assigns-create'],
-        ['name_en' => 'Permission & Role Assign Store', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို သိမ်းဆည်းရန်', 'slug' => 'assigns-store'],
-        ['name_en' => 'Permission & Role Assign Edit', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ပြုပြင်ရန်', 'slug' => 'assigns-edit'],
-        ['name_en' => 'Permission & Role Assign Update', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ပြန်လည် သိမ်းဆည်းရန်', 'slug' => 'assigns-update'],
-        ['name_en' => 'Permission & Role Assign Delete', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ဖြတ်သိမ်းရန်', 'slug' => 'assigns-delete'],
+        ['name_en' => 'Permission & Role Assign List', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက် စရင်း', 'slug' => 'assigns-permissions-index'],
+        ['name_en' => 'Permission & Role Assign Create', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ပြုလုပ်ရန်', 'slug' => 'assigns-permissions-create'],
+        ['name_en' => 'Permission & Role Assign Store', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို သိမ်းဆည်းရန်', 'slug' => 'assigns-permissions-store'],
+        ['name_en' => 'Permission & Role Assign Edit', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ပြုပြင်ရန်', 'slug' => 'assigns-permissions-edit'],
+        ['name_en' => 'Permission & Role Assign Update', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ပြန်လည် သိမ်းဆည်းရန်', 'slug' => 'assigns-permissions-update'],
+        ['name_en' => 'Permission & Role Assign Delete', 'name_mm' => 'အသုံးပြုခွင့် နှင့် အဆင့် ချိတ်ဆက်တာ ကို ဖြတ်သိမ်းရန်', 'slug' => 'assigns-permissions-delete'],
     ],
 ];

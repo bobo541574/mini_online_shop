@@ -13,6 +13,11 @@ class PermissionRepository
         return (new Permission());
     }
 
+    public function getAll()
+    {
+        return $this->model()->with('roles')->paginate(10);
+    }
+
     public function getRouteNames()
     {
         $permissions = [];

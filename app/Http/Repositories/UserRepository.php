@@ -12,7 +12,7 @@ class UserRepository
         return (new User());
     }
 
-    public function getAllUsers()
+    public function getAll()
     {
         return $this->model()->with('role')->orderBy('first_name')->paginate(10);
     }

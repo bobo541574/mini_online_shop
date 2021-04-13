@@ -17,7 +17,7 @@
                         @lang('assigns')
                     </h4>
                     <div>
-                        <a href="{{ route('assigns.create') }}" class="btn btn-sm btn-primary align-self-center">
+                        <a href="{{ route('assigns.permissions-create') }}" class="btn btn-sm btn-primary align-self-center">
                             @lang('create')
                         </a>
                         {{-- <a href="{{ route('assigns.trashed') }}" class="btn btn-sm btn-secondary align-self-center">
@@ -63,7 +63,7 @@
                                 </td>
                                 
                                 <td class="">
-                                    <a href="{{ route('assigns.edit', $assign) }}" class="" title="@lang('assign_edit')">
+                                    <a href="{{ route('assigns.permissions-edit', $assign) }}" class="" title="@lang('assign_edit')">
                                         <div class="my-2">
                                             <i class="align-middle text-warning" data-feather="edit"></i>
                                         </div>

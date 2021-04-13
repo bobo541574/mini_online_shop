@@ -18,6 +18,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/select2/select2.min.css') }}">
 </head>
 
 <body>
@@ -42,6 +43,8 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('assets/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
     @yield('script')
 </body>
 

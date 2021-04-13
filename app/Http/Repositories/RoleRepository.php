@@ -11,7 +11,7 @@ class RoleRepository
         return (new Role());
     }
 
-    public function getAllRoles()
+    public function getAll()
     {
         return $this->model()->orderBy('name_' . session('locale'))->paginate(5);
     }
