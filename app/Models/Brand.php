@@ -18,4 +18,14 @@ class Brand extends Model
     {
         return $this->{'name_' . session('locale')};
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'brand_categories')->withTimestamps();
+    }
+
+    public function getCategoriesIdAttribute()
+    {
+        return $this->categories->pluck('id')->toArray();
+    }
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Brand\BrandRequest;
 use App\Http\Repositories\BrandRepository;
+use App\Http\Requests\Brand\AssignRequest;
 use App\Http\Requests\Brand\UpdateRequest;
 
 class BrandController extends Controller
@@ -20,7 +22,7 @@ class BrandController extends Controller
 
     public function index()
     {
-        $brands = $this->brandRepository->getAllBrands();
+        $brands = $this->brandRepository->getAll();
 
         return view('admin.brands.index', compact('brands'));
     }
@@ -79,5 +81,6 @@ class BrandController extends Controller
 
     public function restoreAll()
     {
+        dd("restoreAll");
     }
 }

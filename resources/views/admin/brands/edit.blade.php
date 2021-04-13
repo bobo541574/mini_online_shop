@@ -5,7 +5,7 @@
 @include('admin.layouts.breadcrumb', [
 'items' => [
     'brand' => route('brands.index'),
-    'create' => null
+    'edit' => null
 ]
 ])
 
@@ -98,7 +98,7 @@
 
                     <div class="text-center">
                         <button class="btn btn btn-primary" type="submit">
-                            @lang('create')
+                            @lang('update')
                         </button>
                     </div>
                 </form>

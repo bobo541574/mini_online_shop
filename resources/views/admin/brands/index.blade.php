@@ -73,6 +73,7 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">
+
                                         <a href="{{ route('brands.edit', $brand) }}" class="" title="@lang('brand_edit')">
                                             <div class="my-2">
                                                 <i class="align-middle text-warning" data-feather="edit"></i>
