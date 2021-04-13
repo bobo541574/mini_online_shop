@@ -11,7 +11,7 @@ class BrandRepository
         return (new Brand());
     }
 
-    public function getAllBrands()
+    public function getAll()
     {
         return $this->model()->orderBy('name_' . session('locale'))->paginate(10);
     }
