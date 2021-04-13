@@ -18,7 +18,7 @@ class SubCategoryController extends Controller
     }
     public function index()
     {
-        $subcategories = $this->subCategoryRepository->getAllSubCategories();
+        $subcategories = $this->subCategoryRepository->getAll();
 
         return view('admin.subcategories.index', compact('subcategories'));
     }
@@ -82,5 +82,10 @@ class SubCategoryController extends Controller
     public function restoreAll()
     {
         //
+    }
+
+    public function findBrandsById($subcategoryId)
+    {
+        return $this->subCategoryRepository->findBrandsById($subcategoryId);
     }
 }

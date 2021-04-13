@@ -3,31 +3,27 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\Admin\ProductAttributeController;
 
 Route::get('/', function () {
-    return view('admin.layouts.app');
+    // $brands = Brand::all();
+    // return $brands->categories;
+    // return view('admin.products.create', compact('brands'));
 })->name('index');
 
 Route::get('/products', function () {
@@ -78,12 +74,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::put('roles/{role:slug}', [RoleController::class, 'update'])->name('roles.update');
     Route::delete('roles/{role:slug}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
-    // Permission Assign
-    Route::get('assigns', [PermissionAssignController::class, 'index'])->name('assigns.index');
-    Route::get('assigns/create', [PermissionAssignController::class, 'create'])->name('assigns.create');
-    Route::post('assigns', [PermissionAssignController::class, 'store'])->name('assigns.store');
-    Route::get('assigns/{role:slug}/edit', [PermissionAssignController::class, 'edit'])->name('assigns.edit');
-    Route::put('assigns/{role:slug}', [PermissionAssignController::class, 'update'])->name('assigns.update');
+    // Role Assign Permission
+    Route::get('roles/permissions', [PermissionAssignController::class, 'index'])->name('assigns.permissions-index');
+    Route::get('roles/permissions/create', [PermissionAssignController::class, 'create'])->name('assigns.permissions-create');
+    Route::post('roles/permissions', [PermissionAssignController::class, 'store'])->name('assigns.permissions-store');
+    Route::get('roles/{role:slug}/permissions/edit', [PermissionAssignController::class, 'edit'])->name('assigns.permissions-edit');
+    Route::put('roles/{role:slug}/permissions', [PermissionAssignController::class, 'update'])->name('assigns.permissions-update');
 
     // Category
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -120,4 +116,57 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('brands/trash-list', [BrandController::class, 'trashed'])->name('brands.trashed');
     Route::post('brands/{brand:slug}/restore', [BrandController::class, 'restore'])->name('brands.restore');
     Route::post('brands/restore', [BrandController::class, 'restoreAll'])->name('brands.restore-all');
+
+    // Brand Assign Category
+    Route::get('brands/categories', [CategoryAssignController::class, 'index'])->name('assigns.categories-index');
+    Route::get('brands/categories/create', [CategoryAssignController::class, 'create'])->name('assigns.categories-create');
+    Route::post('brands/categories', [CategoryAssignController::class, 'store'])->name('assigns.categories-store');
+    Route::get('brands/{brand:slug}/categories/edit', [CategoryAssignController::class, 'edit'])->name('assigns.categories-edit');
+    Route::put('brands/{brand:slug}/categories', [CategoryAssignController::class, 'update'])->name('assigns.categories-update');
+    Route::delete('brands/{brand:slug}/categories', [CategoryAssignController::class, 'destroy'])->name('assigns.categories-destroy');
+
+    // Color
+    Route::get('colors', [ColorController::class, 'index'])->name('colors.index');
+    Route::get('colors/create', [ColorController::class, 'create'])->name('colors.create');
+    Route::post('colors', [ColorController::class, 'store'])->name('colors.store');
+    Route::get('colors/{color:slug}/edit', [ColorController::class, 'edit'])->name('colors.edit');
+    Route::put('colors/{color:slug}', [ColorController::class, 'update'])->name('colors.update');
+    Route::delete('colors/{color:slug}', [ColorController::class, 'destroy'])->name('colors.destroy');
+
+    // Size
+    Route::get('sizes', [SizeController::class, 'index'])->name('sizes.index');
+    Route::get('sizes/create', [SizeController::class, 'create'])->name('sizes.create');
+    Route::post('sizes', [SizeController::class, 'store'])->name('sizes.store');
+    Route::get('sizes/{size:slug}/edit', [SizeController::class, 'edit'])->name('sizes.edit');
+    Route::put('sizes/{size:slug}', [SizeController::class, 'update'])->name('sizes.update');
+    Route::delete('sizes/{size:slug}', [SizeController::class, 'destroy'])->name('sizes.destroy');
+
+    // Brand
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products/{product:slug}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{product:slug}', [ProductController::class, 'update'])->name('products.update');
+    Route::get('products/{product:slug}/show', [ProductController::class, 'show'])->name('products.show');
+    Route::delete('products/{product:slug}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::put('products/{product:slug}/to-trash', [ProductController::class, 'toTrash'])->name('products.to-trash');
+    Route::get('products/trash-list', [ProductController::class, 'trashed'])->name('products.trashed');
+    Route::post('products/{product:slug}/restore', [ProductController::class, 'restore'])->name('products.restore');
+    Route::post('products/restore', [ProductController::class, 'restoreAll'])->name('products.restore-all');
+
+    // Product Ajax Request
+    Route::get('products/{parentId}/subcategories', [CategoryController::class, 'findSubcategoriesById'])->name('products.subcategories');
+    Route::get('subcategory/{subcategoryId}/brands', [SubCategoryController::class, 'findBrandsById'])->name('products.brands');
+
+    // Product Attribute
+    Route::get('attributes', [ProductAttributeController::class, 'index'])->name('attributes.index');
+    Route::get('attributes/create', [ProductAttributeController::class, 'create'])->name('attributes.create');
+    Route::post('attributes', [ProductAttributeController::class, 'store'])->name('attributes.store');
+    Route::get('attributes/{attribute:slug}/edit', [ProductAttributeController::class, 'edit'])->name('attributes.edit');
+    Route::put('attributes/{attribute:slug}', [ProductAttributeController::class, 'update'])->name('attributes.update');
+    Route::get('attributes/{attribute:slug}/show', [ProductAttributeController::class, 'show'])->name('attributes.show');
+    Route::delete('attributes/{attribute:slug}', [ProductAttributeController::class, 'destroy'])->name('attributes.destroy');
+    Route::put('attributes/{attribute:slug}/to-trash', [ProductAttributeController::class, 'toTrash'])->name('attributes.to-trash');
+    Route::get('attributes/trash-list', [ProductAttributeController::class, 'trashed'])->name('attributes.trashed');
+    Route::post('attributes/{attribute:slug}/restore', [ProductAttributeController::class, 'restore'])->name('attributes.restore');
 });

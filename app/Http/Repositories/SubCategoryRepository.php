@@ -11,14 +11,14 @@ class SubCategoryRepository
         return (new Category());
     }
 
+    public function getAll()
+    {
+        return $this->model()->whereNotNull('parent_id')->orderBy('name_' . session('locale'))->paginate(10);
+    }
+
     public function getAllCategories()
     {
         return $this->model()->whereNull('parent_id')->orderBy('name_' . session('locale'))->get();
-    }
-
-    public function getAllSubCategories()
-    {
-        return $this->model()->whereNotNull('parent_id')->orderBy('name_' . session('locale'))->paginate(10);
     }
 
     public function store($request)
@@ -73,5 +73,10 @@ class SubCategoryRepository
         $subcategory->save();
 
         return $subcategory->restore();
+    }
+
+    public function findBrandsById($subcategoryId)
+    {
+        return $this->model()->find($subcategoryId)->brands;
     }
 }
