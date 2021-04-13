@@ -18,7 +18,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $categories = $this->categoryRepository->getAllCategories();
+        $categories = $this->categoryRepository->paginate(10);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -78,5 +78,10 @@ class CategoryController extends Controller
     public function restoreAll()
     {
         //
+    }
+
+    public function findSubcategoriesById($parentId)
+    {
+        return $this->categoryRepository->findSubcategoriesById($parentId);
     }
 }

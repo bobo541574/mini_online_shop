@@ -11,9 +11,14 @@ class CategoryRepository
         return (new Category());
     }
 
-    public function getAllCategories()
+    public function getAll()
     {
-        return $this->model()->whereNull('parent_id')->orderBy('name_' . session('locale'))->paginate(10);
+        return $this->model()->whereNull('parent_id')->orderBy('name_' . session('locale'))->get();
+    }
+
+    public function paginate($data)
+    {
+        return $this->model()->whereNull('parent_id')->orderBy('name_' . session('locale'))->paginate($data);
     }
 
     public function store($request)
@@ -66,5 +71,10 @@ class CategoryRepository
         $category->save();
 
         return $category->restore();
+    }
+
+    public function findSubcategoriesById($parentId)
+    {
+        return $this->model()->where('parent_id', $parentId)->orderBy('name_' . session('locale'))->get();
     }
 }

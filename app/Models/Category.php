@@ -31,4 +31,9 @@ class Category extends Model
     {
         return $this->{'description_' . session('locale')};
     }
+
+    public function brands()
+    {
+        return $this->belongsToMany(Brand::class, 'brand_categories');
+    }
 }

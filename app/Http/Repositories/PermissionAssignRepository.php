@@ -17,7 +17,7 @@ class PermissionAssignRepository
         return (new Role());
     }
 
-    public function getAllAssigns()
+    public function getAll()
     {
         return $this->role()->with('permissions')->get();
     }

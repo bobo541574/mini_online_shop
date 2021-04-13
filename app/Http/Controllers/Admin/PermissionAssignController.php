@@ -19,7 +19,7 @@ class PermissionAssignController extends Controller
 
     public function index()
     {
-        $assigns = $this->permissionAssignRepository->getAllAssigns();
+        $assigns = $this->permissionAssignRepository->getAll();
 
         return view('admin.permissions.assigns.index', compact('assigns'));
     }
@@ -36,7 +36,7 @@ class PermissionAssignController extends Controller
     {
         $this->permissionAssignRepository->store($request);
 
-        return redirect()->route('assigns.index')->with('status', 'assign_created');
+        return redirect()->route('assigns.permissions-index')->with('status', 'assign_created');
     }
 
     public function edit(Role $role)
@@ -51,6 +51,6 @@ class PermissionAssignController extends Controller
     {
         $this->permissionAssignRepository->update($request, $role);
 
-        return redirect()->route('assigns.index')->with('status', 'assign_created');
+        return redirect()->route('assigns.permissions-index')->with('status', 'assign_created');
     }
 }

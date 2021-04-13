@@ -37,3 +37,14 @@ if (!function_exists('pluck_relation')) {
         return $role->permissions->pluck('id')->toArray();
     }
 }
+
+if (!function_exists('multiple_selected')) {
+    function multiple_selected($old, $id)
+    {
+        if (isset($old, $id)) {
+            return in_array($id, $old) ? "selected=selected" : '';
+        }
+
+        return false;
+    }
+}
