@@ -18,6 +18,7 @@ class CreateProductAttributesTable extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('color_id');
             $table->unsignedBigInteger('size_id');
+            $table->string('slug');
             $table->string('photo');
             $table->string('sku')->default(0);
             $table->decimal('extra_cost', 5, 2)->default(0);
@@ -26,7 +27,8 @@ class CreateProductAttributesTable extends Migration
             $table->decimal('promotion', 3, 2)->default(0);
             $table->tinyInteger('active')->default(0);
             $table->date('arrived', 0);
-            $table->text('description');
+            $table->text('description_en');
+            $table->text('description_mm');
             $table->timestamps();
             $table->softDeletes();
         });

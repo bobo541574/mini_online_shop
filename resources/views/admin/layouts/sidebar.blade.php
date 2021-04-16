@@ -9,7 +9,7 @@
                 @lang('admin')
             </li>
 
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="index.html">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">@lang('dashboard')</span>
                 </a>
@@ -88,7 +88,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('assigns.categories-index') }}">@lang('brands_categories')</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('colors.index') }}">@lang('colors')</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('sizes.index') }}">@lang('sizes')</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ asset('products.index') }}">@lang('products')</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('products.index') }}">@lang('products')</a></li>
                 </ul>
             </li>
         </ul>

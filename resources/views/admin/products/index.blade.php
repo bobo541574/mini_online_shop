@@ -73,16 +73,16 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">
-                                        <a href="{{ route('attributes.create', $product) }}" class="" title="@lang('product_attribute_create')">
+                                        <a href="{{ route('attributes.create', $product) }}" class="" title="@lang('attribute_create')">
                                             <div class="my-2">
                                                 <i class="align-middle text-info" data-feather="plus-circle"></i>
                                             </div>
                                         </a>
 
                                         @if ($product->productAttributes->count())  
-                                            <a href="{{ route('products.show', $product) }}" class="" title="@lang('product_show')">
+                                            <a href="{{ route('attributes.index') }}" class="" title="@lang('attributes')">
                                                 <div class="my-2">
-                                                    <i class="align-middle text-info" data-feather="eye"></i>
+                                                    <i class="align-middle text-info" data-feather="list"></i>
                                                 </div>
                                             </a>
                                         @endif

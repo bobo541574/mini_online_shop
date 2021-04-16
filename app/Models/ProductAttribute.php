@@ -29,7 +29,9 @@ class ProductAttribute extends Model
 
     public function getPhotosAttribute()
     {
-        return explode(', ', $this->photo);
+        $photos = json_decode($this->photo);
+
+        return $photos;
     }
 
     public function getImageAttribute()

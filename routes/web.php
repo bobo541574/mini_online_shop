@@ -21,9 +21,7 @@ use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 
 Route::get('/', function () {
-    // $brands = Brand::all();
-    // return $brands->categories;
-    // return view('admin.products.create', compact('brands'));
+    return view('admin.layouts.app');
 })->name('index');
 
 Route::get('/products', function () {
@@ -160,13 +158,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     // Product Attribute
     Route::get('attributes', [ProductAttributeController::class, 'index'])->name('attributes.index');
-    Route::get('attributes/create', [ProductAttributeController::class, 'create'])->name('attributes.create');
+    Route::get('attributes/{product:slug}/create', [ProductAttributeController::class, 'create'])->name('attributes.create');
     Route::post('attributes', [ProductAttributeController::class, 'store'])->name('attributes.store');
     Route::get('attributes/{attribute:slug}/edit', [ProductAttributeController::class, 'edit'])->name('attributes.edit');
     Route::put('attributes/{attribute:slug}', [ProductAttributeController::class, 'update'])->name('attributes.update');
     Route::get('attributes/{attribute:slug}/show', [ProductAttributeController::class, 'show'])->name('attributes.show');
     Route::delete('attributes/{attribute:slug}', [ProductAttributeController::class, 'destroy'])->name('attributes.destroy');
-    Route::put('attributes/{attribute:slug}/to-trash', [ProductAttributeController::class, 'toTrash'])->name('attributes.to-trash');
+    Route::put('attributes/{attribute:slug}/remove', [ProductAttributeController::class, 'remove'])->name('attributes.remove');
     Route::get('attributes/trash-list', [ProductAttributeController::class, 'trashed'])->name('attributes.trashed');
     Route::post('attributes/{attribute:slug}/restore', [ProductAttributeController::class, 'restore'])->name('attributes.restore');
+    Route::get('attributes/upload-photos', [ProductAttributeController::class, 'uploadPhoto'])->name('attributes.upload-photos');
 });
