@@ -28,7 +28,7 @@ class PermissionRepository
             if ($this->arrayFilter($route->getName())) {
                 continue;
             }
-            $permissions[] = strtoslug($route->getName(), false);
+            $permissions[] = \strtoslug($route->getName(), false);
         }
 
         return $permissions;
