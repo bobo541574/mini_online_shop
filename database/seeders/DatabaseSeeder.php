@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'user_name' => "bobo57",
             'email' => "admin@gmail.com",
             'email_verified_at' => now(),
-            'phone' => $this->faker->phoneNumber,
+            'phone' => "09999999999",
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ]);
