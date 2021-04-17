@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Size;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SizeFactory extends Factory

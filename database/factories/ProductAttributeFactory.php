@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Size;
 use App\Models\Color;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use App\Models\ProductAttribute;
-use App\Models\Size;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductAttributeFactory extends Factory
