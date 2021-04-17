@@ -26,7 +26,7 @@ class CategoryFactory extends Factory
         return [
             'name_en' => "Test Category - " . (trans($this->index, [], 'en')),
             'name_mm' => "အစမ်း ကုန်ပစ္စည်း အမျိုးအစား - " . (trans($this->index, [], 'mm')),
-            'slug' => strtoslug("Test Category - " . (trans($this->index, [], 'en'))),
+            'slug' => \strtoslug("Test Category - " . (trans($this->index, [], 'en'))),
             'description_en' => "Test Category - " . (trans($this->index, [], 'en')),
             'description_mm' => "အစမ်း ကုန်ပစ္စည်း အမျိုးအစား - " . (trans($this->index, [], 'mm')),
         ];
