@@ -26,7 +26,7 @@ class SizeFactory extends Factory
         return [
             'name_en' => "Test Size - " . (trans($this->index, [], 'en')),
             'name_mm' => "အစမ်း အရွယ်အစား - " . (trans($this->index, [], 'mm')),
-            'slug' => strtoslug("Test Siz - " . (trans($this->index, [], 'en'))),
+            'slug' => Str::slug("Test Siz - " . (trans($this->index, [], 'en')) . "-" . now()),
         ];
     }
 }

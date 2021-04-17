@@ -39,7 +39,7 @@ class ProductFactory extends Factory
             'sub_category_id' => $this->sub_category_id,
             'name_en' => "Test Product - " . (trans($this->index, [], 'en')),
             'name_mm' => "အစမ်း ကုန်ပစ္စည်း - " . (trans($this->index, [], 'mm')),
-            'slug' => strtoslug("Test Product - " . (trans($this->index, [], 'en'))),
+            'slug' => Str::slug("Test Product - " . (trans($this->index, [], 'en')) . "-" . now()),
         ];
     }
 }
