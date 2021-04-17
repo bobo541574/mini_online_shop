@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoryFactory extends Factory
@@ -26,7 +27,7 @@ class CategoryFactory extends Factory
         return [
             'name_en' => "Test Category - " . (trans($this->index, [], 'en')),
             'name_mm' => "အစမ်း ကုန်ပစ္စည်း အမျိုးအစား - " . (trans($this->index, [], 'mm')),
-            'slug' => \strtoslug("Test Category - " . (trans($this->index, [], 'en'))),
+            'slug' => Str::slug("Test Category - " . (trans($this->index, [], 'en')) . now()),
             'description_en' => "Test Category - " . (trans($this->index, [], 'en')),
             'description_mm' => "အစမ်း ကုန်ပစ္စည်း အမျိုးအစား - " . (trans($this->index, [], 'mm')),
         ];
