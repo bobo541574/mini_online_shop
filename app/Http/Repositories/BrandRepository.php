@@ -53,7 +53,7 @@ class BrandRepository
     {
         $path = public_path() . '/img/brands/';
         $photo->move($path, $photo->getClientOriginalName());
-        return '/img/brands/' . $photo->getClientOriginalName();
+        return json_encode('/img/brands/' . $photo->getClientOriginalName());
     }
 
     public function destroy($slug)

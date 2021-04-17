@@ -65,7 +65,6 @@ class ProductAttributeController extends Controller
 
     public function destory($slug)
     {
-        dd($slug);
         $this->productAttributeRepository->destory($slug);
 
         return redirect()->route('attributes.index')->with('status', 'attribute_deleted');

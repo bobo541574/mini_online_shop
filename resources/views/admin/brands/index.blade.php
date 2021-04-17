@@ -60,7 +60,7 @@
                                     {{ $brand->name }}
                                 </td>
                                 <td>
-                                    <img src="{{ asset($brand->photo) }}" class="avatar img-fluid" alt="brand-logo">
+                                    <img src="{{ asset($brand->image) }}" class="avatar img-fluid" alt="brand-logo">
                                 </td>
                                 <td>
                                     @if ($brand->active)

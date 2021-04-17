@@ -28,4 +28,9 @@ class Brand extends Model
     {
         return $this->categories->pluck('id')->toArray();
     }
+
+    public function getImageAttribute()
+    {
+        return json_decode($this->photo);
+    }
 }

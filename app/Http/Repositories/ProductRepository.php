@@ -13,7 +13,7 @@ class ProductRepository
 
     public function paginate($data)
     {
-        return $this->model()->with(['category', 'brand', 'productAttributes'])->orderBy('name_' . session('locale'))->paginate($data);
+        return $this->model()->with(['category', 'subcategory', 'brand', 'productAttributes'])->orderBy('name_' . session('locale'))->paginate($data);
     }
 
     public function getAllAttributes($product)

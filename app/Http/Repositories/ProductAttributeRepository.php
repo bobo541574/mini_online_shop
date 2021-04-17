@@ -38,7 +38,7 @@ class ProductAttributeRepository
 
     protected function photoUpload($photos)
     {
-        $photoArray = "";
+        $photoArray = [];
 
         $location = "/img/products/";
         $path = public_path() . $location;
@@ -46,7 +46,7 @@ class ProductAttributeRepository
         if (request()->hasFile('photo')) {
             foreach ($photos as $photo) {
                 $photo->move($path, $photo->getClientOriginalName());
-                $photoArray .= ',' . $location . $photo->getClientOriginalName();
+                $photoArray[] = $location . $photo->getClientOriginalName();
             }
         }
 
