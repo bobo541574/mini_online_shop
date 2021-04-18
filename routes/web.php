@@ -28,13 +28,7 @@ Route::get('/products', function () {
     return view('admin.products.index');
 })->name('products');
 
-Route::get('/address', [HomeController::class, 'index'])->name('address');
-
 Route::get('/locale-switch/{locale}', LocalizationController::class)->name('locale.switch');
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
@@ -43,6 +37,11 @@ Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
+
+// Front Section
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/category/{subcategory:slug}/products', [HomeController::class, 'subcategoryByProducts'])->name('subcategories.products');
+Route::get('/products/{product:slug}/add-to-cart', [HomeController::class, 'addToCart'])->name('products.add-to-cart');
 
 // Admin Section
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {

@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->string('name_mm');
             $table->string('slug');
             $table->tinyInteger('active')->default(1);
+            $table->tinyInteger('admin_choice')->nullable();
+            $table->unsignedInteger('popular')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

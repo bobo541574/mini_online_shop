@@ -17,6 +17,11 @@ class Product extends Model
         return $this->{'name_' . session('locale')};
     }
 
+    public function attribute()
+    {
+        return $this->hasOne(ProductAttribute::class);
+    }
+
     public function productAttributes()
     {
         return $this->hasMany(ProductAttribute::class);

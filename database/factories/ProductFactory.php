@@ -41,6 +41,8 @@ class ProductFactory extends Factory
             'name_en' => "Test Product - " . (trans($this->index, [], 'en')),
             'name_mm' => "အစမ်း ကုန်ပစ္စည်း - " . (trans($this->index, [], 'mm')),
             'slug' => Str::slug("Test Product - " . (trans($this->index, [], 'en')) . "-" . now()),
+            'popular' => rand(0, 20),
+            'admin_choice' => rand(0, 1),
         ];
     }
 }

@@ -14,6 +14,6 @@ class ProductAttributeSeeder extends Seeder
      */
     public function run()
     {
-        ProductAttribute::factory(30)->create();
+        ProductAttribute::factory(360)->create();
     }
 }

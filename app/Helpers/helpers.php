@@ -30,6 +30,15 @@ if (!function_exists('check_permission')) {
     }
 }
 
+if (!function_exists('check_active')) {
+    function check_active($url): string
+    {
+        if (url()->current() != $url)
+            return "text-light";
+        return '';
+    }
+}
+
 if (!function_exists('pluck_relation')) {
     function pluck_relation($role): array
     {
