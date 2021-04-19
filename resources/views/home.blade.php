@@ -156,7 +156,7 @@
         fetch_products();
 
         function fetch_products(url) {
-            let currentUrl = url ?? '/products';
+            let currentUrl = `/products?page=${url}` ?? '/products';
             fetch(currentUrl, {
                 headers: {
                     "Content-Type": "application/json",
@@ -215,7 +215,7 @@
 
                                 html += ` 
                                     <li class="page-item ${currentPage > 1 ? "" : " disabled text-muted" }">
-                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetch_products('${prevPageUrl}')">
+                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetch_products(${currentPage - 1})">
                                             <span aria-hidden="true">&lsaquo;</span>
                                         </a>
                                     </li>
@@ -223,7 +223,7 @@
                                 for (let i = 1; i < (links.length - 1); i++) {
                                     html += `
                                         <li class="page-item ${links[i].active ? "active" : "" }">
-                                            <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetch_products('${links[i].url}')">
+                                            <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetch_products(${i})">
                                                 <span aria-hidden="true">${links[i].label }</span>
                                             </a>
                                         </li>
@@ -232,7 +232,7 @@
 
                                 html += `
                                     <li class="page-item ${currentPage == lastPage ? "disabled text-muted" : "" }">
-                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetch_products('${nextPageUrl}')">
+                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetch_products(${currentPage + 1})">
                                             <span aria-hidden="true">&rsaquo;</span>
                                         </a>
                                     </li>
