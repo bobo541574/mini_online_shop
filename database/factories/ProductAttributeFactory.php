@@ -50,7 +50,7 @@ class ProductAttributeFactory extends Factory
             'sale_price' => rand(2500, 13000),
             'arrived' => $this->faker->dateTimeBetween('2021-04-01', '2021-11-30'),
             'description_en' => "Test Product Attribute",
-            'description_mm' => "အစမ်း ကုပစ္စည်း ၏ အချက်အလက်",
+            'description_mm' => "ကုန်ပစ္စည်း ၏ အချက်အလက်",
         ];
     }
 }

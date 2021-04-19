@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background: #232C3D">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top position-relative" style="background: #232C3D">
     <div class="container-fluid">
         <a class="navbar-brand fw-bolder" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,13 +7,13 @@
         <div class="d-md-flex justify-content-between collapse navbar-collapse fw-bold text-lg" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('home')) }}" aria-current="page" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link {{ check_active(route('front.home')) }}" aria-current="page" href="{{ route('front.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('home')) }}" href="#">Link</a>
+                    <a class="nav-link {{ check_active(route('front.home')) }}" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ check_active(route('home')) }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {{ check_active(route('front.home')) }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Dropdown
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -24,7 +24,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('home')) }}" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link {{ check_active(route('front.home')) }}" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
     
             </ul>

@@ -26,7 +26,7 @@ class ColorFactory extends Factory
         $this->index = $this->index + 1;
         return [
             'name_en' => "Test Color - " . (trans($this->index, [], 'en')),
-            'name_mm' => "အစမ်း ကာလာ - " . (trans($this->index, [], 'mm')),
+            'name_mm' => "ကာလာ - " . (trans($this->index, [], 'mm')),
             'slug' => Str::slug("Test Color - " . (trans($this->index, [], 'en')) . "-" . now()),
         ];
     }

@@ -44,6 +44,10 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
 
+    <script>
+        let locale = '{{ session('locale') }}';
+    </script>
+    
     @yield('script')
 </body>
 </html>

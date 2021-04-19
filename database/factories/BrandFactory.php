@@ -26,11 +26,11 @@ class BrandFactory extends Factory
         $this->index =  $this->index + 1;
         return [
             'name_en' => "Test Brand - " . (trans($this->index, [], 'en')),
-            'name_mm' => "အစမ်း ကုန်ပစ္စည်း အမှတ်တံဆိပ် - " . (trans($this->index, [], 'mm')),
+            'name_mm' => "အမှတ်တံဆိပ် - " . (trans($this->index, [], 'mm')),
             'photo' => json_encode("/img/brands/brand.png"),
             'slug' => Str::slug("Test Brand - " . (trans($this->index, [], 'en')) . "-" . now()),
             'description_en' => "Test Brand - " . (trans($this->index, [], 'en')),
-            'description_mm' => "အစမ်း ကုန်ပစ္စည်း အမှတ်တံဆိပ် - " . (trans($this->index, [], 'mm')),
+            'description_mm' => "အမှတ်တံဆိပ် - " . (trans($this->index, [], 'mm')),
         ];
     }
 }

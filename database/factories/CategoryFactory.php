@@ -26,10 +26,10 @@ class CategoryFactory extends Factory
         $this->index =  $this->index + 1;
         return [
             'name_en' => "Test Category - " . (trans($this->index, [], 'en')),
-            'name_mm' => "အစမ်း ကုန်ပစ္စည်း အမျိုးအစား - " . (trans($this->index, [], 'mm')),
+            'name_mm' => "အမျိုးအစား - " . (trans($this->index, [], 'mm')),
             'slug' => Str::slug("Test Category - " . (trans($this->index, [], 'en')) . "-" . now()),
             'description_en' => "Test Category - " . (trans($this->index, [], 'en')),
-            'description_mm' => "အစမ်း ကုန်ပစ္စည်း အမျိုးအစား - " . (trans($this->index, [], 'mm')),
+            'description_mm' => "အမျိုးအစား - " . (trans($this->index, [], 'mm')),
         ];
     }
 }

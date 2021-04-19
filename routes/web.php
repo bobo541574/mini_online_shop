@@ -20,9 +20,9 @@ use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 
-Route::get('/', function () {
-    return view('admin.layouts.app');
-})->name('index');
+// Route::get('/', function () {
+//     return view('admin.layouts.app');
+// })->name('index');
 
 Route::get('/products', function () {
     return view('admin.products.index');
@@ -39,9 +39,10 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Front Section
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/category/{subcategory:slug}/products', [HomeController::class, 'subcategoryByProducts'])->name('subcategories.products');
-Route::get('/products/{product:slug}/add-to-cart', [HomeController::class, 'addToCart'])->name('products.add-to-cart');
+Route::get('/', [HomeController::class, 'index'])->name('front.home');
+Route::get('/category/{subcategory:slug}/products', [HomeController::class, 'subcategoryByProducts'])->name('front.subcategories.products');
+Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front.products.ajax');
+Route::get('/products/{product:slug}/add-to-cart', [HomeController::class, 'addToCart'])->name('front.products.add-to-cart');
 
 // Admin Section
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {

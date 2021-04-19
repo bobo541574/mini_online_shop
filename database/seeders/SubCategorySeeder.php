@@ -21,10 +21,10 @@ class SubCategorySeeder extends Seeder
             $category = new Category();
             $category->parent_id = rand($parent_id[0], $parent_id[5]);
             $category->name_en = "Test Sub Category - " . (trans($i, [], 'en'));
-            $category->name_mm = "အစမ်း ကုန်ပစ္စည်း အမျိုးအစားခွဲ - " . (trans($i, [], 'mm'));
+            $category->name_mm = "အမျိုးအစားခွဲ - " . (trans($i, [], 'mm'));
             $category->slug = Str::slug("Test Sub Category - " . (trans($i, [], 'en')) . "-" . now());
             $category->description_en = "Test Sub Category - " . (trans($i, [], 'en'));
-            $category->description_mm = "အစမ်း ကုန်ပစ္စည်း အမျိုးအစားခွဲ - " . (trans($i, [], 'mm'));
+            $category->description_mm = "အမျိုးအစားခွဲ - " . (trans($i, [], 'mm'));
             $category->save();
         }
     }
