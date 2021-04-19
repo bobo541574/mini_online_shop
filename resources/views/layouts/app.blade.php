@@ -46,6 +46,10 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script>
+        /* csrf torken */
+        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        /* localization */
         let locale = '{{ session('locale') }}';
     </script>
 
