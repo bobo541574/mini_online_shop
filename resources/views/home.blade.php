@@ -156,7 +156,7 @@
         fetch_products();
 
         function fetch_products(url) {
-            let currentUrl = `/products?page=${url}` ?? '/products';
+            let currentUrl = url ? `/products?page=${url}` : '/products';
             fetch(currentUrl, {
                 headers: {
                     "Content-Type": "application/json",
