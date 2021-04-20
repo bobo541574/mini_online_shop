@@ -51,6 +51,11 @@
 
         /* localization */
         let locale = '{{ session('locale') }}';
+
+        function isProduction() {
+            let is_production = '{{ config('app.env') === 'production' }}';
+            return (is_production == "") ? false : true;
+        }
     </script>
 
     @yield('script')

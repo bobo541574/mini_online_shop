@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 if (!function_exists('strtoslug')) {
-    function strtoslug($arg, $timestamp = true): string
+    function strtoslug($arg, $timestamp = true, $sperator = "-"): string
     {
         $time = '';
         if ($timestamp) {
@@ -12,7 +12,7 @@ if (!function_exists('strtoslug')) {
         }
 
         if (is_array($arg)) {
-            return Str::slug(implode("-", str_replace('.', '-', $arg)) . '-' . $time);
+            return Str::slug(implode($sperator, str_replace('.', '-', $arg)) . '-' . $time);
         }
 
         return Str::slug(str_replace('.', '-', $arg) . '-' . $time);

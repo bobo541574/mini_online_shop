@@ -14,7 +14,12 @@ class BrandFactory extends Factory
      * @var string
      */
     protected $model = Brand::class;
+
     protected $index = 0;
+
+    protected $mm = [];
+
+    protected $en = [];
 
     /**
      * Define the model's default state.
@@ -24,13 +29,24 @@ class BrandFactory extends Factory
     public function definition()
     {
         $this->index =  $this->index + 1;
+
+        $temp = str_split($this->index, 1);
+        foreach ($temp as $value) {
+            $this->mm[] = (trans($value, [], 'mm'));
+            $this->en[] = trans($value, [], 'en');
+        }
+        $mm = implode("", $this->mm);
+        $en = implode("", $this->en);
+        $this->mm = [];
+        $this->en = [];
+
         return [
-            'name_en' => "Test Brand - " . (trans($this->index, [], 'en')),
-            'name_mm' => "အမှတ်တံဆိပ် - " . (trans($this->index, [], 'mm')),
+            'name_en' => "Test Brand - " . ($en),
+            'name_mm' => "အမှတ်တံဆိပ် - " . ($mm),
             'photo' => json_encode("/img/brands/brand.png"),
-            'slug' => Str::slug("Test Brand - " . (trans($this->index, [], 'en')) . "-" . now()),
-            'description_en' => "Test Brand - " . (trans($this->index, [], 'en')),
-            'description_mm' => "အမှတ်တံဆိပ် - " . (trans($this->index, [], 'mm')),
+            'slug' => strtoslug("Test Brand - " . ($en) . "-" . now()),
+            'description_en' => "Test Brand - " . ($en),
+            'description_mm' => "အမှတ်တံဆိပ် - " . ($mm),
         ];
     }
 }

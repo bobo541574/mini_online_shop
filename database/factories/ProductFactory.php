@@ -23,6 +23,10 @@ class ProductFactory extends Factory
 
     protected $sub_category_id = 0;
 
+    protected $mm = [];
+
+    protected $en = [];
+
     /**
      * Define the model's default state.
      *
@@ -30,7 +34,18 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $this->index = $this->index + 1;
+        $this->index =  $this->index + 1;
+
+        $temp = str_split($this->index, 1);
+        foreach ($temp as $value) {
+            $this->mm[] = (trans($value, [], 'mm'));
+            $this->en[] = trans($value, [], 'en');
+        }
+        $mm = implode("", $this->mm);
+        $en = implode("", $this->en);
+        $this->mm = [];
+        $this->en = [];
+
         $this->sub_category_id = $this->faker->randomElement(Category::whereNotNull('parent_id')->pluck('id')->toArray());
         $this->category = Category::find($this->sub_category_id);
 
@@ -38,9 +53,9 @@ class ProductFactory extends Factory
             'brand_id' => $this->faker->randomElement(Brand::pluck('id')->toArray()),
             'category_id' => $this->category->parent_id,
             'sub_category_id' => $this->sub_category_id,
-            'name_en' => "Test Product - " . (trans($this->index, [], 'en')),
-            'name_mm' => "ကုန်ပစ္စည်း - " . (trans($this->index, [], 'mm')),
-            'slug' => Str::slug("Test Product - " . (trans($this->index, [], 'en')) . "-" . now()),
+            'name_en' => "Test Product - " . ($en),
+            'name_mm' => "ကုန်ပစ္စည်း - " . ($mm),
+            'slug' => strtoslug("Test Product - " . ($en) . "-" . now()),
             'popular' => rand(0, 20),
             'admin_choice' => rand(0, 1),
         ];

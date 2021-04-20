@@ -42,7 +42,7 @@ class ProductAttributeFactory extends Factory
             'product_id' => $this->product_id,
             'color_id' => $this->color_id,
             'size_id' => $this->size_id,
-            'slug' => Str::slug("Test Product - " . ($this->product_id) . "-" . ($this->color_id . $this->size_id) . "-" . now()),
+            'slug' => strtoslug("Test Product - " . ($this->product_id) . "-" . ($this->color_id . $this->size_id) . "-" . now()),
             'photo' => json_encode(["/img/products/product - 1.png", "/img/products/product - 2.png", "/img/products/product - 3.png"]),
             'sku' => rand(1, 50),
             'buy_price' => rand(1500, 10000),

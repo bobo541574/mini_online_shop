@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -40,7 +40,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Front Section
 Route::get('/', [HomeController::class, 'index'])->name('front.home');
-Route::get('/category/{subcategory:slug}/products', [HomeController::class, 'subcategoryByProducts'])->name('front.subcategories.products');
+Route::get('/category/{subcategory:id}/products', [HomeController::class, 'subcategoryByProducts'])->name('front.subcategories.ajax');
 Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front.products.ajax');
 Route::get('/products/{product:slug}/add-to-cart', [HomeController::class, 'addToCart'])->name('front.products.add-to-cart');
 
