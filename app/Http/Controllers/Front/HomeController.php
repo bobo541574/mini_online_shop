@@ -40,7 +40,7 @@ class HomeController extends Controller
 
     public function subcategoryByProducts($id)
     {
-        $products = Product::with('category', 'subcategory', 'brand', 'attribute')->where('sub_category_id', $id)->paginate(8);
+        $products = Product::with('category', 'subcategory', 'brand', 'attribute')->where('sub_category_id', $id)->paginate(4);
 
         return $products;
     }
