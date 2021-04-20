@@ -56,6 +56,9 @@
             let is_production = '{{ config('app.env') === 'production' }}';
             return (is_production == "") ? false : true;
         }
+
+        isProduction() ? window.location.protocol = "https" : "";
+
     </script>
 
     @yield('script')

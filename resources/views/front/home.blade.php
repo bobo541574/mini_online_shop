@@ -213,9 +213,7 @@
                 let currentPage = data.current_page;
                 let lastPage = data.last_page;
                 let prevPageUrl = data.prev_page_url;
-                // prevPageUrl = prevPageUrl.replace("http", "https")
                 let nextPageUrl = data.next_page_url;
-                // nextPageUrl = nextPageUrl.replace("http", "https");
                 let products = data.data;
                 let html = "";
                 products.forEach(product => {
