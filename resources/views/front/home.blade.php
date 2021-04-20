@@ -197,11 +197,6 @@
         }
 
         function fetchProductsByCategory(url) {
-
-            if(isProduction()) {
-                url = url.replace("http", "https");
-            }
-
             fetch(url, {
                 headers: {
                     "Content-Type": "application/json",
@@ -217,8 +212,8 @@
                 let links = data.links;
                 let currentPage = data.current_page;
                 let lastPage = data.last_page;
-                let prevPageUrl = data.prev_page_url;
-                let nextPageUrl = data.next_page_url;
+                let prevPageUrl = data.prev_page_url.replace("http", "https");
+                let nextPageUrl = data.next_page_url.replace("http", "https");
                 let products = data.data;
                 let html = "";
                 products.forEach(product => {
