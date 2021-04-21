@@ -2,86 +2,74 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="card">
+<div class="row my-3 justify-content-center">
+    <div class="col-md-7">
+        <div class="card border">     
             <div class="card-body">
-                <h4>@lang('categories')</h4>
-                <ul class="list-group pt-2">
-                    @foreach ($categories as $category)
-                        <li class="list-group-item list-group-item-action">
-                            <a href="#" class="dropdown text-decoration-none" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="d-flex justify-content-between align-items-start text-dark">
-                                    {{ $category->name }}
-                                    <span class="badge bg-success rounded">@lang($category->subcategories->count())</span>
-                                </div>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @foreach ($category->subcategories as $subcategory)
-                                        <li>
-                                            <a class="dropdown-item" href="#">{{ $subcategory->name }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-9">
-        <div id="subcategories" style="position: absolute; width: 100%; z-index: 100;">
-    
-        </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <div id="slider" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#slider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <div class="row">
+                    <div class="preview col-md-4 mx-auto">
+                        <div class="row justify-content-around">
+                            <div class="preview-pic tab-content">
+                            @foreach ($attributes->first()->photos as $key => $photo)
+                                <div class="tab-pane {{ $loop->first ? 'active' : '' }}" id="pic-{{ $key }}"><img src="{{ asset($photo) }}" class="w-75" /></div>
+                            @endforeach
+                            </div>
+                            <ul class="preview-thumbnail nav nav-tabs">
+                            @foreach ($attributes->first()->photos as $key => $photo)
+                                <li><a data-bs-target="#pic-{{ $key }}" data-bs-toggle="tab"><img src="{{ asset($photo) }}" /></a></li>
+                            @endforeach
+                            </ul>
                         </div>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active" data-bs-interval="5000">
-                            <img src="{{ asset('/img/slider/slide-1.jpg') }}" class="d-block w-100 rounded" alt="slid_1">
-                          </div>
-                          <div class="carousel-item" data-bs-interval="5000">
-                            <img src="{{ asset('/img/slider/slide-1.jpg') }}" class="d-block w-100 rounded" alt="slid_1">
-                          </div>
-                          <div class="carousel-item" data-bs-interval="5000">
-                            <img src="{{ asset('/img/slider/slide-1.jpg') }}" class="d-block w-100 rounded" alt="slid_1">
-                          </div>
+                    </div>
+                    <div class="col-md-7 mx-auto">
+                        <div class="fs-4 fw-bolder mb-1">{{ $attributes->first()->product->name }}</div>
+                        <hr class="border border-b-2 border-dark" />
+                        <div class="badge bg-info fw-bold mb-2">
+                            <span>@lang('cat'): </span>
+                            <span class="">{{ $attributes->first()->product->category->name }} > </span>
+                            <span class="">{{ $attributes->first()->product->subcategory->name }}</span>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>
+                        <br />
+                        <div class="badge bg-info fw-bold mb-2">
+                            <span>@lang('brd'): </span>
+                            <span class="">{{ $attributes->first()->product->brand->name }} </span>
+                        </div>
+                        <br />
+                        <div class="badge bg-info fw-bold mb-3">
+                            <span>@lang('attribute_sale_price'): </span>
+                            <span class="">{{ $attributes->first()->sale_price }} </span>
+                        </div>
+                        <div class="row mb-3 col-md-12">
+                            <label for="sku" class="form-label col-4 col-md-4">@lang('attribute_sku')</label>
+                            <div class="col-3 col-md-3">
+                                <input type="number" name="sku" class="form-control form-control-sm">
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <select id="color-size" class="form-select form-select-sm" aria-label="form-select-sm example">
+                                <option selected>Open this select menu</option>
+                                @foreach ($attributes as $attribute)
+                                    {{-- <div class="row justify-content-around"> --}}
+                                        {{-- @foreach ($attribute->photos as $photo)
+                                            <img src="{{ asset($photo) }}" class="img-fluid" style="width: 15%" alt="attribute-{{ $attribute->id }}">
+                                        @endforeach --}}
+                                        <option value="1">{{ $attribute->color->name }} - {{ $attribute->size->name }}</option>
+                                    {{-- </div> --}}
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="row mb-5">
-            @foreach ($products as $product)
-                @if ($product->attribute)
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img class="card-img-top w-75 mx-auto" src="{{ asset($product->attribute->image) }}" alt="product_{{ $product->attribute->id }}">
-                            <hr />
-                            <div class="card-body px-2 pt-0 pb-3">
-                                <p class="text-lg fw-bolder">{{ $product->name }}</p>
-                                <small class="badge bg-info">{{ $product->category->name }}</small>
-                                <small class="badge bg-info">{{ $product->subcategory->name }}</small>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
+    </div>
+    <div class="col-md-3">
+        <div class="card border">
+            <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Text</p>
+            </div>
         </div>
     </div>
 </div>
@@ -90,6 +78,8 @@
 
 @section('script')
     <script>
-        
+        $('#color-size').select2();
+        let attributes = '{{ $attributes }}';
+        console.log(attributes);
     </script>
 @endsection

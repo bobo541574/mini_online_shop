@@ -1,4 +1,4 @@
-<a href="#" class="card-link text-dark">
+<a href="{{ route('front.product.attributes', $product) }}" class="card-link text-dark">
     <div class="card product-card">
         <img class="card-img-top w-75 mx-auto" src="{{ asset($product->attribute->image) }}"
             alt="product_{{ $product->attribute->id }}">

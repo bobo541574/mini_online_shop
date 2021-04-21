@@ -42,7 +42,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/', [HomeController::class, 'index'])->name('front.home');
 Route::get('/category/{subcategory:id}/products', [HomeController::class, 'subcategoryByProducts'])->name('front.subcategories.ajax');
 Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front.products.ajax');
-Route::get('/products/{product:slug}/add-to-cart', [HomeController::class, 'addToCart'])->name('front.products.add-to-cart');
+Route::get('/product/{product:slug}/attributes', [HomeController::class, 'attributesByProduct'])->name('front.product.attributes');
 
 // Admin Section
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {

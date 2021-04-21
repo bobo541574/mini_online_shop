@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Front\ProductResource;
+use App\Models\ProductAttribute;
 
 class HomeController extends Controller
 {
@@ -35,18 +37,20 @@ class HomeController extends Controller
     {
         $products = Product::with('category', 'subcategory', 'brand', 'attribute')->paginate(12);
 
-        return $products;
+        return ProductResource::collection($products);
     }
 
     public function subcategoryByProducts($id)
     {
-        $products = Product::with('category', 'subcategory', 'brand', 'attribute')->where('sub_category_id', $id)->paginate(4);
+        $products = Product::with('category', 'subcategory', 'brand', 'attribute')->where('sub_category_id', $id)->paginate(8);
 
-        return $products;
+        return ProductResource::collection($products);
     }
 
-    public function addToCart(Product $product)
+    public function attributesByProduct(Product $product)
     {
-        return redirect()->back()->with('status', "add_to_cart_success");
+        $attributes = ProductAttribute::with('product', 'color', 'size')->where('product_id', $product->id)->get();
+
+        return view('front.product', compact('attributes'));
     }
 }

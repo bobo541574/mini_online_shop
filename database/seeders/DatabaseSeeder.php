@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
     {
         // PermissionRole::truncate();
         User::create([
-            'first_name' => "Bo",
-            'last_name' => "Bo",
-            'user_name' => "bobo57",
+            'first_name' => "Admin",
+            'last_name' => "",
+            'user_name' => "admin",
             'email' => "admin@gmail.com",
             'email_verified_at' => now(),
             'phone' => "09999999999",
