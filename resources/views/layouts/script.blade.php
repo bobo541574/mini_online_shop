@@ -12,8 +12,7 @@
     let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     /* localization */
-    let locale = '{{ session('
-    locale ') }}';
+    let locale = '{{ session('locale') }}';
 
     /* production mode */
     function isProduction() {
