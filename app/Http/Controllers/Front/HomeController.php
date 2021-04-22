@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\services\Address;
 use Illuminate\Http\Request;
+use App\Models\ProductAttribute;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Front\ProductResource;
-use App\Models\ProductAttribute;
 
 class HomeController extends Controller
 {
@@ -49,8 +50,17 @@ class HomeController extends Controller
 
     public function attributesByProduct(Product $product)
     {
+        $address = new Address(config('address'));
+
+        $states = $address->stateList();
+
         $attributes = ProductAttribute::with('product', 'color', 'size')->where('product_id', $product->id)->get();
 
-        return view('front.product', compact('attributes'));
+        return view('front.product', compact('attributes', 'states'));
+    }
+
+    public function buyNow(Request $request)
+    {
+        dd($request->all());
     }
 }

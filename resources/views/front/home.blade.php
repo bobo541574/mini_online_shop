@@ -14,7 +14,7 @@
             
             @include('front.shared._categories')
 
-            <div class="bg-secondary mb-2 p-3 h4 fw-bold rounded shadow">
+            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
                 @lang('admin_products')
             </div>
             <div class="row mx-1">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="bg-secondary mb-2 p-3 h4 fw-bold rounded shadow">
+            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
                 @lang('popular_products')
             </div>
             <div class="row mx-1">
@@ -57,14 +57,14 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="bg-secondary mb-2 p-3 h4 fw-bold rounded shadow">
+            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
                 @lang('products')
             </div>
             <div class="row mx-1" id="products">
                
             </div>
 
-            <div class="bg-secondary mb-2 p-3 h4 fw-bold rounded shadow">
+            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
                 @lang('latest_products')
             </div>
             <div class="row mx-1">

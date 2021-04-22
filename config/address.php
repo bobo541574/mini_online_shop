@@ -62,7 +62,7 @@ return [
                 ],
                 [
                     'key' => 'danubyu',
-                    'name' => 'Danubyu'
+                    'name' => 'ဓနုဖြူ'
                 ],
             ],
             'bago' => [
@@ -118,7 +118,7 @@ return [
             'danubyu' => [
                 [
                     'key' => 'danubyu',
-                    'name' => 'Danubyu'
+                    'name' => 'ဓနုဖြူ'
                 ],
             ],
             'bago' => [

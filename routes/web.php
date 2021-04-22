@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Front\OrderController;
 
 // Route::get('/', function () {
 //     return view('admin.layouts.app');
@@ -43,6 +45,17 @@ Route::get('/', [HomeController::class, 'index'])->name('front.home');
 Route::get('/category/{subcategory:id}/products', [HomeController::class, 'subcategoryByProducts'])->name('front.subcategories.ajax');
 Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front.products.ajax');
 Route::get('/product/{product:slug}/attributes', [HomeController::class, 'attributesByProduct'])->name('front.product.attributes');
+Route::group(['middleware' => 'auth'], function () {
+    // Order
+    Route::post('/products/order', [OrderController::class, 'store'])->name('front.order.store');
+
+    // Contact
+    Route::get('/state/{state?}/cities', [ContactController::class, 'getCititesBystate'])->name('front.state.cities');
+    Route::get('/city/{state?}/townships', [ContactController::class, 'getTownshipsBycity'])->name('front.city.townships');
+    Route::post('/contacts', [ContactController::class, 'storeForUser'])->name('front.contacts.store-user');
+});
+
+Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name('front.attribute.add-to-cart');
 
 // Admin Section
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
