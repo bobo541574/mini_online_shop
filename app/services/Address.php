@@ -47,7 +47,11 @@ class Address
 
         $data = array_column($data, 'name');
 
-        return $data[0] . ', ' . $data[1] . ', ' . $data[2];
+        if ($this->locale == "mm") {
+            return $data[0] . '၊ ' . $data[1] . '၊ ' . $data[2];
+        } else {
+            return $data[0] . ', ' . $data[1] . ', ' . $data[2];
+        }
     }
 
     public function findState($name)

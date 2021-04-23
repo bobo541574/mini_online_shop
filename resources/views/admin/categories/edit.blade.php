@@ -2,6 +2,13 @@
 
 @section('content')
 
+@include('admin.layouts.breadcrumb', [
+    'items' => [
+        'category' => route('categories.index'),
+        'edit' => null
+    ]
+])
+
 <div class="row">
     <div class="col-md-8 mx-auto">
         <div class="card">
@@ -33,7 +40,7 @@
                             placeholder="@lang('enter_category_name_en')">
 
                         @error('name_en')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror
@@ -45,7 +52,7 @@
                             placeholder="@lang('enter_category_name_mm')">
 
                         @error('name_mm')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror
@@ -54,10 +61,8 @@
                     <div class="mb-3">
                         <label for="name_mm" class="form-label fw-bold">@lang('category_name_mm')</label>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="0" {{ ($category->active == "0") ? 'selected=selected' : '' }}>@lang('inactive')</option>
+                            <option value="1" {{ ($category->active == "1") ? 'selected=selected' : '' }}>@lang('active')</option>
                           </select>
                     </div>
 
@@ -67,7 +72,7 @@
                             placeholder="@lang('enter_description_name_en')">{{ $category->description_en }}</textarea>
 
                         @error('description_en')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror
@@ -79,7 +84,7 @@
                             placeholder="@lang('enter_description_name_mm')">{{ $category->description_mm }}</textarea>
 
                         @error('description_mm')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror

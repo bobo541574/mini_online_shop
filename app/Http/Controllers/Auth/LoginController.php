@@ -14,6 +14,8 @@ class LoginController extends Controller
 
     public function index()
     {
+        session()->put('redirectUrl', url()->previous());
+
         return view('auth.login');
     }
 
@@ -28,6 +30,6 @@ class LoginController extends Controller
             return back()->with('status', 'Invalid login details');
         }
 
-        return redirect()->route('home');
+        return redirect(session('redirectUrl'));
     }
 }

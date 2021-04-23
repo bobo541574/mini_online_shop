@@ -2,6 +2,12 @@
 
 @section('content')
 
+@include('admin.layouts.breadcrumb', [
+    'items' => [
+        'category' => ''
+    ]
+])
+
 <div class="row">
     <div class="col-md-8 mx-auto">
         <div class="card">
@@ -10,15 +16,20 @@
                     <h4 class="text fw-bold">
                         @lang('categories')
                     </h4>
-                    <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary align-self-center">
-                        @lang('create')
-                    </a>
+                    <div>
+                        <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary align-self-center">
+                            @lang('create')
+                        </a>
+                        <a href="{{ route('categories.trashed') }}" class="btn btn-sm btn-secondary align-self-center">
+                            @lang('trashed')
+                        </a>
+                    </div>
                 </div>
                 @if (session('status'))
                 <div class="alert alert-warning alert-dismissible mt-3 mb-0" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <div class="alert-message">
-                        <strong>{{ session('status') }}</strong>
+                        <strong>@lang(session('status'))</strong>
                     </div>
                 </div>
                 @endif
@@ -60,10 +71,10 @@
                                     </div>
                                 </a>
 
-                                <form action="{{ route('categories.destroy', $category) }}" method="post" class="inline">
+                                <form action="{{ route('categories.to-trash', $category) }}" method="post" class="inline">
                                     @csrf
-                                    @method('DELETE')
-                                    <button class="border-0 text-danger bg-light" title="@lang('category_delete')">
+                                    @method('PUT')
+                                    <button class="border-0 text-danger bg-light" title="@lang('category_remove')">
                                         <div class="my-2">
                                             <i class="align-middle" data-feather="trash"></i>
                                         </div>
@@ -74,6 +85,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">
+                    {{ $categories->links() }}
+                </div> 
             </div>
         </div>
     </div>

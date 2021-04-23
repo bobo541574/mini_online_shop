@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    @include('layouts.meta-tag')
 
-    <title>Mini Online Shop</title>
+    <title>{{ config('app.name') }}</title>
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @include('layouts.style')
 
 </head>
-<body">
+<body>
     
     @include('layouts.nav')
 
-    <div class="container">
-
-        <main class="py-4">
+    @include('front.shared._flashmessage')
+    <div class="container-fluid">
+        <main class="py-1">
             @yield('content')
         </main>
-
     </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    @include('layouts.footer')
 
-    @yield('script')
+    @include('layouts.script')
+    
 </body>
 </html>

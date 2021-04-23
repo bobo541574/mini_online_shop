@@ -2,6 +2,13 @@
 
 @section('content')
 
+@include('admin.layouts.breadcrumb', [
+    'items' => [
+        'category' => route('categories.index'),
+        'create' => null
+    ]
+])
+
 <div class="row">
     <div class="col-md-8 mx-auto">
         <div class="card">
@@ -33,7 +40,7 @@
                             placeholder="@lang('enter_category_name_en')">
 
                         @error('name_en')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror
@@ -45,31 +52,31 @@
                             placeholder="@lang('enter_category_name_mm')">
                 
                         @error('name_mm')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
                 
                     <div class="mb-3">
-                        <label for="description_en" class="form-label fw-bold">@lang('description_name_en')</label>
+                        <label for="description_en" class="form-label fw-bold">@lang('category_description_en')</label>
                         <textarea name="description_en" id="description_en" rows="3" class="form-control"
-                            placeholder="@lang('enter_description_name_en')">{{ old('description_en') }}</textarea>
+                            placeholder="@lang('enter_category_description_en')">{{ old('description_en') }}</textarea>
                 
                         @error('description_en')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
                 
                     <div class="mb-3">
-                        <label for="description_mm" class="form-label fw-bold">@lang('description_name_mm')</label>
+                        <label for="description_mm" class="form-label fw-bold">@lang('category_description_mm')</label>
                         <textarea name="description_mm" id="description_mm" rows="3" class="form-control"
-                            placeholder="@lang('enter_description_name_mm')">{{ old('description_mm') }}</textarea>
+                            placeholder="@lang('enter_category_description_mm')">{{ old('description_mm') }}</textarea>
                 
                         @error('description_mm')
-                        <div class="text-red-500 text-xs pt-2 pl-1">
+                        <div class="text-danger pt-1 mx-1">
                             {{ $message }}
                         </div>
                         @enderror

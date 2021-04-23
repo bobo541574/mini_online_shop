@@ -1,93 +1,89 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="px-4 md:px-10 mx-auto w-full -m-24 -mb-6">
-    <div class="flex flex-wrap mt-4">
-        <div class="w-full mb-12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
-                <div class="rounded-t mb-0 px-4 py-3 border-0">
-                    <div class="flex flex-wrap">
-                        <div class="relative w-full px-4 max-w-full">
-                            <div class="block sm:flex justify-between">
-                                <h3 class="font-semibold text-lg text-blueGray-700">
-                                    @lang('trashed_categories')
-                                </h3>
-                                <a href="{{ route('categories.create') }}" class="btn-secondary-sm">
-                                    @lang('create')
-                                </a>
-                                {{-- <a href="{{ route('categories.create') }}" class="rounded border-2 border-green-300
-                                hover:border-green-700 hover:text-blueGray-500 px-2 py1 font-semibold text-lg
-                                text-blueGray-700">
-                                Create
-                                </a> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="block w-full overflow-x-auto">
-                    @if (session('status'))
-                    <div class="bg-green-200 text-red-500 text-sm text-center rounded py-3 mx-12 mt-1 mb-3">
-                        @lang(session('status'))
-                    </div>
-                    @endif
-                    <!-- Projects table -->
-                    <table class="items-center w-full bg-transparent border-collapse">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-50 text-blueGray-700 border-blueGray-100">
-                                    @lang('name')
-                                </th>
-                                <th
-                                    class="px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-50 text-blueGray-700 border-blueGray-100">
-                                    @lang('status')
-                                </th>
-                                <th
-                                    class="px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-50 text-blueGray-700 border-blueGray-100">
-                                    @lang('action')
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-blueGray-600 {{ session('locale') == 'mm' ? 'font-bold' : null }}">
-                            @foreach ($categories as $category)
-                            <tr>
-                                <td
-                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                                    {{ $category->name }}
-                                </td>
-                                <td
-                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                                    @if ($category->active)
-                                    <i class="fas fa-circle text-green-500 mr-2"></i>
-                                    @lang('active')
-                                    @else
-                                    <i class="fas fa-circle text-orange-500 mr-2"></i>
-                                    @lang('inactive')
-                                    @endif
-                                </td>
-                                <td
-                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                                    <a href="{{ route('categories.edit', $category) }}"
-                                        class="text-md uppercase py-3 font-bold text-yellow-600 hover:text-yellow-400 mr-6"
-                                        title="@lang('category_edit')">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
 
-                                    <form action="{{ route('categories.destroy', $category) }}" method="post"
-                                        class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button
-                                            class="text-md uppercase py-3 font-bold text-red-600 hover:text-red-400 focus:outline-none"
-                                            title="@lang('category_delete')"><i class="fa fa-trash"
-                                                aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+@include('admin.layouts.breadcrumb', [
+    'items' => [
+        'category' => route('categories.index'),
+        'trashed' => null
+    ]
+])
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <h4 class="text fw-bold">
+                        @lang('categories')
+                    </h4>
+                    <a href="{{ route('categories.index') }}" class="btn btn-sm btn-dark align-self-center">
+                        @lang('back')
+                    </a>
                 </div>
+                @if (session('status'))
+                <div class="alert alert-warning alert-dismissible mt-3 mb-0" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="alert-message">
+                        <strong>{{ session('status') }}</strong>
+                    </div>
+                </div>
+                @endif
+            </div>
+            <div class="card-body">
+                <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="h5 fw-bold">
+                                @lang('name')
+                            </th>
+                            <th class="h5 fw-bold">
+                                @lang('status')
+                            </th>
+                            <th class="h5 fw-bold">
+                                @lang('action')
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                        @foreach ($categories as $category)
+                        <tr>
+                            <td>
+                                {{ $category->name }}
+                            </td>
+                            <td>
+                                @if ($category->active)
+                                    <i class="fas fa-circle text-success align-middle text-sm mr-2"></i>
+                                    <span class="">@lang('active')</span>
+                                @else
+                                    <i class="fas fa-circle text-danger mr-2"></i>
+                                    @lang('inactive')
+                                @endif
+                            </td>
+                            <td class="d-flex justify-content-around">
+                                <form action="{{ route('categories.restore', $category) }}" method="post" class="inline">
+                                    @csrf
+                                    <button class="border-0 text-danger bg-light" title="@lang('category_restore')">
+                                        <div class="my-2">
+                                            <i class="align-middle text-warning" data-feather="refresh-cw"></i>
+                                        </div>
+                                    </button>
+                                </form>
+
+                                <form action="{{ route('categories.destroy', $category) }}" method="post" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="border-0 text-danger bg-light" title="@lang('category_delete')">
+                                        <div class="my-2">
+                                            <i class="align-middle" data-feather="trash-2"></i>
+                                        </div>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -96,17 +92,6 @@
 
 @section('script')
 <script>
-    (() => {
-        // let categoryId = ('{{ $categories->pluck("id") }}');
-        // for (let cId = 0; cId < JSON.parse(categoryId).length;) {
-        //     const toggleBox = document.querySelector(`#toggle-box-${++cId}`);
-        //     toggleBox.classList.remove('bg-gray-300');
-        //     toggleBox.classList.add('bg-green-400');
-        //     toggleButton = toggleBox.children[0];
-        //     toggleButton.classList.add('translate-x-6');
-        // }
-
-    })();
 
 </script>
 @endsection

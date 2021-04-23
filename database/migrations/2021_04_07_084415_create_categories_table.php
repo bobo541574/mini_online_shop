@@ -19,8 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name_en');
             $table->string('name_mm');
             $table->string('slug');
-            $table->string('description_en');
-            $table->string('description_mm');
+            $table->text('description_en');
+            $table->text('description_mm');
             $table->tinyInteger('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
