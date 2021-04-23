@@ -22,6 +22,7 @@ class CreateProductAttributesTable extends Migration
             $table->string('photo');
             $table->string('sku')->default(0);
             $table->decimal('extra_cost', 5, 2)->default(0);
+            $table->decimal('delivery_cost', 5, 2)->default(0);
             $table->decimal('buy_price', 8, 2)->default(0);
             $table->decimal('sale_price', 8, 2)->default(0);
             $table->decimal('promotion', 3, 2)->default(0);

@@ -4,39 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductAttribute extends Model
+class Order extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'product_attribute_id',
+        'user_id',
+        'contact_id',
+        'order_code',
+        'slug',
+        'quantity',
+        'delivery_cost',
+        'promotion',
+        'sale_price',
+        'status',
+        'arrived',
+    ];
 
-    public function product()
+    public function attribute()
     {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function color()
-    {
-        return $this->belongsTo(Color::class);
-    }
-
-    public function size()
-    {
-        return $this->belongsTo(Size::class);
-    }
-
-    public function getPhotosAttribute()
-    {
-        $photos = json_decode($this->photo);
-
-        return $photos;
-    }
-
-    public function getImageAttribute()
-    {
-        return $this->getPhotosAttribute()[0];
+        return $this->belongsTo(ProductAttribute::class, 'product_attribute_id');
     }
 
     public function getSaleAttribute()
@@ -49,6 +38,11 @@ class ProductAttribute extends Model
         $locale = session('locale');
 
         return ($this->delivery_cost == 0) ? trans('delivery_free', [], $locale) : $this->numberTranslate($this->delivery_cost) . ' ' . trans('kyat', [], $locale);
+    }
+
+    public function getTotalCostAttribute()
+    {
+        return $this->numberTranslate(($this->sale_price * $this->quantity) + $this->delivery_cost) . ' ' . trans('kyat', [], session('locale'));
     }
 
     protected function numberTranslate($data)

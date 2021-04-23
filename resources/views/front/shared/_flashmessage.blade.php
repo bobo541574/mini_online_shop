@@ -48,13 +48,12 @@
     }
 
 </style>
+
 @if ($message = Session::get('success'))
-<div class="alert alert-info alert-block text-center text-dark">
-    <button type="button" class="close" data-dismiss="alert">×</button>
+<div class="alert alert-info alert-dismissible" role="alert">
     <div class="py-2 px-4">
-        <strong>Success&nbsp;<i class="far fa-check-circle"></i>
-            <hr></strong>
-        <strong>{{ $message }}</strong>
+        <button type="button" class="btn-sm btn-close px-2 py-1" style="font-size: 70%" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>@lang($message)</strong>
     </div>
 </div>
 @endif
@@ -108,16 +107,16 @@
     </ul>
 </div> --}}
     <div class="alert alert-warning alert-dismissible" role="alert">
-    <ul class="pt-3">
-        {{-- <li class="d-flex align-middle"> --}}
-            {{-- <strong>Holy guacamole!</strong>  --}}
-            <button type="button" class="btn-sm btn-close px-2 py-1" style="font-size: 70%" data-bs-dismiss="alert" aria-label="Close"></button>
-        {{-- </li> --}}
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-  </div>
+        <ul class="pt-3">
+            {{-- <li class="d-flex align-middle"> --}}
+                {{-- <strong>Holy guacamole!</strong>  --}}
+                <button type="button" class="btn-sm btn-close px-2 py-1" style="font-size: 70%" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{-- </li> --}}
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 
 <!-- <script>

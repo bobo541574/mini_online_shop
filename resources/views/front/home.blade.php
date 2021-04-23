@@ -9,7 +9,7 @@
 </div>
 
 <div class="col-md-12">
-    <div class="row">
+    <div class="row mx-auto">
         <div class="col-md-3">
             
             @include('front.shared._categories')
@@ -160,7 +160,7 @@
                                 for (let i = 1; i < (links.length - 1); i++) {
                                     html += `
                                         <li class="page-item ${links[i].active ? "active" : "" }">
-                                            <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts(${i})">
+                                            <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts(${i})">
                                                 <span aria-hidden="true">${trans(links[i].label)}</span>
                                             </a>
                                         </li>
@@ -243,7 +243,7 @@
 
                                 html += ` 
                                     <li class="page-item ${currentPage > 1 ? "" : " disabled text-muted" }">
-                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${prevPageUrl}')">
+                                        <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${prevPageUrl}')">
                                             <span aria-hidden="true">&lsaquo;</span>
                                         </a>
                                     </li>

@@ -4,7 +4,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="d-md-flex justify-content-between collapse navbar-collapse fw-bold text-lg" id="navbarSupportedContent">
+        <div class=" justify-content-between collapse navbar-collapse fw-bold text-lg" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link {{ check_active(route('front.home')) }}" aria-current="page" href="{{ route('front.home') }}">Home</a>
@@ -29,9 +29,26 @@
     
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ check_active(route('front.home')) }}" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if (session('locale') == "en")
+                        @lang(session('locale'))
+                    @elseif (session('locale') == "mm")
+                        @lang(session('locale'))
+                    @endif
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="lang">
+                        <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'mm') }}">@lang('mm') <img src="{{ asset('img/lang/myanmar.png') }}" class="mx-2" style="width: 20%" alt="mm"></a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'en') }}">@lang('en') <img src="{{ asset('img/lang/united-states.png') }}" class="mx-2" style="width: 20%" alt="en"></a></li>
+                    </ul>
+                </li>
                 @auth
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Profile</a>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->user_name }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="profile">
+                            <li><a href="#" class="dropdown-item py-0">profile</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="post" class="">

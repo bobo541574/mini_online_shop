@@ -47,7 +47,8 @@ Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front
 Route::get('/product/{product:slug}/attributes', [HomeController::class, 'attributesByProduct'])->name('front.product.attributes');
 Route::group(['middleware' => 'auth'], function () {
     // Order
-    Route::post('/products/order', [OrderController::class, 'store'])->name('front.order.store');
+    Route::post('orders', [OrderController::class, 'store'])->name('front.orders.store');
+    Route::get('orders/{order:slug}/show', [OrderController::class, 'show'])->name('front.orders.show');
 
     // Contact
     Route::get('/state/{state?}/cities', [ContactController::class, 'getCititesBystate'])->name('front.state.cities');

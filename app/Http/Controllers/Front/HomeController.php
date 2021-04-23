@@ -56,7 +56,7 @@ class HomeController extends Controller
 
         $attributes = ProductAttribute::with('product', 'color', 'size')->where('product_id', $product->id)->get();
 
-        return view('front.product', compact('attributes', 'states'));
+        return view('front.products.product', compact('attributes', 'states'));
     }
 
     public function buyNow(Request $request)
