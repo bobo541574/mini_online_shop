@@ -57,10 +57,10 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item py-1 px-2">@lang('cart') 
+                                <a href="{{ route('front.carts.index') }}" class="dropdown-item py-1 px-2">@lang('cart') 
                                     <div class="float-end">
                                         {{-- <i class="fa fa-shopping-cart" aria-hidden="true"></i>  --}}
-                                        <span class="badge bg-theme">2</span>
+                                        <span class="badge bg-theme">{{ auth()->user()->carts->count() }}</span>
                                     </div>
                                 </a>
                             </li>
@@ -82,10 +82,10 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('login') }}" class="nav-link {{ check_active(route('login')) }}">Login</a>
+                        <a href="{{ route('login') }}" class="nav-link {{ check_active(route('login')) }}">@lang('login')</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('register') }}" class="nav-link {{ check_active(route('register')) }}">Register</a>
+                    <a href="{{ route('register') }}" class="nav-link {{ check_active(route('register')) }}">@lang('register_')</a>
                     </li>
                 @endauth
             </ul>        

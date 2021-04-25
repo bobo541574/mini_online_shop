@@ -27,6 +27,11 @@ class ProductAttribute extends Model
         return $this->belongsTo(Size::class);
     }
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     public function getPhotosAttribute()
     {
         $photos = json_decode($this->photo);

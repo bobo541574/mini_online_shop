@@ -64,7 +64,7 @@
                             <span class="fw-bold">@lang('attribute_sku'): </span>
                         </div>
                         <div class="col-3">
-                            <input type="number" id="sku-{{ $attribute->id }}" value="{{ old('sku') }}"
+                            <input type="number" id="sku-{{ $attribute->id }}" value="{{ old('sku') ?? 1 }}"
                                 class="form-control form-control-sm" min="1" max="{{ $attribute->sku }}">
                         </div>
                     </div>
@@ -82,15 +82,19 @@
                 </div>
                 <div class="d-flex col-12 mt-3">
                     <div class="col-6">
-                        <form action="" method="post">
-                            @csrf
-                            <input type="hidden" name="sku" id="cart-sku" value="{{ old('sku') }}">
-                            <input type="hidden" name="contact_id" id="cart-contact" value="{{ old('contact_id') }}">
-                            <input type="hidden" name="attribute_id" id="cart-attribute_id"
-                                value="{{ old('attribute') }}">
-                            <button class="btn btn-sm bg-theme rounded text-light"><i class="fa fa-shopping-cart fs-5"
-                                    aria-hidden="true">&nbsp; @lang('add-to-cart')</i></button>
-                        </form>
+                        @auth
+                            <form action="{{ route('front.carts.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="sku" id="cart-sku" value="{{ old('sku') }}">
+                                <input type="hidden" name="attribute_id" id="cart-attribute_id"
+                                    value="{{ old('attribute') }}">
+                                <button class="btn btn-sm bg-theme rounded text-light"><i class="fa fa-shopping-cart fs-5"
+                                        aria-hidden="true">&nbsp; @lang('add-to-cart')</i></button>
+                            </form>
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-sm bg-theme rounded text-light"><i
+                            class="fa fa-shopping-cart fs-5" aria-hidden="true">&nbsp; @lang('add-to-cart')</i></a>
+                        @endauth
                     </div>
                     <div class="col-6">
                         @auth

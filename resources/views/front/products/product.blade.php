@@ -71,14 +71,11 @@
         function contactCheck(id) {
             let address = document.querySelector(`#address-${id}`);
             let buyAddress = document.querySelector(`#buy-contact`);
-            let cartAddress = document.querySelector(`#cart-contact`);
 
             if(address.checked) {
                 buyAddress.value = address.value;
-                cartAddress.value = address.value;
             } else {
                 buyAddress.value = "";
-                cartAddress.value = "";
             }
         }
 

@@ -16,7 +16,7 @@ class OrderRepository
 
     public function getAllOrders()
     {
-        return $this->model()->with('attribute')->get();
+        return $this->model()->with('attribute', 'attribute.color', 'attribute.size')->get();
 
         // return  $orders->groupBy(function ($item) {
         //     return $item->payment_id != null;
@@ -31,6 +31,8 @@ class OrderRepository
         DB::beginTransaction();
 
         try {
+
+            $attribute->carts()->where('user_id', auth()->user()->id)->delete();
 
             $order = $this->model()->create([
                 'product_attribute_id' => $request->attribute_id,

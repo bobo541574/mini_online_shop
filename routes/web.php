@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Admin\BrandController;
@@ -55,6 +56,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('orders/{order:slug}', [OrderController::class, 'update'])->name('front.orders.update');
     Route::delete('orders/{order:slug}', [OrderController::class, 'destroy'])->name('front.orders.destroy');
     Route::get('orders/finish', [OrderController::class, 'finish'])->name('front.orders.finish');
+
+    // Cart
+    Route::get('carts', [CartController::class, 'index'])->name('front.carts.index');
+    Route::post('carts', [CartController::class, 'store'])->name('front.carts.store');
+    Route::get('carts/{cart:slug}', [CartController::class, 'show'])->name('front.carts.show');
+    Route::delete('carts/{cart:slug}', [CartController::class, 'destroy'])->name('front.carts.destroy');
 
     // Transition
     Route::post('transitions/{order:slug}', [TransitionController::class, 'store'])->name('front.transitions.store');
