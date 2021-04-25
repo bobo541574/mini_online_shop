@@ -31,9 +31,11 @@
     
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('front.carts.index')) }}" href="{{ route('front.carts.index') }}" tabindex="-1" aria-disabled="true"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <sup class="badge bg-warning px-1 text-theme">{{ auth()->user()->carts->count() }}</sup> </a>
-                </li> 
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link {{ check_active(route('front.carts.index')) }}" href="{{ route('front.carts.index') }}" tabindex="-1" aria-disabled="true"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <sup class="badge bg-warning px-1 text-theme">{{ auth()->user()->carts->count() }}</sup> </a>
+                    </li> 
+                @endauth
                 <li class="nav-item dropdown">
                     <a class="nav-link active" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @if (session('locale') == "en")
