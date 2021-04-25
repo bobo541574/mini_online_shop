@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -16,12 +17,11 @@ use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Front\TransitionController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
-use App\Http\Controllers\Front\OrderController;
-use App\Http\Controllers\Front\TransitionController;
 
 // Route::get('/', function () {
 //     return view('admin.layouts.app');
@@ -62,7 +62,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Contact
     Route::get('/state/{state?}/cities', [ContactController::class, 'getCititesBystate'])->name('front.state.cities');
     Route::get('/city/{state?}/townships', [ContactController::class, 'getTownshipsBycity'])->name('front.city.townships');
-    Route::post('/contacts', [ContactController::class, 'storeForUser'])->name('front.contacts.store-user');
+
+    // Contact For User
+    Route::post('/users/contact', [UserController::class, 'contact'])->name('front.users.store-contact');
 });
 
 Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name('front.attribute.add-to-cart');

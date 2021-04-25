@@ -33,7 +33,7 @@
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
-    }
+    } 
 
     @media screen and (max-width: 996px) {
         .preview {

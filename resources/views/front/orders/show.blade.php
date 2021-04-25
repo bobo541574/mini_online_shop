@@ -113,13 +113,15 @@
                         </div>
                         <div class="row border rounded mb-2 py-1">
                             @foreach (auth()->user()->contacts as $key => $contact)
-                            <div class="d-flex pt-1 mb-1">
-                                <div class="row">
+                            <div class="d-flex pt-1 mb-1 justify-content-between">
+                                <div class="row col-11">
                                     <label for="address-{{ $contact->id }}">@lang('phone'): &nbsp;{{ $contact->phone }}</label>
                                     <label for="address-{{ $contact->id }}">@lang('address')-@lang($key+1): &nbsp;{{ $contact->address }}</label>
                                 </div>
-                                <input type="checkbox" name="address" value="{{ $contact->id }}" id="address-{{ $contact->id }}" 
-                                    {{ ($contact->id == $order->contact_id) ? 'checked=checked' : '' }} class="form-check-input">
+                                <div class="col-1">
+                                    <input type="checkbox" name="address" value="{{ $contact->id }}" id="address-{{ $contact->id }}" 
+                                        {{ ($contact->id == $order->contact_id) ? 'checked=checked' : '' }} class="form-check-input">
+                                </div>
                             </div>
                             @endforeach
                             <div class="my-2 text-center">
@@ -130,7 +132,7 @@
                     {{-- End - Contacts --}}
 
                     {{-- Start - Create Contacts --}}
-                    <form action="{{ route('front.contacts.store-user') }}" method="post">
+                    <form action="{{ route('front.users.store-contact') }}" method="post">
                         <div class="my-1">
                             <small class="fw-bold text-danger">@lang('attribute_address_create_note')</small>
                         </div>
@@ -241,5 +243,45 @@
 @endsection
 
 @section('script')
-    
+    <script>
+        // get city list by state
+        let state = document.querySelector('#state');
+        
+        state.addEventListener('change', () => {
+            fetch(`/state/${state.value}/cities`)
+            .then(res => res.json())
+            .then(data => {
+                let city = document.querySelector('#city');
+                let html = "";
+                
+                html += `<option value="">@lang('select_citites')</option>`;
+                data.forEach(city => {
+                    html += `
+                        <option value="${city['key']}" title="${city['name']}">${city['name']}</option>
+                    `;
+                })
+                city.innerHTML = html;
+            })
+        })
+
+        // get township list by city
+        let city = document.querySelector('#city');
+
+        city.addEventListener('change', () => {
+            fetch(`/city/${city.value}/townships`)
+            .then(res => res.json())
+            .then(data => {
+                let township = document.querySelector('#township');
+                let html = "";
+                
+                html += `<option value="">@lang('select_townships')</option>`;
+                data.forEach(township => {
+                    html += `
+                        <option value="${township['key']}" title="${township['name']}">${township['name']}</option>
+                    `;
+                })
+                township.innerHTML = html;
+            })
+        })
+    </script>
 @endsection
