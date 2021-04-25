@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\OrderController;
+use App\Http\Controllers\Front\TransitionController;
 
 // Route::get('/', function () {
 //     return view('admin.layouts.app');
@@ -47,8 +48,16 @@ Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front
 Route::get('/product/{product:slug}/attributes', [HomeController::class, 'attributesByProduct'])->name('front.product.attributes');
 Route::group(['middleware' => 'auth'], function () {
     // Order
+    Route::get('orders', [OrderController::class, 'index'])->name('front.orders.index');
     Route::post('orders', [OrderController::class, 'store'])->name('front.orders.store');
     Route::get('orders/{order:slug}/show', [OrderController::class, 'show'])->name('front.orders.show');
+    Route::post('orders/{order:slug}/to-trash', [OrderController::class, 'toTrash'])->name('front.orders.to-trash');
+    Route::put('orders/{order:slug}', [OrderController::class, 'update'])->name('front.orders.update');
+    Route::delete('orders/{order:slug}', [OrderController::class, 'destroy'])->name('front.orders.destroy');
+    Route::get('orders/finish', [OrderController::class, 'finish'])->name('front.orders.finish');
+
+    // Transition
+    Route::post('transitions/{order:slug}', [TransitionController::class, 'store'])->name('front.transitions.store');
 
     // Contact
     Route::get('/state/{state?}/cities', [ContactController::class, 'getCititesBystate'])->name('front.state.cities');

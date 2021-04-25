@@ -3,6 +3,7 @@
 namespace App\Http\Repositories\Front;
 
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Mockery\Expectation;
 
@@ -11,6 +12,18 @@ class OrderRepository
     public function model()
     {
         return (new Order());
+    }
+
+    public function getAllOrders()
+    {
+        return $this->model()->with('attribute')->get();
+
+        // return  $orders->groupBy(function ($item) {
+        //     return $item->payment_id != null;
+        // });
+        // return $this->model()->whereHas('payment', function (Builder $query) {
+        //     $query->groupBy('payment_type_ne')->get();
+        // });
     }
 
     public function store($attribute, $request)
@@ -42,5 +55,24 @@ class OrderRepository
 
             return $order;
         }
+    }
+
+    public function update($order, $request)
+    {
+        return $order->update([
+            'contact_id' => $request->address,
+        ]);
+    }
+
+    public function toTrash($order)
+    {
+        return $order->delete();
+    }
+
+    public function destroy($slug)
+    {
+        $order = $this->model()->onlyTrashed()->where('slug', $slug)->first();
+
+        return $order->forceDelete();
     }
 }

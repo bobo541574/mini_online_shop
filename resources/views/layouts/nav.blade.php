@@ -1,15 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: #232C3D;">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-1" style="background: #232C3D;">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bolder" href="#">Navbar</a>
+        <a class="navbar-brand" href="{{ route('front.home') }}">
+            <img src="{{ asset('img/icon/logo.svg') }}" width="42" height="28" alt="logo">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class=" justify-content-between collapse navbar-collapse fw-bold text-lg" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('front.home')) }}" aria-current="page" href="{{ route('front.home') }}">Home</a>
+                    <a class="nav-link {{ check_active(route('front.home')) }}" aria-current="page" href="{{ route('front.home') }}">@lang('home')</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ check_active(route('front.home')) }}" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -25,19 +27,19 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ check_active(route('front.home')) }}" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+                </li> --}}
     
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ check_active(route('front.home')) }}" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link active" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @if (session('locale') == "en")
                         @lang(session('locale'))
                     @elseif (session('locale') == "mm")
                         @lang(session('locale'))
                     @endif
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="lang">
+                    <ul class="dropdown-menu text-theme" aria-labelledby="lang">
                         <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'mm') }}">@lang('mm') <img src="{{ asset('img/lang/myanmar.png') }}" class="mx-2" style="width: 20%" alt="mm"></a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'en') }}">@lang('en') <img src="{{ asset('img/lang/united-states.png') }}" class="mx-2" style="width: 20%" alt="en"></a></li>
@@ -45,15 +47,37 @@
                 </li>
                 @auth
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->user_name }}</a>
-                        <ul class="dropdown-menu" aria-labelledby="profile">
-                            <li><a href="#" class="dropdown-item py-0">profile</a></li>
+                        <a href="#" class="nav-link active" id="profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->user_name }}</a>
+                        <ul class="dropdown-menu text-theme" aria-labelledby="profile">
+                            <li>
+                                <a href="#" class="dropdown-item py-1 px-2">@lang('profile') 
+                                    <div class="float-end">
+                                        {{-- <i class="fa fa-user-circle" aria-hidden="true"></i>  --}}
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-item py-1 px-2">@lang('cart') 
+                                    <div class="float-end">
+                                        {{-- <i class="fa fa-shopping-cart" aria-hidden="true"></i>  --}}
+                                        <span class="badge bg-theme">2</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.orders.index') }}" class="dropdown-item py-1 px-2">@lang('order') 
+                                    <div class="float-end">
+                                        {{-- <i class="fa fa-shopping-basket" aria-hidden="true"></i>  --}}
+                                        <span class="badge bg-theme">{{ auth()->user()->orders->count() }}</span>
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="post" class="">
                             @csrf
-                            <button type="submit" class="border-0 nav-link fw-bold {{ check_active(route('logout')) }}" style="background: #232C3D">Logout</button>
+                            <button type="submit" class="border-0 nav-link fw-bold {{ check_active(route('logout')) }}" style="background: #232C3D">@lang('logout')</button>
                         </form>
                     </li>
                 @else

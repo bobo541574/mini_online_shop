@@ -5,14 +5,14 @@
             <p><span>@lang('email'): </span>&nbsp;{{ auth()->user()->email }}</p>
             @if (auth()->user()->contacts)
             <div class="my-1">
-                <small class="text-danger">@lang('attribute_address_select_note')</small>
+                <small class="fw-bold text-danger">@lang('attribute_address_select_note')</small>
             </div>
             <div class="row border rounded mb-2 py-1">
                 @foreach (auth()->user()->contacts as $key => $contact)
                 <div class="d-flex pt-1">
                     <div class="row">
-                        <span>@lang('phone'): &nbsp;{{ $contact->phone }}</span>
-                        <span>@lang('address')-@lang($key+1): &nbsp;{{ $contact->address }}</span>
+                        <label for="address-{{ $contact->id }}">@lang('phone'): &nbsp;{{ $contact->phone }}</label>
+                        <label for="address-{{ $contact->id }}">@lang('address')-@lang($key+1): &nbsp;{{ $contact->address }}</label>
                     </div>
                     <input type="checkbox" name="address" value="{{ $contact->id }}"
                         onchange="contactCheck({{ $contact->id }})" id="address-{{ $contact->id }}"
@@ -23,7 +23,7 @@
             @endif
             <form action="{{ route('front.contacts.store-user') }}" method="post">
                 <div class="my-1">
-                    <small class="text-danger">@lang('attribute_address_create_note')</small>
+                    <small class="fw-bold text-danger">@lang('attribute_address_create_note')</small>
                 </div>
                 <div class="row border rounded py-2">
                     @csrf
