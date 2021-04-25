@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- 
+<div class="row justify-content-center">
+</div> --}}
 
 <div class="row my-3 justify-content-center">
+    <div class="col-md-12 px-2">
+        
+    </div>
     <div class="col-md-8">
         @include('front.products._attribute')
     </div>

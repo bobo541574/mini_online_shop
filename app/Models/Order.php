@@ -85,6 +85,12 @@ class Order extends Model
         return $this->numberTranslate(($this->sale_price * $this->quantity) + $this->delivery_cost) . ' ' . trans('kyat', [], session('locale'));
     }
 
+    public function scopeUnit($query)
+    {
+        dd("here");
+        return $this->numberTranslate($query->count());
+    }
+
     protected function numberTranslate($data)
     {
         $array = [];
