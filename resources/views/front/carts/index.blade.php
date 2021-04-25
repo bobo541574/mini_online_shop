@@ -44,52 +44,42 @@
                                     @lang('color') - @lang('size')
                                 </th>
                                 <th class="h5 fw-bold">
-                                    @lang('status')
-                                </th>
-                                <th class="h5 fw-bold">
                                     @lang('action')
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                            @foreach ($orders as $order)
+                            @foreach ($carts as $cart)
                             <tr>
                                 <td>
-                                    {{ $order->attribute->product->name }}
+                                    {{ $cart->attribute->product->name }}
                                 </td>
                                 <td>
-                                    <img src="{{ asset($order->attribute->image) }}" class="avatar img-fluid" alt="order-logo">
+                                    <img src="{{ asset($cart->attribute->image) }}" class="avatar img-fluid" alt="order-logo">
                                 </td>
                                 <td>
                                     <span class="badge bg-theme">
-                                        {{ $order->qty }}
+                                        {{ $cart->qty }}
                                     </span>
                                 </td>
                                 <td>
                                     <span class="badge bg-theme">
-                                        @lang($order->attribute->color->name) - @lang($order->attribute->size->name)
+                                        @lang($cart->attribute->color->name) - @lang($cart->attribute->size->name)
                                     </span>
-                                </td>
-                                <td>
-                                    {{ $order->payment_status }}
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">
 
-                                        <a href="{{ route('front.orders.show', $order) }}" class="" title="@lang('order_detail')">
+                                        <a href="{{ route('front.carts.show', $cart) }}" class="" title="@lang('cart_detail')">
                                             <div class="my-2">
                                                 <i class="align-middle text-warning" data-feather="eye"></i>
                                             </div>
                                         </a>
-                                        {{-- <a href="{{ route('orders.edit', $order) }}" class="" title="@lang('order_edit')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-warning" data-feather="edit"></i>
-                                            </div>
-                                        </a> --}}
         
-                                        <form action="{{ route('front.orders.to-trash', $order) }}" method="post" class="inline">
+                                        <form action="{{ route('front.carts.destroy', $cart) }}" method="post" class="inline">
                                             @csrf
-                                            <button class="border-0 text-danger bg-light" title="@lang('order_delete')">
+                                            @method('DELETE')
+                                            <button class="border-0 text-danger bg-light" title="@lang('cart_delete')">
                                                 <div class="my-2">
                                                     <i class="align-middle" data-feather="x"></i>
                                                 </div>

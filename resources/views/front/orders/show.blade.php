@@ -72,7 +72,7 @@
                             </div>
                             <div class="row mb-3 col-md-12">
                                 <div class="col-3">
-                                    <span class="fw-bold">@lang('attribute_sku'): </span>
+                                    <span class="fw-bold">@lang('total_cost'): </span>
                                 </div>
                                 <div class="col-3">
                                     <span class="fw-bold">{{ $order->total_cost }}</span>
