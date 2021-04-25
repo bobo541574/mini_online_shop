@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -16,11 +17,11 @@ use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Front\TransitionController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
-use App\Http\Controllers\Front\OrderController;
 
 // Route::get('/', function () {
 //     return view('admin.layouts.app');
@@ -47,13 +48,23 @@ Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front
 Route::get('/product/{product:slug}/attributes', [HomeController::class, 'attributesByProduct'])->name('front.product.attributes');
 Route::group(['middleware' => 'auth'], function () {
     // Order
+    Route::get('orders', [OrderController::class, 'index'])->name('front.orders.index');
     Route::post('orders', [OrderController::class, 'store'])->name('front.orders.store');
     Route::get('orders/{order:slug}/show', [OrderController::class, 'show'])->name('front.orders.show');
+    Route::post('orders/{order:slug}/to-trash', [OrderController::class, 'toTrash'])->name('front.orders.to-trash');
+    Route::put('orders/{order:slug}', [OrderController::class, 'update'])->name('front.orders.update');
+    Route::delete('orders/{order:slug}', [OrderController::class, 'destroy'])->name('front.orders.destroy');
+    Route::get('orders/finish', [OrderController::class, 'finish'])->name('front.orders.finish');
+
+    // Transition
+    Route::post('transitions/{order:slug}', [TransitionController::class, 'store'])->name('front.transitions.store');
 
     // Contact
     Route::get('/state/{state?}/cities', [ContactController::class, 'getCititesBystate'])->name('front.state.cities');
     Route::get('/city/{state?}/townships', [ContactController::class, 'getTownshipsBycity'])->name('front.city.townships');
-    Route::post('/contacts', [ContactController::class, 'storeForUser'])->name('front.contacts.store-user');
+
+    // Contact For User
+    Route::post('/users/contact', [UserController::class, 'contact'])->name('front.users.store-contact');
 });
 
 Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name('front.attribute.add-to-cart');

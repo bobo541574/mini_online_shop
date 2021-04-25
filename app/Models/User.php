@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->morphMany(Contact::class, 'client');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

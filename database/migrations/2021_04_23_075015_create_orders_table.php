@@ -24,9 +24,6 @@ class CreateOrdersTable extends Migration
             $table->decimal('delivery_cost', 5, 2)->default(0);
             $table->decimal('promotion', 3, 2)->default(0);
             $table->decimal('sale_price', 8, 2);
-            $table->tinyInteger('status')->default(0);
-            $table->string('payment_type');
-            $table->string('payment_id');
             $table->dateTime('arrived')->nullable();
             $table->timestamps();
             $table->softDeletes();

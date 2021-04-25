@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'product_attribute_id',
@@ -26,6 +27,45 @@ class Order extends Model
     public function attribute()
     {
         return $this->belongsTo(ProductAttribute::class, 'product_attribute_id');
+    }
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }
+
+    public function transition()
+    {
+        return $this->hasOne(Transition::class);
+    }
+
+    public function getQtyAttribute()
+    {
+        return $this->numberTranslate($this->quantity);
+    }
+
+    public function getPaymentStatusAttribute()
+    {
+        $locale = session('locale');
+
+        if ($this->transition) {
+            if ($this->transition->payment_id > 1) {
+                echo '
+                    <i class="fas fa-circle text-success align-middle text-sm mr-2"></i>
+                    <span>' . trans("paid", [], $locale) . '</span>
+                ';
+            } else {
+                echo '
+                        <i class="fas fa-circle text-success align-middle text-sm mr-2"></i>
+                        <span>' . trans("post_paid", [], $locale) . '</span>
+                ';
+            }
+        } else {
+            echo '
+                    <i class="fas fa-circle text-success align-middle text-sm mr-2"></i>
+                    <span>' . trans("unpaid", [], $locale) . '</span>
+                ';
+        }
     }
 
     public function getSaleAttribute()
