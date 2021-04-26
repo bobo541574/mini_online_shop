@@ -23,8 +23,12 @@ if (!function_exists('check_permission')) {
     function check_permission($permission): bool
     {
         $user = auth()->user();
+
         if ($user) {
-            return in_array($permission, $user->role->permissions->pluck('slug')->toArray());
+            if ($user->role->permissions) {
+                return in_array($permission, $user->role->permissions->pluck('slug')->toArray());
+            }
+            return false;
         }
         return false;
     }

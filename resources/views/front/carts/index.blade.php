@@ -10,7 +10,7 @@
                     'items' => [
                         'carts' => ''
                     ]
-                ]);
+                ])
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
                         @lang('carts')
