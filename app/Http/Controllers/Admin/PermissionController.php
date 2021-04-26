@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Permission;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Route;
-use App\Http\Repositories\PermissionRepository;
 use App\Http\Requests\Permission\PermissionRequest;
+use App\Http\Repositories\Back\PermissionRepository;
 
 class PermissionController extends Controller
 {

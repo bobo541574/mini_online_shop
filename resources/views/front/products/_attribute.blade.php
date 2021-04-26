@@ -1,5 +1,11 @@
 <div class="card border">
     <div class="card-body">
+        @include('front.shared._breadcurmb', [
+            'items' => [
+                'product' => ''
+            ]
+        ])
+
         <div class="row">
             @foreach ($attributes as $attribute)
             <div id="preview-{{ $attribute->id }}" class="preview col-md-4 {{ $loop->first ? '' : 'd-none' }}">

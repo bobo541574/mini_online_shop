@@ -6,6 +6,12 @@
     <div class="col-md-8">
         <div class="card border">
             <div class="card-body">
+                @include('front.shared._breadcurmb', [
+                    'items' => [
+                        'product' => route('front.product.attributes', $cart->attribute->product),
+                        'cart' => ''
+                    ]
+                ])
                 <div class="row">
                     <div id="preview-{{ $cart->attribute->id }}" class="preview col-md-4">
                         <div class="row text-center">

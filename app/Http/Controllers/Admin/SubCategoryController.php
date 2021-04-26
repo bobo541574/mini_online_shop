@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\SubCategoryRepository;
+use App\Http\Repositories\Back\SubCategoryRepository;
 use App\Http\Requests\SubCategory\SubCategoryRequest;
 
 class SubCategoryController extends Controller

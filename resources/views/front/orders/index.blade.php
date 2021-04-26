@@ -12,6 +12,11 @@
     <div class="col-md-8 mx-auto">
         <div class="card">
             <div class="card-header">
+                @include('front.shared._breadcurmb', [
+                    'items' => [
+                        'orders' => ''
+                    ]
+                ])
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
                         @lang('orders')

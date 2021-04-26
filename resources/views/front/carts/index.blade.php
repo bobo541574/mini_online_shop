@@ -2,19 +2,18 @@
 
 @section('content')
 
-{{-- @include('admin.layouts.breadcrumb', [
-    'items' => [
-        'order' => ''
-    ]
-]) --}}
-
 <div class="row mt-3">
     <div class="col-md-8 mx-auto">
         <div class="card">
             <div class="card-header">
+                @include('front.shared._breadcurmb', [
+                    'items' => [
+                        'carts' => ''
+                    ]
+                ]);
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('orders')
+                        @lang('carts')
                     </h4>
                 </div>
                 @if (session('status'))

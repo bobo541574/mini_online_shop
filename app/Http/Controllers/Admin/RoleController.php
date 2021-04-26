@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Role\RoleRequest;
-use App\Http\Repositories\RoleRepository;
+use App\Http\Repositories\Back\RoleRepository;
 
 class RoleController extends Controller
 {

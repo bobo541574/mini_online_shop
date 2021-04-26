@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Repositories;
+namespace App\Http\Repositories\Back;
 
 use App\Models\Size;
-use App\Models\Color;
 
 class SizeRepository
 {

@@ -56,3 +56,15 @@ if (!function_exists('multiple_selected')) {
         return false;
     }
 }
+
+if (!function_exists('numberTranslate')) {
+    function numberTranslate($data)
+    {
+        $array = [];
+        $temp = str_split($data, 1);
+        foreach ($temp as $value) {
+            $array[] = trans($value, [], session('locale'));
+        }
+        return implode("", $array);
+    }
+}

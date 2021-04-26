@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Brand\BrandRequest;
-use App\Http\Repositories\BrandRepository;
-use App\Http\Requests\Brand\AssignRequest;
 use App\Http\Requests\Brand\UpdateRequest;
+use App\Http\Repositories\Back\BrandRepository;
 
 class BrandController extends Controller
 {

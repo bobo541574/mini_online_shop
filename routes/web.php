@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Front\UserController;
+use App\Http\Controllers\Front\UserController as FrontUserController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -71,7 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/city/{state?}/townships', [ContactController::class, 'getTownshipsBycity'])->name('front.city.townships');
 
     // Contact For User
-    Route::post('/users/contact', [UserController::class, 'contact'])->name('front.users.store-contact');
+    Route::post('/users/contact', [FrontUserController::class, 'contact'])->name('front.users.store-contact');
 });
 
 Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name('front.attribute.add-to-cart');

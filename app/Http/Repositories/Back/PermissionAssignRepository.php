@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Repositories;
+namespace App\Http\Repositories\Back;
 
 use App\Models\Role;
 use App\Models\Permission;

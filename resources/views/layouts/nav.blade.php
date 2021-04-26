@@ -33,9 +33,19 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link {{ check_active(route('front.carts.index')) }}" href="{{ route('front.carts.index') }}" tabindex="-1" aria-disabled="true"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <sup class="badge bg-warning px-1 text-theme">{{ auth()->user()->carts->count() }}</sup> </a>
+                        <a class="nav-link {{ check_active(route('front.carts.index')) }}" href="{{ route('front.carts.index') }}" 
+                            tabindex="-1" aria-disabled="true"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+                                <sup class="badge bg-warning px-1 text-theme">{{ numberTranslate(auth()->user()->carts->count()) }}</sup> 
+                        </a>
                     </li> 
                 @endauth
+                @hasrole
+                    <li class="nav-item">
+                        <a class="nav-link {{ check_active(route('admin.dashboard')) }}" href="{{ route('admin.dashboard') }}" tabindex="-1" aria-disabled="true" title="@lang('dashboard')">
+                            <i class="fa fa-user-cog" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                @endhasrole
                 <li class="nav-item dropdown">
                     <a class="nav-link active" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @if (session('locale') == "en")
@@ -53,7 +63,7 @@
                 @auth
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link active" id="profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->user_name }}</a>
-                        <ul class="dropdown-menu text-theme" aria-labelledby="profile">
+                        <ul class="dropdown-menu text-theme " aria-labelledby="profile">
                             <li>
                                 <a href="#" class="dropdown-item py-1 px-2">@lang('profile') 
                                     <div class="float-end">
@@ -62,18 +72,18 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('front.carts.index') }}" class="dropdown-item py-1 px-2">@lang('cart') 
+                                <a href="{{ route('front.carts.index') }}" class="dropdown-item py-1 px-2">@lang('carts') 
                                     <div class="float-end">
                                         {{-- <i class="fa fa-shopping-cart" aria-hidden="true"></i>  --}}
-                                        <span class="badge bg-theme">{{ auth()->user()->carts->count() }}</span>
+                                        <span class="badge bg-theme">{{ numberTranslate(auth()->user()->carts->count()) }}</span>
                                     </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('front.orders.index') }}" class="dropdown-item py-1 px-2">@lang('order') 
+                                <a href="{{ route('front.orders.index') }}" class="dropdown-item py-1 px-2">@lang('orders') 
                                     <div class="float-end">
                                         {{-- <i class="fa fa-shopping-basket" aria-hidden="true"></i>  --}}
-                                        <span class="badge bg-theme">{{ auth()->user()->orders->count() }}</span>
+                                        <span class="badge bg-theme">{{ numberTranslate(auth()->user()->orders->count()) }}</span>
                                     </div>
                                 </a>
                             </li>
@@ -90,7 +100,7 @@
                         <a href="{{ route('login') }}" class="nav-link {{ check_active(route('login')) }}">@lang('login')</a>
                     </li>
                     <li class="nav-item">
-                    <a href="{{ route('register') }}" class="nav-link {{ check_active(route('register')) }}">@lang('register_')</a>
+                    <a href="{{ route('register') }}" class="nav-link {{ check_active(route('register')) }}">@lang('register')</a>
                     </li>
                 @endauth
             </ul>        

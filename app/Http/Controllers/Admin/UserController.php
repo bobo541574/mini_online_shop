@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserRequest;
-use App\Http\Repositories\UserRepository;
+use App\Http\Repositories\Back\UserRepository;
 
 class UserController extends Controller
 {
