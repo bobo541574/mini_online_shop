@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\CategoryRepository;
 use App\Http\Requests\Category\CategoryRequest;
+use App\Http\Repositories\Back\CategoryRepository;
 
 class CategoryController extends Controller
 {

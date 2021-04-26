@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Size;
 use App\Models\Color;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Models\ProductAttribute;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\ProductAttributeRepository;
 use App\Http\Requests\ProductAttribute\CreateRequest;
 use App\Http\Requests\ProductAttribute\UpdateRequest;
+use App\Http\Repositories\Back\ProductAttributeRepository;
 
 class ProductAttributeController extends Controller
 {

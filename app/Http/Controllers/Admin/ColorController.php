@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Color;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Color\ColorRequest;
-use App\Http\Repositories\ColorRepository;
+use App\Http\Repositories\Back\ColorRepository;
 
 class ColorController extends Controller
 {

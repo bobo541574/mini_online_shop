@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
-use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\PermissionAssignRepository;
+use App\Http\Repositories\Back\PermissionAssignRepository;
 
 class PermissionAssignController extends Controller
 {

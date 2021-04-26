@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Repositories;
+namespace App\Http\Repositories\Front;
 
 use App\Models\Contact;
 use App\services\Address;

@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar mb-5">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.html">
+        <a class="sidebar-brand" href="{{ route('front.home') }}">
             <span class="align-middle">MOS</span>
         </a>
 

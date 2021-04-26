@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Size;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Size\SizeRequest;
-use App\Http\Repositories\SizeRepository;
+use App\Http\Repositories\Back\SizeRepository;
 
 class SizeController extends Controller
 {

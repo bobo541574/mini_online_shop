@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Supplier;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\ProductRepository;
+use App\Http\Repositories\Back\ProductRepository;
 
 class ProductController extends Controller
 {

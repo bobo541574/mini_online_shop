@@ -39,6 +39,13 @@
                         </a>
                     </li> 
                 @endauth
+                @hasrole
+                    <li class="nav-item">
+                        <a class="nav-link {{ check_active(route('admin.dashboard')) }}" href="{{ route('admin.dashboard') }}" tabindex="-1" aria-disabled="true" title="@lang('dashboard')">
+                            <i class="fa fa-user-cog" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                @endhasrole
                 <li class="nav-item dropdown">
                     <a class="nav-link active" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @if (session('locale') == "en")
@@ -56,7 +63,7 @@
                 @auth
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link active" id="profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->user_name }}</a>
-                        <ul class="dropdown-menu text-theme" aria-labelledby="profile">
+                        <ul class="dropdown-menu text-theme " aria-labelledby="profile">
                             <li>
                                 <a href="#" class="dropdown-item py-1 px-2">@lang('profile') 
                                     <div class="float-end">

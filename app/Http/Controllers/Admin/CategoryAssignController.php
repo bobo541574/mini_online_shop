@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\CategoryAssignRepository;
 use App\Http\Requests\Assign\CategoryAssignRequest;
+use App\Http\Repositories\Back\CategoryAssignRepository;
 
 class CategoryAssignController extends Controller
 {
