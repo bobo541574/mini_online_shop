@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('colors')
+                        @lang('color_table')
                     </h4>
                     <div>
                         <a href="{{ route('colors.create') }}" class="btn btn-sm btn-primary align-self-center">

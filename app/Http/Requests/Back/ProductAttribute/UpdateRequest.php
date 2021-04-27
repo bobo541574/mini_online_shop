@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\ProductAttribute;
+namespace App\Http\Requests\Back\ProductAttribute;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class CreateRequest extends FormRequest
             'buy_price' => 'required',
             'extra_cost' => 'required',
             'sale_price' => 'required',
-            'photo.*' => 'required|image',
+            'photo.*' => 'image',
             'arrived' => 'required',
             'description_en' => 'required',
             'description_mm' => 'required',
@@ -47,7 +47,7 @@ class CreateRequest extends FormRequest
                 'buy_price.required' => 'Buying price is required',
                 'extra_cost.required' => 'Extea cost is required',
                 'sale_price.required' => 'Salling price is required',
-                'photo.*.required' => 'Photo is required',
+                // 'photo.*.required' => 'Photo is required',
                 'photo.*.image' => 'Photo must be a file of type: jpg, jpeg, png, svg.',
                 'arrived.required' => 'Arrived is required',
                 'description_en.required' => 'Description (en) is required.',
@@ -61,7 +61,7 @@ class CreateRequest extends FormRequest
                 'buy_price.required' => 'ဝယ်စျေး အား ဖြည့်ရန်လိုအပ်ပါသည်။',
                 'extra_cost.required' => 'အပိုကုန်ကျငွေ အား ဖြည့်ရန်လိုအပ်ပါသည်။',
                 'sale_price.required' => 'ရောင်းစျေး အား ဖြည့်ရန်လိုအပ်ပါသည်။',
-                'photo.*.required' => 'ပုံ အား ဖြည့်ရန်လိုအပ်ပါသည်။',
+                // 'photo.*.required' => 'ပုံ အား ဖြည့်ရန်လိုအပ်ပါသည်။',
                 'photo.*.image' => 'ကုန်အချက်အလက်ပုံ မှာ (jpg, jpeg, png, svg) ဖြစ်ရန်လိုအပ်ပါသည်။',
                 'arrived.required' => 'ရောက်ရှိချိန် အား ဖြည့်ရန်လိုအပ်ပါသည်။',
                 'description_en.required' => 'အချက်အလက် ၏ အကြောင်းအရာ (အင်္ဂလိပ်) အား ဖြည့်ရန်လိုအပ်ပါသည်။',

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Size;
+namespace App\Http\Requests\Back\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SizeRequest extends FormRequest
+class CreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,8 +38,8 @@ class SizeRequest extends FormRequest
             ];
         } {
             return [
-                'name_en.required' => 'အရောင် အမည် (အင်္ဂလိပ်) အား ဖြည့်ရန်လိုအပ်ပါသည်။',
-                'name_mm.required' => 'အရောင် အမည် (မြန်မာ) အား ဖြည့်ရန်လိုအပ်ပါသည်။',
+                'name_en.required' => 'အသုံးပြုသူ၏ အဆင့် အမည် (အင်္ဂလိပ်) အား ဖြည့်ရန်လိုအပ်ပါသည်။',
+                'name_mm.required' => 'အသုံးပြုသူ၏ အဆင့် အမည် (မြန်မာ) အား ဖြည့်ရန်လိုအပ်ပါသည်။',
             ];
         }
     }

@@ -3,16 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Front\UserController as FrontUserController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Front\ContactController;
@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Front\UserController as FrontUserController;
 
 // Route::get('/', function () {
 //     return view('admin.layouts.app');
@@ -85,7 +86,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('products/{parentId}/subcategories', [CategoryController::class, 'findSubcategoriesById'])->name('products.subcategories');
     Route::get('subcategory/{subcategoryId}/brands', [SubCategoryController::class, 'findBrandsById'])->name('products.brands');
 
-    Route::group(['middleware' => 'permissions'], function () {
+    Route::group(['middleware' => 'auth'], function () {
         // User
         Route::get('users', [UserController::class, 'index'])->name('users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('users.create');
@@ -176,6 +177,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('sizes/{size:slug}/edit', [SizeController::class, 'edit'])->name('sizes.edit');
         Route::put('sizes/{size:slug}', [SizeController::class, 'update'])->name('sizes.update');
         Route::delete('sizes/{size:slug}', [SizeController::class, 'destroy'])->name('sizes.destroy');
+
+        // Payment
+        Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
+        Route::get('payments/create', [PaymentController::class, 'create'])->name('payments.create');
+        Route::post('payments', [PaymentController::class, 'store'])->name('payments.store');
+        Route::get('payments/{size:slug}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
+        Route::put('payments/{size:slug}', [PaymentController::class, 'update'])->name('payments.update');
+        Route::delete('payments/{size:slug}', [PaymentController::class, 'destroy'])->name('payments.destroy');
 
         // Brand
         Route::get('products', [ProductController::class, 'index'])->name('products.index');

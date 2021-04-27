@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\UserRequest;
 use App\Http\Repositories\Back\UserRepository;
+use App\Http\Requests\Back\User\CreateRequest;
 
 class UserController extends Controller
 {
@@ -31,7 +31,7 @@ class UserController extends Controller
         return view('admin.users.create', compact('roles'));
     }
 
-    public function store(UserRequest $request)
+    public function store(CreateRequest $request)
     {
         $this->userRepository->store($request);
 
@@ -45,7 +45,7 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(CreateRequest $request, User $user)
     {
         $this->userRepository->update($request, $user);
 

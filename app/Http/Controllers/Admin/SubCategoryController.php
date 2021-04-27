@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Back\SubCategoryRepository;
-use App\Http\Requests\SubCategory\SubCategoryRequest;
+use App\Http\Requests\Back\SubCategory\CreateRequest;
 
 class SubCategoryController extends Controller
 {
@@ -29,7 +29,7 @@ class SubCategoryController extends Controller
         return view('admin.subcategories.create', compact('categories'));
     }
 
-    public function store(SubCategoryRequest $request)
+    public function store(CreateRequest $request)
     {
         $this->subCategoryRepository->store($request);
 
@@ -43,7 +43,7 @@ class SubCategoryController extends Controller
         return view('admin.subcategories.edit', compact('subcategory', 'categories'));
     }
 
-    public function update(SubCategoryRequest $request, Category $subcategory)
+    public function update(CreateRequest $request, Category $subcategory)
     {
         $this->subCategoryRepository->update($request, $subcategory);
 

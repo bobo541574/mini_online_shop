@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'size' => route('sizes.index'),
+        'size_table' => route('sizes.index'),
         'create' => null
     ]
 ])

@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
 'items' => [
-        'attribute' => route('attributes.index'),
+        'attribute_table' => route('attributes.index'),
         'create' => null
     ]
 ])
@@ -15,7 +15,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('attributes')
+                        @lang('attribute_table')
                     </h4>
                     <div>
                         <a href="{{ route('products.index') }}" class="btn btn-sm btn-dark align-self-center">

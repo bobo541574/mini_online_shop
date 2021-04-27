@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'brand_category' => route('brands.index'),
+        'brand_category_table' => route('brands.index'),
         'create' => null
     ]
 ])

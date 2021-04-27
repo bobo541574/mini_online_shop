@@ -70,12 +70,12 @@ return [
         ['name_en' => 'Brand Restore All', 'name_mm' => 'ကုန်အမှတ်တံဆိပ်များ ကို ခဏ ဖြတ်သိမ်းရာမှာ ပြန်ယူရန်', 'slug' => 'brands-restore-all'],
     ],
     'Category-Brands-Assign' => [
-        ['name_en' => 'Category & Brand Assign List', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက် စရင်း', 'slug' => 'assigns.categories-index'],
-        ['name_en' => 'Category & Brand Assign Create', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ပြုလုပ်ရန်', 'slug' => 'assigns.categories-create'],
-        ['name_en' => 'Category & Brand Assign Store', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို သိမ်းဆည်းရန်', 'slug' => 'assigns.categories-store'],
-        ['name_en' => 'Category & Brand Assign Edit', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ပြုပြင်ရန်', 'slug' => 'assigns.categories-edit'],
-        ['name_en' => 'Category & Brand Assign Update', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ပြန်လည် သိမ်းဆည်းရန်', 'slug' => 'assigns.categories-update'],
-        ['name_en' => 'Category & Brand Assign Destroy', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ဖြတ်သိမ်းရန်', 'slug' => 'assigns.categories-destroy'],
+        ['name_en' => 'Category & Brand Assign List', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက် စရင်း', 'slug' => 'assigns-categories-index'],
+        ['name_en' => 'Category & Brand Assign Create', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ပြုလုပ်ရန်', 'slug' => 'assigns-categories-create'],
+        ['name_en' => 'Category & Brand Assign Store', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို သိမ်းဆည်းရန်', 'slug' => 'assigns-categories-store'],
+        ['name_en' => 'Category & Brand Assign Edit', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ပြုပြင်ရန်', 'slug' => 'assigns-categories-edit'],
+        ['name_en' => 'Category & Brand Assign Update', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ပြန်လည် သိမ်းဆည်းရန်', 'slug' => 'assigns-categories-update'],
+        ['name_en' => 'Category & Brand Assign Destroy', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ဖြတ်သိမ်းရန်', 'slug' => 'assigns-categories-destroy'],
     ],
     'Color' => [
         ['name_en' => 'Color List', 'name_mm' => 'အရောင် စရင်း', 'slug' => 'colors-index'],

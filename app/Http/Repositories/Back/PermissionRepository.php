@@ -36,7 +36,7 @@ class PermissionRepository
 
     public function arrayFilter($data)
     {
-        $removeList = ["", "debugbar", "ignition"];
+        $removeList = ["", "debugbar", "ignition", "front", "locale", "login", "logout", "register"];
         foreach ($removeList as $list) {
             if ($list != "") {
                 if (strpos($data, $list) !== false) {

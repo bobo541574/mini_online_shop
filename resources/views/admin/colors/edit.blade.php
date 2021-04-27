@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
 'items' => [
-    'color' => route('colors.index'),
+    'color_table' => route('colors.index'),
     'create' => null
 ]
 ])

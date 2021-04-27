@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Size;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Size\SizeRequest;
 use App\Http\Repositories\Back\SizeRepository;
+use App\Http\Requests\Back\Size\CreateRequest;
 
 class SizeController extends Controller
 {
@@ -28,7 +28,7 @@ class SizeController extends Controller
         return view('admin.sizes.create');
     }
 
-    public function store(SizeRequest $request)
+    public function store(CreateRequest $request)
     {
         $this->sizeRepository->store($request);
 
@@ -40,7 +40,7 @@ class SizeController extends Controller
         return view('admin.sizes.edit', compact('color'));
     }
 
-    public function update(SizeRequest $request, Size $color)
+    public function update(CreateRequest $request, Size $color)
     {
         $this->sizeRepository->update($request, $color);
 

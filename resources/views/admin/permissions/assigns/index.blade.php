@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'assign' => ''
+        'assign_table' => ''
     ]
 ])
 
@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('assigns')
+                        @lang('assign_table')
                     </h4>
                     <div>
                         <a href="{{ route('assigns.permissions-create') }}" class="btn btn-sm btn-primary align-self-center">

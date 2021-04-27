@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'category' => route('categories.index'),
+        'category_table' => route('categories.index'),
         'edit' => null
     ]
 ])

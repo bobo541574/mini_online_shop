@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Color;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Color\ColorRequest;
 use App\Http\Repositories\Back\ColorRepository;
+use App\Http\Requests\Back\Color\CreateRequest;
 
 class ColorController extends Controller
 {
@@ -28,7 +28,7 @@ class ColorController extends Controller
         return view('admin.colors.create');
     }
 
-    public function store(ColorRequest $request)
+    public function store(CreateRequest $request)
     {
         $this->colorRepository->store($request);
 
@@ -40,7 +40,7 @@ class ColorController extends Controller
         return view('admin.colors.edit', compact('color'));
     }
 
-    public function update(ColorRequest $request, Color $color)
+    public function update(CreateRequest $request, Color $color)
     {
         $this->colorRepository->update($request, $color);
 

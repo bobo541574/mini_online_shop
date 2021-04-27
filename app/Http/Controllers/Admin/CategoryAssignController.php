@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Assign\CategoryAssignRequest;
 use App\Http\Repositories\Back\CategoryAssignRepository;
+use App\Http\Requests\Back\Assign\CategoryAssignRequest;
 
 class CategoryAssignController extends Controller
 {

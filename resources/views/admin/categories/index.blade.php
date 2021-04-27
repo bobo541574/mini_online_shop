@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'category' => ''
+        'category_table' => ''
     ]
 ])
 
@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('categories')
+                        @lang('category_table')
                     </h4>
                     <div>
                         <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary align-self-center">
