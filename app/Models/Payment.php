@@ -18,9 +18,4 @@ class Payment extends Model
     {
         return $this->{'name_' . session('locale')};
     }
-
-    public function getPaymentTypeAttribute()
-    {
-        return $this->{'payment_type_' . session('locale')};
-    }
 }

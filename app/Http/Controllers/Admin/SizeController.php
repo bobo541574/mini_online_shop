@@ -32,25 +32,25 @@ class SizeController extends Controller
     {
         $this->sizeRepository->store($request);
 
-        return redirect()->route('sizes.index')->with('status', 'color_created');
+        return redirect()->route('sizes.index')->with('status', 'size_created');
     }
 
-    public function edit(Size $color)
+    public function edit(Size $size)
     {
-        return view('admin.sizes.edit', compact('color'));
+        return view('admin.sizes.edit', compact('size'));
     }
 
-    public function update(CreateRequest $request, Size $color)
+    public function update(CreateRequest $request, Size $size)
     {
-        $this->sizeRepository->update($request, $color);
+        $this->sizeRepository->update($request, $size);
 
-        return redirect()->route('sizes.index')->with('status', 'color_updated');
+        return redirect()->route('sizes.index')->with('status', 'size_updated');
     }
 
-    public function destroy(Size $color)
+    public function destroy(Size $size)
     {
-        $this->sizeRepository->destroy($color);
+        $this->sizeRepository->destroy($size);
 
-        return redirect()->route('sizes.index')->with('status', 'color_deleted');
+        return redirect()->route('sizes.index')->with('status', 'size_deleted');
     }
 }

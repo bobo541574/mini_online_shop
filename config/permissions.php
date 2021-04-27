@@ -77,6 +77,18 @@ return [
         ['name_en' => 'Category & Brand Assign Update', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ပြန်လည် သိမ်းဆည်းရန်', 'slug' => 'assigns-categories-update'],
         ['name_en' => 'Category & Brand Assign Destroy', 'name_mm' => 'ကုန်ပစ္စည်း အမျိုးအစား နှင့် ကုန်အမှတ်တံဆိပ် ချိတ်ဆက်တာ ကို ဖြတ်သိမ်းရန်', 'slug' => 'assigns-categories-destroy'],
     ],
+    'Payment' => [
+        ['name_en' => 'Payment List', 'name_mm' => 'ငွေပေးချေမှုစနစ် စရင်း', 'slug' => 'payments-index'],
+        ['name_en' => 'Payment Create', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို ပြုလုပ်ရန်', 'slug' => 'payments-create'],
+        ['name_en' => 'Payment Store', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို သိမ်းဆည်းရန်', 'slug' => 'payments-store'],
+        ['name_en' => 'Payment Edit', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို ပြုပြင်ရန်', 'slug' => 'payments-edit'],
+        ['name_en' => 'Payment Update', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို ပြန်လည် သိမ်းဆည်းရန်', 'slug' => 'payments-update'],
+        ['name_en' => 'Payment Destroy', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို ဖြတ်သိမ်းရန်', 'slug' => 'payments-destroy'],
+        ['name_en' => 'Payment To Trash', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို ခဏ ဖြတ်သိမ်းရန်', 'slug' => 'payments-to-trash'],
+        ['name_en' => 'Payment Trashed List', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို ခဏ ဖြတ်သိမ်းစရင်း', 'slug' => 'payments-trashed'],
+        ['name_en' => 'Payment Restore', 'name_mm' => 'ငွေပေးချေမှုစနစ် ကို ခဏ ဖြတ်သိမ်းရာမှာ ပြန်ယူရန်', 'slug' => 'payments-restore'],
+        ['name_en' => 'Payment Restore All', 'name_mm' => 'ငွေပေးချေမှုစနစ်များ ကို ခဏ ဖြတ်သိမ်းရာမှာ ပြန်ယူရန်', 'slug' => 'payments-restore-all'],
+    ],
     'Color' => [
         ['name_en' => 'Color List', 'name_mm' => 'အရောင် စရင်း', 'slug' => 'colors-index'],
         ['name_en' => 'Color Create', 'name_mm' => 'အရောင် ကို ပြုလုပ်ရန်', 'slug' => 'colors-create'],

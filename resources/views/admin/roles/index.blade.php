@@ -53,22 +53,24 @@
                                 {{ $role->name }}
                             </td>
                             
-                            <td class="d-flex justify-content-around">
-                                <a href="{{ route('roles.edit', $role) }}" class="" title="@lang('role_edit')">
-                                    <div class="my-2">
-                                        <i class="align-middle text-warning" data-feather="edit"></i>
-                                    </div>
-                                </a>
-
-                                <form action="{{ route('roles.destroy', $role) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="border-0 text-danger bg-light" title="@lang('role_delete')">
+                            <td>
+                                <div class="d-flex justify-content-around">
+                                    <a href="{{ route('roles.edit', $role) }}" class="" title="@lang('role_edit')">
                                         <div class="my-2">
-                                            <i class="align-middle" data-feather="trash-2"></i>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </div>
-                                    </button>
-                                </form>
+                                    </a>
+    
+                                    <form action="{{ route('roles.destroy', $role) }}" method="post" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="border-0 text-danger bg-light" title="@lang('role_delete')">
+                                            <div class="my-2">
+                                                <i class="align-middle" data-feather="trash-2"></i>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

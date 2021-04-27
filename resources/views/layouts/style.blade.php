@@ -36,6 +36,10 @@
         flex-direction: column;
     } 
 
+    .lang-img {
+        width: 25px;
+    }
+
     @media screen and (max-width: 996px) {
         .preview {
             margin-bottom: 20px;

@@ -68,7 +68,7 @@
                                         <form action="{{ route('colors.destroy', $color) }}" method="post" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="border-0 text-danger bg-light" title="@lang('color_remove')">
+                                            <button class="border-0 text-danger bg-light" title="@lang('color_delete')">
                                                 <div class="my-2">
                                                     <i class="align-middle" data-feather="trash-2"></i>
                                                 </div>

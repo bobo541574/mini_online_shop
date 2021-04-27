@@ -59,18 +59,6 @@
                         @enderror
                     </div>
                     
-                    <div class="mb-3">
-                        <label for="size_code" class="form-label fw-bold">@lang('size_code')</label>
-                        <input type="size" name="size_code" value="{{ old('size_code') }}" id="size_code" class="form-control form-control-size"
-                            placeholder="@lang('enter_size_size_code')">
-
-                        @error('size_code')
-                        <div class="text-danger pt-1 mx-1">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
                     <div class="text-center">
                         <button class="btn btn btn-primary" type="submit">
                             @lang('create')

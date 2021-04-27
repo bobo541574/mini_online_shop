@@ -10,22 +10,10 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="index.html">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">@lang('dashboard')</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-profile.html">
+                <a class="sidebar-link" href="{{ route('users.show', auth()->user()) }}">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                 </a>
             </li>
-
-            {{-- <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-settings.html">
-                    <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
-                </a>
-            </li> --}}
 
             <li class="sidebar-header">
                 @lang('user_manage')
@@ -41,28 +29,6 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('assigns.permissions-index') }}">@lang('assigns')</a></li>
                 </ul>
             </li>
-
-            {{-- <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-invoice.html">
-                    <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-blank.html">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="#auth" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Auth</span>
-                </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="pages-sign-in.html">Sign In</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="pages-sign-up.html">Sign Up</a></li>
-                </ul>
-            </li> --}}
 
             <li class="sidebar-header">
                 @lang('category_manage')

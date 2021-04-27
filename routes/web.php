@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('users', [UserController::class, 'index'])->name('users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('users', [UserController::class, 'store'])->name('users.store');
+        Route::get('users/{user:user_name}/show', [UserController::class, 'show'])->name('users.show');
         Route::get('users/{user:user_name}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::put('users/{user:user_name}', [UserController::class, 'update'])->name('users.update');
         Route::delete('users/{user:user_name}', [UserController::class, 'destroy'])->name('users.destroy');
@@ -182,9 +183,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
         Route::get('payments/create', [PaymentController::class, 'create'])->name('payments.create');
         Route::post('payments', [PaymentController::class, 'store'])->name('payments.store');
-        Route::get('payments/{size:slug}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
-        Route::put('payments/{size:slug}', [PaymentController::class, 'update'])->name('payments.update');
-        Route::delete('payments/{size:slug}', [PaymentController::class, 'destroy'])->name('payments.destroy');
+        Route::get('payments/{payment:slug}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
+        Route::put('payments/{payment:slug}', [PaymentController::class, 'update'])->name('payments.update');
+        Route::delete('payments/{payment:slug}', [PaymentController::class, 'destroy'])->name('payments.destroy');
 
         // Brand
         Route::get('products', [ProductController::class, 'index'])->name('products.index');

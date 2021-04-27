@@ -62,6 +62,7 @@
                     <div class="mb-3">
                         <label for="payment_type" class="form-label fw-bold">@lang('payment_type')</label>
                         <select class="form-select" id="payment_type" name="payment_type" aria-label="Default select example">
+                            <option value="">@lang('select_payment')</option>
                             @foreach ($payment_types as $payment_type)
                                 <option value={{ $payment_type }} {{ (old('payment_type') == $payment_type) ? 'selected=selected' : ''}}>@lang($payment_type)</option>
                             @endforeach

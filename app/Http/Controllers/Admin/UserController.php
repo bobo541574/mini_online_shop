@@ -38,6 +38,11 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('status', 'user_created');
     }
 
+    public function show(User $user)
+    {
+        return view('admin.users.show', compact('user'));
+    }
+
     public function edit(User $user)
     {
         $roles = Role::get();

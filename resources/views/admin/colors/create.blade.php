@@ -62,7 +62,7 @@
                     <div class="mb-3">
                         <label for="color_code" class="form-label fw-bold">@lang('color_code')</label>
                         <input type="color" name="color_code" value="{{ old('color_code') }}" id="color_code" class="form-control form-control-color"
-                            placeholder="@lang('enter_color_color_code')">
+                            placeholder="@lang('enter_color_code')">
 
                         @error('color_code')
                         <div class="text-danger pt-1 mx-1">

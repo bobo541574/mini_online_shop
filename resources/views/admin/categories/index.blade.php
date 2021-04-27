@@ -64,22 +64,24 @@
                                     @lang('inactive')
                                 @endif
                             </td>
-                            <td class="d-flex justify-content-around">
-                                <a href="{{ route('categories.edit', $category) }}" class="" title="@lang('category_edit')">
-                                    <div class="my-2">
-                                        <i class="align-middle text-warning" data-feather="edit"></i>
-                                    </div>
-                                </a>
-
-                                <form action="{{ route('categories.to-trash', $category) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('PUT')
-                                    <button class="border-0 text-danger bg-light" title="@lang('category_remove')">
+                            <td>
+                                <div class="d-flex justify-content-around">
+                                    <a href="{{ route('categories.edit', $category) }}" class="" title="@lang('category_edit')">
                                         <div class="my-2">
-                                            <i class="align-middle" data-feather="trash"></i>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </div>
-                                    </button>
-                                </form>
+                                    </a>
+    
+                                    <form action="{{ route('categories.to-trash', $category) }}" method="post" class="inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="border-0 text-danger bg-light" title="@lang('category_remove')">
+                                            <div class="my-2">
+                                                <i class="align-middle" data-feather="trash"></i>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

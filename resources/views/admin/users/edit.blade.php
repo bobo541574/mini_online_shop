@@ -16,7 +16,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('user_create')
+                        @lang('user_edit')
                     </h4>
                     <a href="{{ route('users.index') }}" class="btn btn-sm btn-dark align-self-center">
                         @lang('back')

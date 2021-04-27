@@ -18,6 +18,26 @@ class PaymentRepository
 
     public function store($request)
     {
-        return $request->all();
+        return $this->model()->create([
+            'name_en' => $request->name_en,
+            'name_mm' => $request->name_mm,
+            'slug' => strtoslug($request->name_en),
+            'payment_type' => $request->payment_type,
+        ]);
+    }
+
+    public function update($request, $payment)
+    {
+        return $this->model()->update([
+            'name_en' => $request->name_en,
+            'name_mm' => $request->name_mm,
+            'slug' => strtoslug($request->name_en),
+            'payment_type' => $request->payment_type,
+        ]);
+    }
+
+    public function destroy($payment)
+    {
+        return $payment->delete();
     }
 }

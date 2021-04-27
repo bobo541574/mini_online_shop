@@ -60,22 +60,24 @@
                                 <span class="badge {{ ($user->role_id !== 0) ? "bg-success" : "bg-info" }}">{{ ($user->role_id !== 0) ? $user->role->name : 'Not Assigned' }}</span>
                             </td>
                             
-                            <td class="d-flex justify-content-around">
-                                <a href="{{ route('users.edit', $user) }}" class="" title="@lang('user_edit')">
-                                    <div class="my-2">
-                                        <i class="align-middle text-warning" data-feather="edit"></i>
-                                    </div>
-                                </a>
-
-                                <form action="{{ route('users.destroy', $user) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="border-0 text-danger bg-light" title="@lang('user_delete')">
+                            <td>
+                                <div class="d-flex justify-content-around">
+                                    <a href="{{ route('users.edit', $user) }}" class="" title="@lang('user_edit')">
                                         <div class="my-2">
-                                            <i class="align-middle" data-feather="trash-2"></i>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </div>
-                                    </button>
-                                </form>
+                                    </a>
+    
+                                    <form action="{{ route('users.destroy', $user) }}" method="post" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="border-0 text-danger bg-light" title="@lang('user_delete')">
+                                            <div class="my-2">
+                                                <i class="align-middle" data-feather="trash-2"></i>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

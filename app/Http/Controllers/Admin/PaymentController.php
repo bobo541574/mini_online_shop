@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Payment;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Back\PaymentRepository;
 use App\Http\Requests\Back\Payment\CreateRequest;
@@ -34,6 +35,32 @@ class PaymentController extends Controller
 
     public function store(CreateRequest $request)
     {
-        return $request->all();
+        $this->paymentRepository->store($request);
+
+        return redirect()->route('payments.index')->with('status', 'payment_created');
+    }
+
+    public function edit(Payment $payment)
+    {
+        $payment_types = [
+            'post_paid',
+            'pre_paid'
+        ];
+
+        return view('admin.payments.edit', compact('payment', 'payment_types'));
+    }
+
+    public function update(CreateRequest $request, Payment $payment)
+    {
+        $this->paymentRepository->update($request, $payment);
+
+        return redirect()->route('payments.index')->with('status', 'payment_updated');
+    }
+
+    public function destroy(Payment $payment)
+    {
+        $this->paymentRepository->destroy($payment);
+
+        return redirect()->route('payments.index')->with('status', 'payment_deleted');
     }
 }

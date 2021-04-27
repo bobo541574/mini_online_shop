@@ -24,10 +24,10 @@
                         <span>@lang(session('locale'))</span>
                     @endif
                 </a>
-                <ul class="dropdown-menu text-theme" aria-labelledby="lang">
-                    <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'mm') }}">@lang('mm') <img src="{{ asset('img/lang/myanmar.png') }}" class="mx-2" style="width: 20%" alt="mm"></a></li>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start text-theme" aria-labelledby="lang">
+                    <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'mm') }}">@lang('mm') <img src="{{ asset('img/lang/myanmar.png') }}" class="mx-2 lang-img" alt="mm"></a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'en') }}">@lang('en') <img src="{{ asset('img/lang/united-states.png') }}" class="mx-2" style="width: 20%" alt="en"></a></li>
+                    <li><a class="dropdown-item py-0" href="{{ route('locale.switch', 'en') }}">@lang('en') <img src="{{ asset('img/lang/united-states.png') }}" class="mx-2 lang-img" alt="en"></a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">

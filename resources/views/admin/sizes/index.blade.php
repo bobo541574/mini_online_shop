@@ -61,7 +61,7 @@
                                         <form action="{{ route('sizes.destroy', $size) }}" method="post" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="border-0 text-danger bg-light" title="@lang('size_remove')">
+                                            <button class="border-0 text-danger bg-light" title="@lang('size_delete')">
                                                 <div class="my-2">
                                                     <i class="align-middle" data-feather="trash-2"></i>
                                                 </div>

@@ -40,6 +40,9 @@
                                     @lang('name')
                                 </th>
                                 <th class="h5 fw-bold">
+                                    @lang('payment_type')
+                                </th>
+                                <th class="h5 fw-bold">
                                     @lang('action')
                                 </th>
                             </tr>
@@ -49,6 +52,9 @@
                             <tr>
                                 <td>
                                     {{ $payment->name }}
+                                </td>
+                                <td>
+                                    @lang($payment->payment_type)
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">
