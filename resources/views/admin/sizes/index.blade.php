@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'size' => ''
+        'size_table' => ''
     ]
 ])
 
@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('sizes')
+                        @lang('size_table')
                     </h4>
                     <div>
                         <a href="{{ route('sizes.create') }}" class="btn btn-sm btn-primary align-self-center">
@@ -61,7 +61,7 @@
                                         <form action="{{ route('sizes.destroy', $size) }}" method="post" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="border-0 text-danger bg-light" title="@lang('size_remove')">
+                                            <button class="border-0 text-danger bg-light" title="@lang('size_delete')">
                                                 <div class="my-2">
                                                     <i class="align-middle" data-feather="trash-2"></i>
                                                 </div>

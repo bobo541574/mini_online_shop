@@ -44,6 +44,7 @@ class ColorFactory extends Factory
             'name_en' => "Test Color - " . ($en),
             'name_mm' => "ကာလာ - " . ($mm),
             'slug' => strtoslug("Test Color - " . ($en) . "-" . now()),
+            'color_code' => rand(000000, 999999),
         ];
     }
 }

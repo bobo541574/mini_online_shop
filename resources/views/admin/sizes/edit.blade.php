@@ -3,10 +3,10 @@
 @section('content')
 
 @include('admin.layouts.breadcrumb', [
-'items' => [
-    'size' => route('sizes.index'),
-    'create' => null
-]
+    'items' => [
+        'size_table' => route('sizes.index'),
+        'create' => null
+    ]
 ])
 
 
@@ -60,21 +60,9 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label for="size_code" class="form-label fw-bold">@lang('size_code')</label>
-                        <input type="size" name="size_code" value="{{ $size->size_code }}" id="size_code" class="form-control form-control-size"
-                            placeholder="@lang('enter_size_size_code')">
-
-                        @error('size_code')
-                        <div class="text-danger pt-1 mx-1">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
                     <div class="text-center">
                         <button class="btn btn btn-primary" type="submit">
-                            @lang('create')
+                            @lang('update')
                         </button>
                     </div>
                 </form>

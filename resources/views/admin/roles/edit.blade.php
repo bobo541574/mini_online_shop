@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'role' => route('roles.index'),
+        'role_table' => route('roles.index'),
         'edit' => null
     ]
 ])

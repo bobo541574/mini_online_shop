@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
 'items' => [
-    'color' => route('colors.index'),
+    'color_table' => route('colors.index'),
     'create' => null
 ]
 ])
@@ -63,7 +63,7 @@
                     <div class="mb-3">
                         <label for="color_code" class="form-label fw-bold">@lang('color_code')</label>
                         <input type="color" name="color_code" value="{{ $color->color_code }}" id="color_code" class="form-control form-control-color"
-                            placeholder="@lang('enter_color_color_code')">
+                            placeholder="@lang('enter_color_code')">
 
                         @error('color_code')
                         <div class="text-danger pt-1 mx-1">
@@ -74,7 +74,7 @@
 
                     <div class="text-center">
                         <button class="btn btn btn-primary" type="submit">
-                            @lang('create')
+                            @lang('update')
                         </button>
                     </div>
                 </form>

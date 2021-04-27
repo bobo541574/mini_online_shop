@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'permission' => ''
+        'permission_table' => ''
     ]
 ])
 
@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('permissions')
+                        @lang('permission_table')
                     </h4>
                     <div>
                         <a href="{{ route('permissions.create') }}" class="btn btn-sm btn-primary align-self-center">
@@ -53,22 +53,24 @@
                                 {{ $permission->name }}
                             </td>
                             
-                            <td class="d-flex justify-content-around">
-                                <a href="{{ route('permissions.edit', $permission) }}" class="" title="@lang('permission_edit')">
-                                    <div class="my-2">
-                                        <i class="align-middle text-warning" data-feather="edit"></i>
-                                    </div>
-                                </a>
-
-                                <form action="{{ route('permissions.destroy', $permission) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="border-0 text-danger bg-light" title="@lang('permission_delete')">
+                            <td>
+                                <div class="d-flex justify-content-around">
+                                    <a href="{{ route('permissions.edit', $permission) }}" class="" title="@lang('permission_edit')">
                                         <div class="my-2">
-                                            <i class="align-middle" data-feather="trash-2"></i>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </div>
-                                    </button>
-                                </form>
+                                    </a>
+    
+                                    <form action="{{ route('permissions.destroy', $permission) }}" method="post" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="border-0 text-danger bg-light" title="@lang('permission_delete')">
+                                            <div class="my-2">
+                                                <i class="align-middle" data-feather="trash-2"></i>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

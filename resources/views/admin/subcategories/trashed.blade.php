@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'subcategory' => route('subcategories.index'),
+        'subcategory_table' => route('subcategories.index'),
         'trashed' => null
     ]
 ])

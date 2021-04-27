@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Role\RoleRequest;
+use App\Http\Requests\Back\Role\CreateRequest;
 use App\Http\Repositories\Back\RoleRepository;
 
 class RoleController extends Controller
@@ -28,7 +28,7 @@ class RoleController extends Controller
         return view('admin.roles.create');
     }
 
-    public function store(RoleRequest $request)
+    public function store(CreateRequest $request)
     {
         $this->roleRepository->store($request);
 
@@ -40,7 +40,7 @@ class RoleController extends Controller
         return view('admin.roles.edit', compact('role'));
     }
 
-    public function update(RoleRequest $request, Role $role)
+    public function update(CreateRequest $request, Role $role)
     {
         $this->roleRepository->update($request, $role);
 

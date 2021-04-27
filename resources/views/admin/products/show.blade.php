@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
 'items' => [
-'product' => route('products.index'),
+'product_table' => route('products.index'),
 'create' => null
 ]
 ])

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Permission;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Permission\PermissionRequest;
 use App\Http\Repositories\Back\PermissionRepository;
+use App\Http\Requests\Back\Permission\CreateRequest;
 
 class PermissionController extends Controller
 {
@@ -30,7 +30,7 @@ class PermissionController extends Controller
         return view('admin.permissions.create', compact('routes'));
     }
 
-    public function store(PermissionRequest $request)
+    public function store(CreateRequest $request)
     {
         $this->permissionRepository->store($request);
 
@@ -44,7 +44,7 @@ class PermissionController extends Controller
         return view('admin.permissions.edit', compact('routes', 'permission'));
     }
 
-    public function update(PermissionRequest $request, Permission $permission)
+    public function update(CreateRequest $request, Permission $permission)
     {
         $this->permissionRepository->update($request, $permission);
 

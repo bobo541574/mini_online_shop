@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'category' => route('categories.index'),
+        'permission_table' => route('categories.index'),
         'trashed' => null
     ]
 ])

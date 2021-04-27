@@ -94,7 +94,7 @@
         fetchProducts();
 
         function fetchProducts(url) {
-            let currentUrl = url ? `/products?page=${url}` : '/products';
+            let currentUrl = url ?? '/products';
             fetch(currentUrl, {
                 headers: {
                     "Content-Type": "application/json",
@@ -152,7 +152,7 @@
 
                                 html += ` 
                                     <li class="page-item ${currentPage > 1 ? "" : " disabled text-muted" }">
-                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts(${currentPage - 1})">
+                                        <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts('${prevPageUrl}')">
                                             <span aria-hidden="true">&lsaquo;</span>
                                         </a>
                                     </li>
@@ -160,7 +160,7 @@
                                 for (let i = 1; i < (links.length - 1); i++) {
                                     html += `
                                         <li class="page-item ${links[i].active ? "active" : "" }">
-                                            <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts(${i})">
+                                            <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts('${links[i].url}')">
                                                 <span aria-hidden="true">${trans(links[i].label)}</span>
                                             </a>
                                         </li>
@@ -169,7 +169,7 @@
 
                                 html += `
                                     <li class="page-item ${currentPage == lastPage ? "disabled text-muted" : "" }">
-                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts(${currentPage + 1})">
+                                        <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts('${nextPageUrl}')">
                                             <span aria-hidden="true">&rsaquo;</span>
                                         </a>
                                     </li>
@@ -208,10 +208,11 @@
                 let html = "";
                 products.forEach(product => {
                     let photo = JSON.parse(product.attribute.photo);
+                    let slug = product.slug;
                     if(product.attribute) {
                         html += `
                             <div class="col-md-3">
-                                <a href="#" class="card-link text-dark">
+                                <a href="/product/${slug}/attributes" class="card-link text-dark">
                                     <div class="card product-card">
                                         <img class="card-img-top w-75 mx-auto" src="${photo[0]}"
                                             alt="product_${product.attribute.id}">
@@ -251,7 +252,7 @@
                                 for (let i = 1; i < (links.length - 1); i++) {
                                     html += `
                                         <li class="page-item ${links[i].active ? "active" : "" }">
-                                            <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${links[i].url}')">
+                                            <a class="page-link text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${links[i].url}')">
                                                 <span aria-hidden="true">${trans(links[i].label)}</span>
                                             </a>
                                         </li>
@@ -260,7 +261,7 @@
 
                                 html += `
                                     <li class="page-item ${currentPage == lastPage ? "disabled text-muted" : "" }">
-                                        <a class="page-link text-theme" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${nextPageUrl}')">
+                                        <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${nextPageUrl}')">
                                             <span aria-hidden="true">&rsaquo;</span>
                                         </a>
                                     </li>

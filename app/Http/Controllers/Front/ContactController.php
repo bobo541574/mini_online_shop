@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\ContactRepository;
+use App\Http\Repositories\Front\ContactRepository;
 
 class ContactController extends Controller
 {

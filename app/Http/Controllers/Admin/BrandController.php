@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Brand\BrandRequest;
-use App\Http\Requests\Brand\UpdateRequest;
 use App\Http\Repositories\Back\BrandRepository;
+use App\Http\Requests\Back\Brand\CreateRequest;
+use App\Http\Requests\Back\Brand\UpdateRequest;
 
 class BrandController extends Controller
 {
@@ -29,7 +29,7 @@ class BrandController extends Controller
         return view('admin.brands.create');
     }
 
-    public function store(BrandRequest $request)
+    public function store(CreateRequest $request)
     {
         $this->brandRepository->store($request);
 

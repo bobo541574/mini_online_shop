@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'subcategory' => route('subcategories.index'),
+        'subcategory_table' => route('subcategories.index'),
         'edit' => null
     ]
 ])
@@ -33,7 +33,7 @@
             <div class="card-body">
                 <form action="{{ route('subcategories.store') }}" method="post">
                     @csrf
-
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="name_mm" class="form-label fw-bold">@lang('category')</label>
                         <select class="form-select" name="parent_id" aria-label="Default select example">

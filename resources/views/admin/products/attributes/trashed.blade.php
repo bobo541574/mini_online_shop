@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
 'items' => [
-        'attribute' => route('attributes.index'),
+        'attribute_table' => route('attributes.index'),
         'create' => null
     ]
 ])

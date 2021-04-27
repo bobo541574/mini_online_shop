@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'subcategory' => ''
+        'subcategory_table' => ''
     ]
 ])
 
@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('subcategories')
+                        @lang('subcategory_table')
                     </h4>
                     <div>
                         <a href="{{ route('subcategories.create') }}" class="btn btn-sm btn-primary align-self-center">
@@ -70,22 +70,24 @@
                                     @lang('inactive')
                                 @endif
                             </td>
-                            <td class="d-flex justify-content-around">
-                                <a href="{{ route('subcategories.edit', $subcategory) }}" class="" title="@lang('subcategory_edit')">
-                                    <div class="my-2">
-                                        <i class="align-middle text-warning" data-feather="edit"></i>
-                                    </div>
-                                </a>
-
-                                <form action="{{ route('subcategories.to-trash', $subcategory) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('PUT')
-                                    <button class="border-0 text-danger bg-light" title="@lang('subcategory_remove')">
+                            <td>
+                                <div class="d-flex justify-content-around">
+                                    <a href="{{ route('subcategories.edit', $subcategory) }}" class="" title="@lang('subcategory_edit')">
                                         <div class="my-2">
-                                            <i class="align-middle" data-feather="trash"></i>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </div>
-                                    </button>
-                                </form>
+                                    </a>
+    
+                                    <form action="{{ route('subcategories.to-trash', $subcategory) }}" method="post" class="inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="border-0 text-danger bg-light" title="@lang('subcategory_remove')">
+                                            <div class="my-2">
+                                                <i class="align-middle" data-feather="trash"></i>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

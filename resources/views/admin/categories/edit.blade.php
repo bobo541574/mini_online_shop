@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'category' => route('categories.index'),
+        'category_table' => route('categories.index'),
         'edit' => null
     ]
 ])
@@ -33,7 +33,7 @@
             <div class="card-body">
                 <form action="{{ route('categories.store') }}" method="post">
                     @csrf
-
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="name_en" class="form-label fw-bold">@lang('category_name_en')</label>
                         <input type="text" name="name_en" value="{{ $category->name_en }}" id="name_en" class="form-control"

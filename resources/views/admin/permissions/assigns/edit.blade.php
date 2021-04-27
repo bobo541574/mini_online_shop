@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'assign' => route('assigns.permissions-index'),
+        'assign_table' => route('assigns.permissions-index'),
         'create' => null
     ]
 ])
@@ -32,7 +32,7 @@
                 @endif
             </div>
             <div class="card-body">
-                <form action="{{ route('assigns.update', $role) }}" method="post">
+                <form action="{{ route('assigns.permissions-update', $role) }}" method="post">
                     @csrf
                     @method('PUT')
 

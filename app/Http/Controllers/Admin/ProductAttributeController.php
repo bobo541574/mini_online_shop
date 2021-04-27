@@ -7,8 +7,8 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductAttribute\CreateRequest;
-use App\Http\Requests\ProductAttribute\UpdateRequest;
+use App\Http\Requests\Back\ProductAttribute\CreateRequest;
+use App\Http\Requests\Back\ProductAttribute\UpdateRequest;
 use App\Http\Repositories\Back\ProductAttributeRepository;
 
 class ProductAttributeController extends Controller

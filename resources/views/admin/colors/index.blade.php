@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('colors')
+                        @lang('color_table')
                     </h4>
                     <div>
                         <a href="{{ route('colors.create') }}" class="btn btn-sm btn-primary align-self-center">
@@ -68,7 +68,7 @@
                                         <form action="{{ route('colors.destroy', $color) }}" method="post" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="border-0 text-danger bg-light" title="@lang('color_remove')">
+                                            <button class="border-0 text-danger bg-light" title="@lang('color_delete')">
                                                 <div class="my-2">
                                                     <i class="align-middle" data-feather="trash-2"></i>
                                                 </div>

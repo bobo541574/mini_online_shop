@@ -16,14 +16,14 @@ class PermissionAssignSeeder extends Seeder
     public function run()
     {
         $role = new Role();
-        if ($role->count() < 0) {
+        if ($role->count() < 1) {
             $role->create([
-                'name_en' => "Admin",
-                'name_mm' => "အက်မင်",
-                'slug' => "admin",
+                'name_en' => "Super Admin",
+                'name_mm' => "စူပါအက်မင်",
+                'slug' => strtoslug('Super Admin'),
             ]);
         }
 
-        $role->where('slug', 'admin')->first()->permissions()->sync(Permission::get());
+        $role->find(1)->permissions()->sync(Permission::get());
     }
 }

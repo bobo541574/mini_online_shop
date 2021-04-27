@@ -1,3 +1,4 @@
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/img/icon/logo.svg') }}">
 <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
@@ -34,6 +35,10 @@
         -ms-flex-direction: column;
         flex-direction: column;
     } 
+
+    .lang-img {
+        width: 25px;
+    }
 
     @media screen and (max-width: 996px) {
         .preview {

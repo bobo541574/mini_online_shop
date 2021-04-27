@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'user' => route('users.index'),
+        'user_table' => route('users.index'),
         'edit' => null
     ]
 ])
@@ -16,7 +16,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="text fw-bold">
-                        @lang('user_create')
+                        @lang('user_edit')
                     </h4>
                     <a href="{{ route('users.index') }}" class="btn btn-sm btn-dark align-self-center">
                         @lang('back')
@@ -34,7 +34,7 @@
             <div class="card-body">
                 <form action="{{ route('users.update', $user) }}" method="post">
                     @csrf
-
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="first_name" class="form-label fw-bold">@lang('first_name')</label>
                         <input type="text" name="first_name" value="{{ $user->first_name }}" id="first_name" class="form-control"

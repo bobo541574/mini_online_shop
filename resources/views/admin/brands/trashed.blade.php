@@ -4,7 +4,7 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'brand' => ''
+        'brand_table' => ''
     ]
 ])
 
