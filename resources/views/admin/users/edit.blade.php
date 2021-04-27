@@ -34,7 +34,7 @@
             <div class="card-body">
                 <form action="{{ route('users.update', $user) }}" method="post">
                     @csrf
-
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="first_name" class="form-label fw-bold">@lang('first_name')</label>
                         <input type="text" name="first_name" value="{{ $user->first_name }}" id="first_name" class="form-control"
