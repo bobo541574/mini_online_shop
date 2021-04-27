@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name('front.attribute.add-to-cart');
 
 // Admin Section
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Product Ajax Request

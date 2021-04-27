@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Back\UserRepository;
 use App\Http\Requests\Back\User\CreateRequest;
+use App\Http\Requests\Back\User\UpdateRequest;
 
 class UserController extends Controller
 {
@@ -50,7 +51,7 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    public function update(CreateRequest $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
         $this->userRepository->update($request, $user);
 

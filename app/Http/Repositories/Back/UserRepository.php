@@ -30,9 +30,9 @@ class UserRepository
         ]);
     }
 
-    public function update($request, $role)
+    public function update($request, $user)
     {
-        return $this->model()->create([
+        return $user->update([
             'role_id' => $request->role_id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,

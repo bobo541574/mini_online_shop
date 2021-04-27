@@ -24,7 +24,7 @@ if (!function_exists('check_permission')) {
     {
         $user = auth()->user();
 
-        if ($user) {
+        if ($user && $user->role) {
             if ($user->role->permissions) {
                 return in_array($permission, $user->role->permissions->pluck('slug')->toArray());
             }
