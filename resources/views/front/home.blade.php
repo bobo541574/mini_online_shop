@@ -91,22 +91,18 @@
 @section('script')
     <script>
 
-        (() => {
-            fetchProducts();
-        })();
-
+        fetchProducts();
 
         function fetchProducts(url) {
             let currentUrl = url ?? '/products';
             fetch(currentUrl, {
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json",
+                    "Accept": "application/json, text-plain, */*",
                     "X-Requested-With": "XMLHttpRequest",
                     "X-CSRF-TOKEN": token,
                     credentials: "same-origin",
-                },
-                method: "get"
+                }
             })
             .then(res => res.json())
             .then(data => {
@@ -194,12 +190,11 @@
             fetch(url, {
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json",
+                    "Accept": "application/json, text-plain, */*",
                     "X-Requested-With": "XMLHttpRequest",
                     "X-CSRF-TOKEN": token,
                     credentials: "same-origin",
-                },
-                method: "get"
+                }
             })
             .then(res => res.json())
             .then(data => {
