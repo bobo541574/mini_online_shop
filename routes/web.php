@@ -30,9 +30,9 @@ use App\Http\Controllers\Front\UserController as FrontUserController;
 //     return view('admin.layouts.app');
 // })->name('index');
 
-Route::get('/products', function () {
-    return view('admin.products.index');
-})->name('products');
+// Route::get('/products', function () {
+//     return view('admin.products.index');
+// })->name('products');
 
 Route::get('/locale-switch/{locale}', LocalizationController::class)->name('locale.switch');
 

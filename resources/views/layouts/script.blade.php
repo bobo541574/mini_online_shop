@@ -16,11 +16,11 @@
 
     /* production mode */
     function isProduction() {
-        let is_production = '{{ config('
-        app.env ') === '
-        production ' }}';
+        let is_production = '{{ config('app.env') === 'production' }}';
         return (is_production == "") ? false : true;
     }
+
+    console.log(isProduction())
 
     const lang = {
         'mm': [
