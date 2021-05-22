@@ -46,8 +46,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Front Section
 Route::get('/', [HomeController::class, 'index'])->name('front.home');
-Route::get('/category/{subcategory:id}/products', [HomeController::class, 'subcategoryByProducts'])->name('front.subcategories.ajax');
 Route::get('/products', [HomeController::class, 'productWithAjax'])->name('front.products.ajax');
+Route::get('/category/{subcategory:id}/products', [HomeController::class, 'subcategoryByProducts'])->name('front.subcategories.ajax');
 Route::get('/product/{product:slug}/attributes', [HomeController::class, 'attributesByProduct'])->name('front.product.attributes');
 Route::group(['middleware' => 'auth'], function () {
     // Order
