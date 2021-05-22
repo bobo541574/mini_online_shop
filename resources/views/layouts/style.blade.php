@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+<link href="{{ asset('assets/fontawesome/webfonts/fa-solid-900.woff2') }}">
+<link href="{{ asset('assets/fontawesome/webfonts/fa-solid-900.ttf') }}">
 <link rel="stylesheet" href="{{ asset('assets/select2/select2.min.css') }}">
 
 <style>
