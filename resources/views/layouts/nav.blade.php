@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-1" style="background: #232C3D;">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-1 nav-custom-color">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('front.home') }}">
             <img src="{{ asset('img/icon/logo.svg') }}" width="42" height="28" alt="logo">
@@ -6,34 +6,16 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class=" justify-content-between collapse navbar-collapse fw-bold text-lg" id="navbarSupportedContent">
+        <div class="justify-content-between collapse navbar-collapse fw-bold text-lg" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('front.home')) }}" aria-current="page" href="{{ route('front.home') }}">@lang('home')</a>
+                    <a class="nav-link text-theme {{ check_active(route('front.home')) }}" aria-current="page" href="{{ route('front.home') }}">@lang('home')</a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('front.home')) }}" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ check_active(route('front.home')) }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ check_active(route('front.home')) }}" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li> --}}
-    
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link {{ check_active(route('front.carts.index')) }}" href="{{ route('front.carts.index') }}" 
+                        <a class="nav-link text-theme {{ check_active(route('front.carts.index')) }}" href="{{ route('front.carts.index') }}" 
                             tabindex="-1" aria-disabled="true"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 
                                 <sup class="badge bg-warning px-1 text-theme">{{ numberTranslate(auth()->user()->carts->count()) }}</sup> 
                         </a>
@@ -41,13 +23,13 @@
                 @endauth
                 @hasrole
                     <li class="nav-item">
-                        <a class="nav-link {{ check_active(route('admin.dashboard')) }}" href="{{ route('admin.dashboard') }}" tabindex="-1" aria-disabled="true" title="@lang('dashboard')">
+                        <a class="nav-link text-theme {{ check_active(route('admin.dashboard')) }}" href="{{ route('admin.dashboard') }}" tabindex="-1" aria-disabled="true" title="@lang('dashboard')">
                             <i class="fa fa-user-cog" aria-hidden="true"></i>
                         </a>
                     </li>
                 @endhasrole
                 <li class="nav-item dropdown">
-                    <a class="nav-link active" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link text-theme active" href="#" id="lang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @if (session('locale') == "en")
                         @lang(session('locale'))
                     @elseif (session('locale') == "mm")
@@ -62,8 +44,8 @@
                 </li>
                 @auth
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link active" id="profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->user_name }}</a>
-                        <ul class="dropdown-menu text-theme " aria-labelledby="profile">
+                        <a href="#" class="nav-link text-theme active" id="profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->user_name }}</a>
+                        <ul class="dropdown-menu text-theme" aria-labelledby="profile">
                             <li>
                                 <a href="#" class="dropdown-item py-1 px-2">@lang('profile') 
                                     <div class="float-end">
@@ -92,15 +74,15 @@
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="post" class="">
                             @csrf
-                            <button type="submit" class="border-0 nav-link fw-bold {{ check_active(route('logout')) }}" style="background: #232C3D">@lang('logout')</button>
+                            <button type="submit" class="btn border-0 nav-link text-theme fw-bold {{ check_active(route('logout')) }}">@lang('logout')</button>
                         </form>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('login') }}" class="nav-link {{ check_active(route('login')) }}">@lang('login')</a>
+                        <a href="{{ route('login') }}" class="nav-link text-theme {{ check_active(route('login')) }}">@lang('login')</a>
                     </li>
                     <li class="nav-item">
-                    <a href="{{ route('register') }}" class="nav-link {{ check_active(route('register')) }}">@lang('register')</a>
+                    <a href="{{ route('register') }}" class="nav-link text-theme {{ check_active(route('register')) }}">@lang('register')</a>
                     </li>
                 @endauth
             </ul>        

@@ -7,8 +7,20 @@
 <link rel="stylesheet" href="{{ asset('assets/select2/select2.min.css') }}">
 
 <style>
+    .nav-custom-color {
+        background: #FDFC47;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #24FE41, #FDFC47);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #24FE41, #FDFC47); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    .bg-header {
+        background: #FDFC47;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #24FE41, #FDFC47);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #24FE41, #FDFC47); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
     .text-theme {
-        color: #232C3D;
+        color: #232C3D !important;
     }
 
     .text-theme:hover {
