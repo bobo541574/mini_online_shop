@@ -14,7 +14,7 @@
             
             @include('front.shared._categories')
 
-            <div class="bg-header mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('admin_products')
             </div>
             <div class="row mx-1">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="bg-header mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('popular_products')
             </div>
             <div class="row mx-1">
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="bg-header mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('products')
             </div>
             <div class="col-md-9 mx-auto">
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="bg-header mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('latest_products')
             </div>
             <div class="row mx-1 justify-content-center">
@@ -131,15 +131,15 @@
                                             <p class="text-lg fw-bolder mb-1"> ${product.name} </p>
                                             <div class="fw-bold my-1 small">
                                                 <div>@lang('cat'): 
-                                                    <span class="badge bg-theme">${product.category.name}</span>  
+                                                    <span class="badge bg-info">${product.category.name}</span>  
                                                 </div>
                                             </div><div class="fw-bold my-1 small">
                                                 <div>@lang('subcat'): 
-                                                    <span class="badge bg-theme">${product.subcategory.name}</span>  
+                                                    <span class="badge bg-info">${product.subcategory.name}</span>  
                                                 </div>
                                             </div><div class="fw-bold my-1 small">
                                                 <div>@lang('brd'): 
-                                                    <span class="badge bg-theme">${product.brand.name}</span>  
+                                                    <span class="badge bg-info">${product.brand.name}</span>  
                                                 </div>
                                             </div>
                                         </div>
@@ -217,24 +217,25 @@
                     let slug = product.slug;
                     if(product.attribute) {
                         html += `
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <a href="/product/${slug}/attributes" class="card-link text-dark">
                                     <div class="card product-card">
                                         <img class="card-img-top w-75 mx-auto" src="${photo[0]}"
                                             alt="product_${product.attribute.id}">
                                         <hr />
                                         <div class="card-body px-2 my-0 pt-0 pb-3 mt-0">
+                                            <p class="text-lg fw-bolder mb-1"> ${product.name} </p>
                                             <div class="fw-bold my-1 small">
                                                 <div>@lang('cat'): 
-                                                    <span class="badge bg-theme">${product.category.name}</span>  
+                                                    <span class="badge bg-info">${product.category.name}</span>  
                                                 </div>
                                             </div><div class="fw-bold my-1 small">
                                                 <div>@lang('subcat'): 
-                                                    <span class="badge bg-theme">${product.subcategory.name}</span>  
+                                                    <span class="badge bg-info">${product.subcategory.name}</span>  
                                                 </div>
                                             </div><div class="fw-bold my-1 small">
                                                 <div>@lang('brd'): 
-                                                    <span class="badge bg-theme">${product.brand.name}</span>  
+                                                    <span class="badge bg-info">${product.brand.name}</span>  
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +262,7 @@
                                 for (let i = 1; i < (links.length - 1); i++) {
                                     html += `
                                         <li class="page-item ${links[i].active ? "active" : "" }">
-                                            <a class="page-link text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${links[i].url}')">
+                                            <a class="page-link text-decoration-none ${links[i].active ? "" : "text-theme" }" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${links[i].url}')">
                                                 <span aria-hidden="true">${trans(links[i].label)}</span>
                                             </a>
                                         </li>
