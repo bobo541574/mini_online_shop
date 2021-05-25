@@ -1,38 +1,40 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryAssignController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PermissionAssignController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Front\CartController;
-use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Front\OrderController;
-use App\Http\Controllers\LocalizationController;
-use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\ContactController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\TransitionController;
-use App\Http\Controllers\Admin\SubCategoryController;
-use App\Http\Controllers\Admin\CategoryAssignController;
-use App\Http\Controllers\Admin\PermissionAssignController;
-use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
+use App\Http\Controllers\LocalizationController;
+use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('admin.layouts.app');
-// })->name('index');
-
-// Route::get('/products', function () {
-//     return view('admin.products.index');
-// })->name('products');
+Route::get('/products/image', function() {
+    $attributes = ProductAttribute::get();
+    dd($attributes);
+    foreach ($attributes as $attribute) {
+        $attribute->photo = json_encode(["/img/products/product - 1.svg", "/img/products/product - 2.svg", "/img/products/product - 3.svg"]);
+        $attribute->save();
+    }
+});
 
 Route::get('/locale-switch/{locale}', LocalizationController::class)->name('locale.switch');
 
