@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/products/image', function() {
     $attributes = ProductAttribute::get();
-    dd($attributes);
     foreach ($attributes as $attribute) {
         $attribute->photo = json_encode(["/img/products/product - 1.svg", "/img/products/product - 2.svg", "/img/products/product - 3.svg"]);
         $attribute->save();
