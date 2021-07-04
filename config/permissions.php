@@ -6,7 +6,7 @@ return [
         ['name_en' => 'Create', 'name_mm' => 'ပြုလုပ်ရန်', 'slug' => 'users-create'],
         ['name_en' => 'Store', 'name_mm' => 'သိမ်းဆည်းရန်', 'slug' => 'users-store'],
         ['name_en' => 'Edit', 'name_mm' => 'ပြုပြင်ရန်', 'slug' => 'users-edit'],
-        ['name_en' => 'Show', 'name_mm' => 'ကြည့်ရန်', 'slug' => 'users-shoe'],
+        ['name_en' => 'Show', 'name_mm' => 'ကြည့်ရန်', 'slug' => 'users-show'],
         ['name_en' => 'Update', 'name_mm' => 'ပြန်လည် သိမ်းဆည်းရန်', 'slug' => 'users-update'],
         ['name_en' => 'Delete', 'name_mm' => 'ဖြတ်သိမ်းရန်', 'slug' => 'users-destroy'],
     ],
