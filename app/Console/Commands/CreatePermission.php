@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Permission;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
 
@@ -54,12 +55,14 @@ class CreatePermission extends Command
         $lists = config('permissions');
 
         foreach ($lists as $key => $list) {
+            $type = explode('-', $key);
+
             foreach ($list as $p) {
                 $permission->create([
                     'name_en' => $p['name_en'],
                     'name_mm' => $p['name_mm'],
                     'slug' => $p['slug'],
-                    'type' => $key,
+                    'type' => Str::of(strtolower($key))->singular(),
                 ]);
 
                 $count = $count + 1;

@@ -27,6 +27,13 @@ class ProductAttributeController extends Controller
         return view('admin.products.attributes.index', compact('attributes'));
     }
 
+    public function attributesByProduct($slug)
+    {
+        $attributes = $this->productAttributeRepository->attributesByProduct($slug, 10);
+
+        return view('admin.products.attributes.index', compact('attributes'));
+    }
+
     public function create(Product $product)
     {
         $colors = Color::get();
@@ -39,7 +46,7 @@ class ProductAttributeController extends Controller
     {
         $this->productAttributeRepository->store($request);
 
-        return redirect()->route('attributes.index')->with('status', 'attribute_created');
+        return redirect()->route('attributes.product', Product::find($request->product_id)->slug)->with('status', 'attribute_created');
     }
 
     public function edit(ProductAttribute $attribute)
@@ -54,7 +61,7 @@ class ProductAttributeController extends Controller
     {
         $this->productAttributeRepository->update($request, $attribute);
 
-        return redirect()->route('attributes.index')->with('status', 'attribute_updated');
+        return redirect()->route('attributes.product', Product::find($request->product_id)->slug)->with('status', 'attribute_updated');
     }
 
     public function show(ProductAttribute $attribute)
@@ -64,16 +71,16 @@ class ProductAttributeController extends Controller
 
     public function destory($slug)
     {
-        $this->productAttributeRepository->destory($slug);
+        $product = $this->productAttributeRepository->destory($slug);
 
-        return redirect()->route('attributes.index')->with('status', 'attribute_deleted');
+        return redirect()->route('attributes.product', Product::find($product->id)->slug)->with('status', 'attribute_deleted');
     }
 
     public function remove(ProductAttribute $attribute)
     {
         $this->productAttributeRepository->remove($attribute);
 
-        return redirect()->route('attributes.index')->with('status', 'attribute_deleted');
+        return redirect()->route('attributes.product', Product::find($attribute->product->id)->slug)->with('status', 'attribute_deleted');
     }
 
     public function trashed()
@@ -85,8 +92,8 @@ class ProductAttributeController extends Controller
 
     public function restore($slug)
     {
-        $this->productAttributeRepository->restore($slug);
+        $product = $this->productAttributeRepository->restore($slug);
 
-        return redirect()->route('attributes.index')->with('status', 'attribute_restored');
+        return redirect()->route('attributes.product', Product::find($product->id)->slug)->with('status', 'attribute_restored');
     }
 }

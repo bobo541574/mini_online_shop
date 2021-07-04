@@ -32,7 +32,7 @@
                 @endif
             </div>
             <div class="card-body">
-                <form action="{{ route('assigns.store') }}" method="post">
+                <form action="{{ route('assigns.permissions-store') }}" method="post">
                     @csrf
 
                     <div class="mb-3">

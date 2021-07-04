@@ -3,6 +3,7 @@
 namespace App\Http\Repositories\Back;
 
 use App\Models\ProductAttribute;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductAttributeRepository
 {
@@ -14,6 +15,13 @@ class ProductAttributeRepository
     public function paginate($data)
     {
         return $attributes = $this->model()->with(['color', 'size'])->orderBy('arrived', 'desc')->paginate($data);
+    }
+
+    public function attributesByProduct($slug, $data)
+    {
+        return $this->model()->with(['color', 'size'])->whereHas('product', function (Builder $query) use ($slug) {
+            return $query->where('slug', $slug);
+        })->paginate($data);
     }
 
     public function store($request)
@@ -80,8 +88,10 @@ class ProductAttributeRepository
     public function destory($slug)
     {
         $attribute = $this->model()->onlyTrashed()->where('slug', $slug)->frist();
+        $product = $attribute->product;
 
-        return $attribute->forceDelete();
+        $attribute->forceDelete();
+        return $product;
     }
 
     public function remove($attribute)
@@ -103,6 +113,6 @@ class ProductAttributeRepository
         $attribute->active = 1;
         $attribute->save();
 
-        return $attribute->restore();
+        return $attribute->product;
     }
 }

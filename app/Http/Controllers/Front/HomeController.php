@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $categories = Category::with('subcategories')->whereNull('parent_id')->get();
 
-        $latestProducts = Product::with('category', 'subcategory', 'brand', 'attribute')->orderBy('created_at')->take(4)->get();
+        $latestProducts = Product::with('category', 'subcategory', 'brand', 'attribute')->orderBy('created_at')->take(3)->get();
         $popularProducts = Product::with('category', 'subcategory', 'brand', 'attribute')->orderBy('popular', 'desc')->take(3)->get();
         $adminProducts = Product::with('category', 'subcategory', 'brand', 'attribute')->whereNotNull('admin_choice')->take(3)->get();
 

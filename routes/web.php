@@ -1,38 +1,39 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryAssignController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PermissionAssignController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Front\CartController;
-use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Front\OrderController;
-use App\Http\Controllers\LocalizationController;
-use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\ContactController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\TransitionController;
-use App\Http\Controllers\Admin\SubCategoryController;
-use App\Http\Controllers\Admin\CategoryAssignController;
-use App\Http\Controllers\Admin\PermissionAssignController;
-use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
+use App\Http\Controllers\LocalizationController;
+use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('admin.layouts.app');
-// })->name('index');
-
-// Route::get('/products', function () {
-//     return view('admin.products.index');
-// })->name('products');
+Route::get('/products/image', function () {
+    $attributes = ProductAttribute::get();
+    foreach ($attributes as $attribute) {
+        $attribute->photo = json_encode(["/img/products/product - 1.svg", "/img/products/product - 2.svg", "/img/products/product - 3.svg"]);
+        $attribute->save();
+    }
+});
 
 Route::get('/locale-switch/{locale}', LocalizationController::class)->name('locale.switch');
 
@@ -120,40 +121,47 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
         Route::put('roles/{role:slug}/permissions', [PermissionAssignController::class, 'update'])->name('assigns.permissions-update');
 
         // Category
-        Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
-        Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
-        Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
-        Route::get('categories/{category:slug}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-        Route::put('categories/{category:slug}', [CategoryController::class, 'update'])->name('categories.update');
-        Route::delete('categories/{category:slug}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-        Route::put('categories/{category:slug}/to-trash', [CategoryController::class, 'toTrash'])->name('categories.to-trash');
-        Route::get('categories/trash-list', [CategoryController::class, 'trashed'])->name('categories.trashed');
-        Route::post('categories/{category:slug}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
-        Route::post('categories/restore', [CategoryController::class, 'restoreAll'])->name('categories.restore-all');
+        Route::prefix('categories')->name('categories.')->group(function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('index');
+            Route::get('/create', [CategoryController::class, 'create'])->name('create');
+            Route::post('', [CategoryController::class, 'store'])->name('store');
+            Route::get('/{category:slug}/edit', [CategoryController::class, 'edit'])->name('edit');
+            Route::put('/{category:slug}', [CategoryController::class, 'update'])->name('update');
+            Route::delete('/{category:slug}', [CategoryController::class, 'destroy'])->name('destroy');
+            Route::put('/{category:slug}/to-trash', [CategoryController::class, 'toTrash'])->name('to-trash');
+            Route::get('/trash-list', [CategoryController::class, 'trashed'])->name('trashed');
+            Route::post('/{category:slug}/restore', [CategoryController::class, 'restore'])->name('restore');
+            Route::post('/restore', [CategoryController::class, 'restoreAll'])->name('restore-all');
+        });
 
         // Subcategory
-        Route::get('subcategories', [SubCategoryController::class, 'index'])->name('subcategories.index');
-        Route::get('subcategories/create', [SubCategoryController::class, 'create'])->name('subcategories.create');
-        Route::post('subcategories', [SubCategoryController::class, 'store'])->name('subcategories.store');
-        Route::get('subcategories/{subcategory:slug}/edit', [SubCategoryController::class, 'edit'])->name('subcategories.edit');
-        Route::put('subcategories/{subcategory:slug}', [SubCategoryController::class, 'update'])->name('subcategories.update');
-        Route::delete('subcategories/{subcategory:slug}', [SubCategoryController::class, 'destroy'])->name('subcategories.destroy');
-        Route::put('subcategories/{subcategory:slug}/to-trash', [SubCategoryController::class, 'toTrash'])->name('subcategories.to-trash');
-        Route::get('subcategories/trash-list', [SubCategoryController::class, 'trashed'])->name('subcategories.trashed');
-        Route::post('subcategories/{subcategory:slug}/restore', [SubCategoryController::class, 'restore'])->name('subcategories.restore');
-        Route::post('subcategories/restore', [SubCategoryController::class, 'restoreAll'])->name('subcategories.restore-all');
+        Route::prefix('subcategories')->name('subcategories.')->group(function () {
+            Route::get('/', [SubCategoryController::class, 'index'])->name('index');
+            Route::get('/create', [SubCategoryController::class, 'create'])->name('create');
+            Route::post('', [SubCategoryController::class, 'store'])->name('store');
+            Route::get('/{subcategory:slug}/edit', [SubCategoryController::class, 'edit'])->name('edit');
+            Route::put('/{subcategory:slug}', [SubCategoryController::class, 'update'])->name('update');
+            Route::delete('/{subcategory:slug}', [SubCategoryController::class, 'destroy'])->name('destroy');
+            Route::put('/{subcategory:slug}/to-trash', [SubCategoryController::class, 'toTrash'])->name('to-trash');
+            Route::get('/trash-list', [SubCategoryController::class, 'trashed'])->name('trashed');
+            Route::post('/{subcategory:slug}/restore', [SubCategoryController::class, 'restore'])->name('restore');
+            Route::post('/restore', [SubCategoryController::class, 'restoreAll'])->name('restore-all');
+        });
 
         // Brand
-        Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
-        Route::get('brands/create', [BrandController::class, 'create'])->name('brands.create');
-        Route::post('brands', [BrandController::class, 'store'])->name('brands.store');
-        Route::get('brands/{brand:slug}/edit', [BrandController::class, 'edit'])->name('brands.edit');
-        Route::put('brands/{brand:slug}', [BrandController::class, 'update'])->name('brands.update');
-        Route::delete('brands/{brand:slug}', [BrandController::class, 'destroy'])->name('brands.destroy');
-        Route::put('brands/{brand:slug}/to-trash', [BrandController::class, 'toTrash'])->name('brands.to-trash');
-        Route::get('brands/trash-list', [BrandController::class, 'trashed'])->name('brands.trashed');
-        Route::post('brands/{brand:slug}/restore', [BrandController::class, 'restore'])->name('brands.restore');
-        Route::post('brands/restore', [BrandController::class, 'restoreAll'])->name('brands.restore-all');
+        Route::prefix('brands')->name('brands.')->group(function () {
+            Route::get('/', [BrandController::class, 'index'])->name('index');
+            Route::get('/create', [BrandController::class, 'create'])->name('create');
+            Route::post('', [BrandController::class, 'store'])->name('store');
+            Route::get('/{brand:slug}/edit', [BrandController::class, 'edit'])->name('edit');
+            Route::put('/{brand:slug}', [BrandController::class, 'update'])->name('update');
+            Route::delete('/{brand:slug}', [BrandController::class, 'destroy'])->name('destroy');
+            Route::put('/{brand:slug}/to-trash', [BrandController::class, 'toTrash'])->name('to-trash');
+            Route::get('/trash-list', [BrandController::class, 'trashed'])->name('trashed');
+            Route::post('/{brand:slug}/restore', [BrandController::class, 'restore'])->name('restore');
+            Route::post('/restore', [BrandController::class, 'restoreAll'])->name('restore-all');
+        });
+
 
         // Brand Assign Category
         Route::get('brands/categories', [CategoryAssignController::class, 'index'])->name('assigns.categories-index');
@@ -187,30 +195,36 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
         Route::put('payments/{payment:slug}', [PaymentController::class, 'update'])->name('payments.update');
         Route::delete('payments/{payment:slug}', [PaymentController::class, 'destroy'])->name('payments.destroy');
 
-        // Brand
-        Route::get('products', [ProductController::class, 'index'])->name('products.index');
-        Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
-        Route::post('products', [ProductController::class, 'store'])->name('products.store');
-        Route::get('products/{product:slug}/edit', [ProductController::class, 'edit'])->name('products.edit');
-        Route::put('products/{product:slug}', [ProductController::class, 'update'])->name('products.update');
-        Route::get('products/{product:slug}/show', [ProductController::class, 'show'])->name('products.show');
-        Route::delete('products/{product:slug}', [ProductController::class, 'destroy'])->name('products.destroy');
-        Route::put('products/{product:slug}/to-trash', [ProductController::class, 'toTrash'])->name('products.to-trash');
-        Route::get('products/trash-list', [ProductController::class, 'trashed'])->name('products.trashed');
-        Route::post('products/{product:slug}/restore', [ProductController::class, 'restore'])->name('products.restore');
-        Route::post('products/restore', [ProductController::class, 'restoreAll'])->name('products.restore-all');
+        // Product
+        Route::prefix('products')->name('products.')->group(function () {
+            Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/create', [ProductController::class, 'create'])->name('create');
+            Route::post('', [ProductController::class, 'store'])->name('store');
+            Route::get('/{product:slug}/edit', [ProductController::class, 'edit'])->name('edit');
+            Route::put('/{product:slug}', [ProductController::class, 'update'])->name('update');
+            Route::get('/{product:slug}/show', [ProductController::class, 'show'])->name('show');
+            Route::delete('/{product:slug}', [ProductController::class, 'destroy'])->name('destroy');
+            Route::put('/{product:slug}/to-trash', [ProductController::class, 'toTrash'])->name('to-trash');
+            Route::get('/trash-list', [ProductController::class, 'trashed'])->name('trashed');
+            Route::post('/{product:slug}/restore', [ProductController::class, 'restore'])->name('restore');
+            Route::post('/restore', [ProductController::class, 'restoreAll'])->name('restore-all');
+        });
+
 
         // Product Attribute
-        Route::get('attributes', [ProductAttributeController::class, 'index'])->name('attributes.index');
-        Route::get('attributes/{product:slug}/create', [ProductAttributeController::class, 'create'])->name('attributes.create');
-        Route::post('attributes', [ProductAttributeController::class, 'store'])->name('attributes.store');
-        Route::get('attributes/{attribute:slug}/edit', [ProductAttributeController::class, 'edit'])->name('attributes.edit');
-        Route::put('attributes/{attribute:slug}', [ProductAttributeController::class, 'update'])->name('attributes.update');
-        Route::get('attributes/{attribute:slug}/show', [ProductAttributeController::class, 'show'])->name('attributes.show');
-        Route::delete('attributes/{attribute:slug}', [ProductAttributeController::class, 'destroy'])->name('attributes.destroy');
-        Route::put('attributes/{attribute:slug}/remove', [ProductAttributeController::class, 'remove'])->name('attributes.remove');
-        Route::get('attributes/trash-list', [ProductAttributeController::class, 'trashed'])->name('attributes.trashed');
-        Route::post('attributes/{attribute:slug}/restore', [ProductAttributeController::class, 'restore'])->name('attributes.restore');
-        Route::get('attributes/upload-photos', [ProductAttributeController::class, 'uploadPhoto'])->name('attributes.upload-photos');
+        Route::prefix('attributes')->name('attributes.')->group(function () {
+            Route::get('/', [ProductAttributeController::class, 'index'])->name('index');
+            Route::get('/{slug}', [ProductAttributeController::class, 'attributesByProduct'])->name('product');
+            Route::get('/{product:slug}/create', [ProductAttributeController::class, 'create'])->name('create');
+            Route::post('', [ProductAttributeController::class, 'store'])->name('store');
+            Route::get('/{attribute:slug}/edit', [ProductAttributeController::class, 'edit'])->name('edit');
+            Route::put('/{attribute:slug}', [ProductAttributeController::class, 'update'])->name('update');
+            Route::get('/{attribute:slug}/show', [ProductAttributeController::class, 'show'])->name('show');
+            Route::delete('/{attribute:slug}', [ProductAttributeController::class, 'destroy'])->name('destroy');
+            Route::put('/{attribute:slug}/remove', [ProductAttributeController::class, 'remove'])->name('remove');
+            Route::get('/trash-list', [ProductAttributeController::class, 'trashed'])->name('trashed');
+            Route::post('/{attribute:slug}/restore', [ProductAttributeController::class, 'restore'])->name('restore');
+            Route::get('/upload-photos', [ProductAttributeController::class, 'uploadPhoto'])->name('upload-photos');
+        });
     });
 });

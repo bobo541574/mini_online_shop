@@ -8,13 +8,13 @@
     </div>
 </div>
 
-<div class="col-md-12">
-    <div class="row mx-auto">
+<div class="col-md-10 offset-md-1">
+    <div class="row mx-auto justify-content-center">
         <div class="col-md-3">
             
             @include('front.shared._categories')
 
-            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('admin_products')
             </div>
             <div class="row mx-1">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('popular_products')
             </div>
             <div class="row mx-1">
@@ -57,17 +57,19 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('products')
             </div>
-            <div class="row mx-1" id="products">
-               
+            <div class="col-md-9 mx-auto">
+                <div class="row" id="products">
+                    
+                </div>
             </div>
 
-            <div class="bg-secondary mb-2 p-2 fs-4 fw-bold text-dark rounded shadow">
+            <div class="bg-theme mb-2 p-2 fs-4 fw-bold text-white rounded shadow">
                 @lang('latest_products')
             </div>
-            <div class="row mx-1">
+            <div class="row mx-1 justify-content-center">
                 @foreach ($latestProducts as $product)
                     @if ($product->attribute)
                     <div class="col-md-3">
@@ -119,7 +121,7 @@
                     let slug = product.slug;
                     if(product.attribute) {
                         html += `
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <a href="/product/${slug}/attributes" class="card-link text-dark">
                                     <div class="card product-card">
                                         <img class="card-img-top w-75 mx-auto" src="${photo[0]}"
@@ -127,14 +129,18 @@
                                         <hr />
                                         <div class="card-body px-2 my-0 pt-0 pb-3 mt-0">
                                             <p class="text-lg fw-bolder mb-1"> ${product.name} </p>
-                                            <div class="badge bg-info fw-bold">
-                                                <small>@lang('cat'): </small>
-                                                <small class=""> ${product.category.name}  > </small>
-                                                <small class=""> ${product.subcategory.name} </small>
-                                            </div>
-                                            <div class="badge bg-info fw-bold">
-                                                <small>@lang('brd'): </small>
-                                                <small class=""> ${product.brand.name}  </small>
+                                            <div class="fw-bold my-1 small">
+                                                <div>@lang('cat'): 
+                                                    <span class="badge bg-info">${product.category.name}</span>  
+                                                </div>
+                                            </div><div class="fw-bold my-1 small">
+                                                <div>@lang('subcat'): 
+                                                    <span class="badge bg-info">${product.subcategory.name}</span>  
+                                                </div>
+                                            </div><div class="fw-bold my-1 small">
+                                                <div>@lang('brd'): 
+                                                    <span class="badge bg-info">${product.brand.name}</span>  
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +166,7 @@
                                 for (let i = 1; i < (links.length - 1); i++) {
                                     html += `
                                         <li class="page-item ${links[i].active ? "active" : "" }">
-                                            <a class="page-link text-theme text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts('${links[i].url}')">
+                                            <a class="page-link text-decoration-none ${links[i].active ? "" : "text-theme" }" href="javascript:void(0)" aria-label="Previous" onclick="fetchProducts('${links[i].url}')">
                                                 <span aria-hidden="true">${trans(links[i].label)}</span>
                                             </a>
                                         </li>
@@ -219,14 +225,18 @@
                                         <hr />
                                         <div class="card-body px-2 my-0 pt-0 pb-3 mt-0">
                                             <p class="text-lg fw-bolder mb-1"> ${product.name} </p>
-                                            <div class="badge bg-info fw-bold">
-                                                <small>@lang('cat'): </small>
-                                                <small class=""> ${product.category.name}  > </small>
-                                                <small class=""> ${product.subcategory.name} </small>
-                                            </div>
-                                            <div class="badge bg-info fw-bold">
-                                                <small>@lang('brd'): </small>
-                                                <small class=""> ${product.brand.name}  </small>
+                                            <div class="fw-bold my-1 small">
+                                                <div>@lang('cat'): 
+                                                    <span class="badge bg-info">${product.category.name}</span>  
+                                                </div>
+                                            </div><div class="fw-bold my-1 small">
+                                                <div>@lang('subcat'): 
+                                                    <span class="badge bg-info">${product.subcategory.name}</span>  
+                                                </div>
+                                            </div><div class="fw-bold my-1 small">
+                                                <div>@lang('brd'): 
+                                                    <span class="badge bg-info">${product.brand.name}</span>  
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -252,7 +262,7 @@
                                 for (let i = 1; i < (links.length - 1); i++) {
                                     html += `
                                         <li class="page-item ${links[i].active ? "active" : "" }">
-                                            <a class="page-link text-decoration-none" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${links[i].url}')">
+                                            <a class="page-link text-decoration-none ${links[i].active ? "" : "text-theme" }" href="javascript:void(0)" aria-label="Previous" onclick="fetchProductsByCategory('${links[i].url}')">
                                                 <span aria-hidden="true">${trans(links[i].label)}</span>
                                             </a>
                                         </li>
