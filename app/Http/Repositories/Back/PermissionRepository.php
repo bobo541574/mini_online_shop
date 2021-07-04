@@ -52,6 +52,7 @@ class PermissionRepository
 
     public function store($request)
     {
+        dd($request->all());
         $type = explode('-', $request->slug);
 
         return $this->model()->create([

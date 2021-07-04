@@ -79,8 +79,15 @@
                                             </div>
                                         </a>
 
-                                        @if ($product->productAttributes->count())  
+                                        {{-- @if ($product->productAttributes)  
                                             <a href="{{ route('attributes.index') }}" class="" title="@lang('attributes')">
+                                                <div class="my-2">
+                                                    <i class="align-middle text-info" data-feather="list"></i>
+                                                </div>
+                                            </a>
+                                        @endif --}}
+                                        @if ($product->productAttributes)  
+                                            <a href="{{ route('attributes.product', $product->slug) }}" class="" title="@lang('attributes')">
                                                 <div class="my-2">
                                                     <i class="align-middle text-info" data-feather="list"></i>
                                                 </div>

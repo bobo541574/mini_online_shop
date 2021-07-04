@@ -16,7 +16,7 @@
                         <h4 class="text fw-bold">
                             @lang('attribute_detail')
                         </h4>
-                        <a href="{{ route('attributes.index') }}" class="btn btn-sm btn-dark align-self-center">
+                        <a href="{{ route('attributes.product', $attribute->product->slug) }}" class="btn btn-sm btn-dark align-self-center">
                             @lang('back')
                         </a>
                     </div>

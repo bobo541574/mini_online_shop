@@ -214,6 +214,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
         // Product Attribute
         Route::prefix('attributes')->name('attributes.')->group(function () {
             Route::get('/', [ProductAttributeController::class, 'index'])->name('index');
+            Route::get('/{slug}', [ProductAttributeController::class, 'attributesByProduct'])->name('product');
             Route::get('/{product:slug}/create', [ProductAttributeController::class, 'create'])->name('create');
             Route::post('', [ProductAttributeController::class, 'store'])->name('store');
             Route::get('/{attribute:slug}/edit', [ProductAttributeController::class, 'edit'])->name('edit');
