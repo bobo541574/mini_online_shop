@@ -88,8 +88,10 @@ class ProductAttributeRepository
     public function destory($slug)
     {
         $attribute = $this->model()->onlyTrashed()->where('slug', $slug)->frist();
+        $product = $attribute->product;
 
-        return $attribute->forceDelete();
+        $attribute->forceDelete();
+        return $product;
     }
 
     public function remove($attribute)
@@ -111,6 +113,6 @@ class ProductAttributeRepository
         $attribute->active = 1;
         $attribute->save();
 
-        return $attribute->restore();
+        return $attribute->product;
     }
 }
