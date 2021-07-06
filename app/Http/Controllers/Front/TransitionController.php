@@ -18,8 +18,13 @@ class TransitionController extends Controller
 
     public function store(Order $order, Request $request)
     {
-        return $this->transitionRepository->store($order, $request);
+        $this->transitionRepository->store($order, $request);
 
-        // return redirect()->route('front.orders.finish')->with('success', 'transition_created');
+        return redirect()->route('front.orders.finish')->with('success', 'transition_created');
+    }
+
+    public function finish()
+    {
+        return "Successfully Order!";
     }
 }

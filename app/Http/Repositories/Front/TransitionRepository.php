@@ -13,7 +13,9 @@ class TransitionRepository
 
     public function store($order, $request)
     {
-        $photo = $this->photoUpload($request->file('photo'));
+        if ($request->payment != 1) {
+            $photo = $this->photoUpload($request->file('photo'));
+        }
 
         return $this->model()->create([
             'order_id' => $order->id,
