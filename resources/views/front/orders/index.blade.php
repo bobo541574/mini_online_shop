@@ -82,7 +82,7 @@
                                     {{ $order->payment_status }}
                                 </td>
                                 <td>
-                                    {{ $order->admin_approvement }}
+                                    <span class="badge bg-danger">@lang($order->admin_approvement)</span>
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">

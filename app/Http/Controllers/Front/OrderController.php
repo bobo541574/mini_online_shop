@@ -63,6 +63,7 @@ class OrderController extends Controller
 
     public function destroy($slug)
     {
+        dd("Destroy");
         $this->orderRepository->destroy($slug);
 
         return redirect()->back()->with('warning', 'order_remove');

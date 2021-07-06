@@ -14,8 +14,8 @@ class AddAdminApprovementColumnToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->boolean('consumer_condition')->nullable();
-            $table->enum('admin_approvement', ['Rejected', 'Pending', 'Confirmed'])->nullable();
+            $table->boolean('consumer_condition')->default(1);
+            $table->enum('admin_approvement', ['Rejected', 'Pending', 'Confirmed'])->default('Pending');
         });
     }
 

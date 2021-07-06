@@ -21,6 +21,8 @@ class Order extends Model
         'promotion',
         'sale_price',
         'status',
+        'consumer_condition',
+        'admin_approvement',
         'arrived',
     ];
 

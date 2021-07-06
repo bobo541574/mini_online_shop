@@ -19,6 +19,11 @@ class Transition extends Model
         'photo',
     ];
 
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
+
     public function getImageAttribute()
     {
         return json_decode($this->photo);
