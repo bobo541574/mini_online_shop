@@ -25,7 +25,7 @@ class CategoryAssignController extends Controller
 
     public function create()
     {
-        $brands = $this->repo->getAllBrands();
+        $brands = $this->repo->getBrandsNotAttachWithCategories();
         $categories = $this->repo->getAllCategories();
 
         return view('admin.brands.categories.create', compact('categories', 'brands'));

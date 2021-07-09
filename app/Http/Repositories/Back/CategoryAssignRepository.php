@@ -27,6 +27,21 @@ class CategoryAssignRepository
         return $this->brand()->with('categories')->orderBy('name_' . session('locale'))->get();
     }
 
+    public function getBrandsNotAttachWithCategories()
+    {
+        $brands = $this->brand()->with('categories')->orderBy('name_' . session('locale'))->get();
+
+        $fresh_brands = [];
+
+        foreach ($brands as $brand) {
+            if ($brand->categories()->count() == 0) {
+                $fresh_brands[] = $brand;
+            }
+        }
+
+        return $fresh_brands;
+    }
+
     public function getAllCategories()
     {
         return $this->category()->whereNotNull('parent_id')->orderBy('name_' . session('locale'))->get();
@@ -34,7 +49,7 @@ class CategoryAssignRepository
 
     public function store($request)
     {
-        $this->brand()->find($request->brand)->categories()->sync($request->categories);
+        $this->brand()->find($request->brand)->categories()->attach($request->categories);
     }
 
     public function update($request, $brand)
