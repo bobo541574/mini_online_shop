@@ -9,16 +9,16 @@ use App\Http\Repositories\Front\TransitionRepository;
 
 class TransitionController extends Controller
 {
-    protected $transitionRepository;
+    protected $repo;
 
-    public function __construct(TransitionRepository $transitionRepository)
+    public function __construct(TransitionRepository $repo)
     {
-        $this->transitionRepository = $transitionRepository;
+        $this->repo = $repo;
     }
 
     public function store(Order $order, Request $request)
     {
-        $this->transitionRepository->store($order, $request);
+        $this->repo->store($order, $request);
 
         return redirect()->route('front.orders.finish')->with('success', 'transition_created');
     }

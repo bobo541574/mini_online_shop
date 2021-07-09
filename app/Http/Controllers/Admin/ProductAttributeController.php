@@ -13,23 +13,23 @@ use App\Http\Repositories\Back\ProductAttributeRepository;
 
 class ProductAttributeController extends Controller
 {
-    protected $productAttributeRepository;
+    protected $repo;
 
-    public function __construct(ProductAttributeRepository $productAttributeRepository)
+    public function __construct(ProductAttributeRepository $repo)
     {
-        $this->productAttributeRepository = $productAttributeRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $attributes = $this->productAttributeRepository->paginate(10);
+        $attributes = $this->repo->paginate(10);
 
         return view('admin.products.attributes.index', compact('attributes'));
     }
 
     public function attributesByProduct($slug)
     {
-        $attributes = $this->productAttributeRepository->attributesByProduct($slug, 10);
+        $attributes = $this->repo->attributesByProduct($slug, 10);
 
         return view('admin.products.attributes.index', compact('attributes'));
     }
@@ -44,7 +44,7 @@ class ProductAttributeController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->productAttributeRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('attributes.product', Product::find($request->product_id)->slug)->with('status', 'attribute_created');
     }
@@ -59,7 +59,7 @@ class ProductAttributeController extends Controller
 
     public function update(UpdateRequest $request, ProductAttribute $attribute)
     {
-        $this->productAttributeRepository->update($request, $attribute);
+        $this->repo->update($request, $attribute);
 
         return redirect()->route('attributes.product', Product::find($request->product_id)->slug)->with('status', 'attribute_updated');
     }
@@ -71,28 +71,28 @@ class ProductAttributeController extends Controller
 
     public function destory($slug)
     {
-        $product = $this->productAttributeRepository->destory($slug);
+        $product = $this->repo->destory($slug);
 
         return redirect()->route('attributes.product', Product::find($product->id)->slug)->with('status', 'attribute_deleted');
     }
 
     public function remove(ProductAttribute $attribute)
     {
-        $this->productAttributeRepository->remove($attribute);
+        $this->repo->remove($attribute);
 
         return redirect()->route('attributes.product', Product::find($attribute->product->id)->slug)->with('status', 'attribute_deleted');
     }
 
     public function trashed()
     {
-        $attributes = $this->productAttributeRepository->trashed();
+        $attributes = $this->repo->trashed();
 
         return view('admin.products.attributes.trashed', compact('attributes'));
     }
 
     public function restore($slug)
     {
-        $product = $this->productAttributeRepository->restore($slug);
+        $product = $this->repo->restore($slug);
 
         return redirect()->route('attributes.product', Product::find($product->id)->slug)->with('status', 'attribute_restored');
     }

@@ -11,23 +11,23 @@ use App\services\Address;
 
 class CartController extends Controller
 {
-    protected $cartRepository;
+    protected $repo;
 
-    public function __construct(CartRepository $cartRepository)
+    public function __construct(CartRepository $repo)
     {
-        $this->cartRepository = $cartRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $carts = $this->cartRepository->getAllCarts();
+        $carts = $this->repo->getAllCarts();
 
         return view('front.carts.index', compact('carts'));
     }
 
     public function store(CreateRequest $request)
     {
-        $cart = $this->cartRepository->store($request);
+        $cart = $this->repo->store($request);
 
         return redirect()->route('front.carts.show', $cart)->with("success", "cart_created");
     }
@@ -42,7 +42,7 @@ class CartController extends Controller
 
     public function destroy(Cart $cart)
     {
-        $this->cartRepository->destroy($cart);
+        $this->repo->destroy($cart);
 
         return redirect()->back()->with("success", "cart_deleted");
     }

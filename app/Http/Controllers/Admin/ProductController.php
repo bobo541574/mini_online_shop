@@ -10,16 +10,16 @@ use App\Http\Repositories\Back\ProductRepository;
 
 class ProductController extends Controller
 {
-    protected $productRepository;
+    protected $repo;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $repo)
     {
-        $this->productRepository = $productRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $products = $this->productRepository->paginate(10);
+        $products = $this->repo->paginate(10);
 
         return view('admin.products.index', compact('products'));
     }
@@ -34,7 +34,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $attributes = $this->productRepository->getAllAttributes($product);
+        $attributes = $this->repo->getAllAttributes($product);
 
         return view('admin.products.show', compact('attributes'));
     }

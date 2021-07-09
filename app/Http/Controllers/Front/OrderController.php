@@ -13,16 +13,16 @@ use App\Http\Requests\Front\Order\CreateRequest;
 
 class OrderController extends Controller
 {
-    protected $orderRepository;
+    protected $repo;
 
-    public function __construct(OrderRepository $orderRepository)
+    public function __construct(OrderRepository $repo)
     {
-        $this->orderRepository = $orderRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $orders = $this->orderRepository->getAllOrders();
+        $orders = $this->repo->getAllOrders();
 
         return view('front.orders.index', compact('orders'));
     }
@@ -36,7 +36,7 @@ class OrderController extends Controller
     {
         $attribute = ProductAttribute::find($request->attribute_id);
 
-        $order = $this->orderRepository->store($attribute, $request);
+        $order = $this->repo->store($attribute, $request);
 
         if ($order) {
             return redirect()->route('front.orders.show', $order)->with('success', 'order_created');
@@ -56,7 +56,7 @@ class OrderController extends Controller
 
     public function update(Order $order, Request $request)
     {
-        $this->orderRepository->update($order, $request);
+        $this->repo->update($order, $request);
 
         return redirect()->route('front.orders.show', $order);
     }
@@ -64,14 +64,14 @@ class OrderController extends Controller
     public function destroy($slug)
     {
         dd("Destroy");
-        $this->orderRepository->destroy($slug);
+        $this->repo->destroy($slug);
 
         return redirect()->back()->with('warning', 'order_remove');
     }
 
     public function toTrash(Order $order)
     {
-        $this->orderRepository->toTrash($order);
+        $this->repo->toTrash($order);
 
         return redirect()->back()->with('warning', 'order_remove');
     }

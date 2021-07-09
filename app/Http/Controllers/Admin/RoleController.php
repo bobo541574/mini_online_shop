@@ -9,16 +9,16 @@ use App\Http\Repositories\Back\RoleRepository;
 
 class RoleController extends Controller
 {
-    protected $roleRepository;
+    protected $repo;
 
-    public function __construct(RoleRepository $roleRepository)
+    public function __construct(RoleRepository $repo)
     {
-        $this->roleRepository = $roleRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $roles = $this->roleRepository->getAll();
+        $roles = $this->repo->getAll();
 
         return view('admin.roles.index', compact('roles'));
     }
@@ -30,7 +30,7 @@ class RoleController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->roleRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('roles.index')->with('status', 'role_created');
     }
@@ -42,14 +42,14 @@ class RoleController extends Controller
 
     public function update(CreateRequest $request, Role $role)
     {
-        $this->roleRepository->update($request, $role);
+        $this->repo->update($request, $role);
 
         return redirect()->route('roles.index')->with('status', 'role_updated');
     }
 
     public function destroy(Role $role)
     {
-        $this->roleRepository->destroy($role);
+        $this->repo->destroy($role);
 
         return redirect()->route('roles.index')->with('status', 'role_deleted');
     }

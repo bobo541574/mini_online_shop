@@ -9,16 +9,16 @@ use App\Http\Requests\Back\Payment\CreateRequest;
 
 class PaymentController extends Controller
 {
-    protected $paymentRepository;
+    protected $repo;
 
-    public function __construct(PaymentRepository $paymentRepository)
+    public function __construct(PaymentRepository $repo)
     {
-        $this->paymentRepository = $paymentRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $payments = $this->paymentRepository->paginate(10);
+        $payments = $this->repo->paginate(10);
 
         return view('admin.payments.index', compact('payments'));
     }
@@ -35,7 +35,7 @@ class PaymentController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->paymentRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('payments.index')->with('status', 'payment_created');
     }
@@ -52,14 +52,14 @@ class PaymentController extends Controller
 
     public function update(CreateRequest $request, Payment $payment)
     {
-        $this->paymentRepository->update($request, $payment);
+        $this->repo->update($request, $payment);
 
         return redirect()->route('payments.index')->with('status', 'payment_updated');
     }
 
     public function destroy(Payment $payment)
     {
-        $this->paymentRepository->destroy($payment);
+        $this->repo->destroy($payment);
 
         return redirect()->route('payments.index')->with('status', 'payment_deleted');
     }

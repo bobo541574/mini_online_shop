@@ -9,16 +9,16 @@ use App\Http\Requests\Back\Size\CreateRequest;
 
 class SizeController extends Controller
 {
-    protected $sizeRepository;
+    protected $repo;
 
-    public function __construct(SizeRepository $sizeRepository)
+    public function __construct(SizeRepository $repo)
     {
-        $this->sizeRepository = $sizeRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $sizes = $this->sizeRepository->getAll();
+        $sizes = $this->repo->getAll();
 
         return view('admin.sizes.index', compact('sizes'));
     }
@@ -30,7 +30,7 @@ class SizeController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->sizeRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('sizes.index')->with('status', 'size_created');
     }
@@ -42,14 +42,14 @@ class SizeController extends Controller
 
     public function update(CreateRequest $request, Size $size)
     {
-        $this->sizeRepository->update($request, $size);
+        $this->repo->update($request, $size);
 
         return redirect()->route('sizes.index')->with('status', 'size_updated');
     }
 
     public function destroy(Size $size)
     {
-        $this->sizeRepository->destroy($size);
+        $this->repo->destroy($size);
 
         return redirect()->route('sizes.index')->with('status', 'size_deleted');
     }
