@@ -9,71 +9,71 @@ use App\Http\Requests\Back\SubCategory\CreateRequest;
 
 class SubCategoryController extends Controller
 {
-    protected $subCategoryRepository;
+    protected $repo;
 
-    public function __construct(SubCategoryRepository $subCategoryRepository)
+    public function __construct(SubCategoryRepository $repo)
     {
-        $this->subCategoryRepository = $subCategoryRepository;
+        $this->repo = $repo;
     }
     public function index()
     {
-        $subcategories = $this->subCategoryRepository->getAll();
+        $subcategories = $this->repo->getAll();
 
         return view('admin.subcategories.index', compact('subcategories'));
     }
 
     public function create()
     {
-        $categories = $this->subCategoryRepository->getAllCategories();
+        $categories = $this->repo->getAllCategories();
 
         return view('admin.subcategories.create', compact('categories'));
     }
 
     public function store(CreateRequest $request)
     {
-        $this->subCategoryRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('subcategories.index')->with('status', 'subcategory_created');
     }
 
     public function edit(Category $subcategory)
     {
-        $categories = $this->subCategoryRepository->getAllCategories();
+        $categories = $this->repo->getAllCategories();
 
         return view('admin.subcategories.edit', compact('subcategory', 'categories'));
     }
 
     public function update(CreateRequest $request, Category $subcategory)
     {
-        $this->subCategoryRepository->update($request, $subcategory);
+        $this->repo->update($request, $subcategory);
 
         return redirect()->route('subcategories.index')->with('status', 'subcategory_updated');
     }
 
     public function destroy($slug)
     {
-        $this->subCategoryRepository->destroy($slug);
+        $this->repo->destroy($slug);
 
         return redirect()->route('subcategories.index')->with('status', 'subcategory_deleted');
     }
 
     public function toTrash(Category $subcategory)
     {
-        $this->subCategoryRepository->toTrash($subcategory);
+        $this->repo->toTrash($subcategory);
 
         return redirect()->route('subcategories.index')->with('status', 'subcategory_deleted');
     }
 
     public function trashed()
     {
-        $subcategories = $this->subCategoryRepository->trashed();
+        $subcategories = $this->repo->trashed();
 
         return view('admin.subcategories.trashed', compact('subcategories'));
     }
 
     public function restore($slug)
     {
-        $this->subCategoryRepository->restore($slug);
+        $this->repo->restore($slug);
 
         return redirect()->route('subcategories.index')->with('status', 'subcategory_restored');
     }
@@ -85,6 +85,6 @@ class SubCategoryController extends Controller
 
     public function findBrandsById($subcategoryId)
     {
-        return $this->subCategoryRepository->findBrandsById($subcategoryId);
+        return $this->repo->findBrandsById($subcategoryId);
     }
 }

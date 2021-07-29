@@ -9,16 +9,16 @@ use App\Http\Requests\Back\Color\CreateRequest;
 
 class ColorController extends Controller
 {
-    protected $colorRepository;
+    protected $repo;
 
-    public function __construct(ColorRepository $colorRepository)
+    public function __construct(ColorRepository $repo)
     {
-        $this->colorRepository = $colorRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $colors = $this->colorRepository->getAll();
+        $colors = $this->repo->getAll();
 
         return view('admin.colors.index', compact('colors'));
     }
@@ -30,7 +30,7 @@ class ColorController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->colorRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('colors.index')->with('status', 'color_created');
     }
@@ -42,14 +42,14 @@ class ColorController extends Controller
 
     public function update(CreateRequest $request, Color $color)
     {
-        $this->colorRepository->update($request, $color);
+        $this->repo->update($request, $color);
 
         return redirect()->route('colors.index')->with('status', 'color_updated');
     }
 
     public function destroy(Color $color)
     {
-        $this->colorRepository->destroy($color);
+        $this->repo->destroy($color);
 
         return redirect()->route('colors.index')->with('status', 'color_deleted');
     }

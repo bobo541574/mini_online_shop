@@ -16,7 +16,12 @@ class OrderRepository
 
     public function getAllOrders()
     {
-        return $this->model()->with('attribute', 'attribute.color', 'attribute.size')->get();
+        // $data = $this->model()->with(['transition', 'transition.payment'])->whereHas('transition.payment', function (Builder $query) {
+        //     $query->groupBy('payment_type_ne');
+        // })->get();
+
+        // dd($data);
+        return $this->model()->with('attribute', 'attribute.color', 'attribute.size')->where('consumer_condition', '=', 1)->get();
 
         // return  $orders->groupBy(function ($item) {
         //     return $item->payment_id != null;
@@ -68,7 +73,20 @@ class OrderRepository
 
     public function toTrash($order)
     {
-        return $order->delete();
+        if ($order->transition) {
+            if ($order->transition->payment->payment_type == 'post_paid') {
+                return $order->update([
+                    'consumer_condition' => 0
+                ]);
+            } else {
+                dd("Need To Cron Job");
+            }
+        } else {
+            return $order->update([
+                'consumer_condition' => 0
+            ]);
+        }
+        // return $order->delete();
     }
 
     public function destroy($slug)

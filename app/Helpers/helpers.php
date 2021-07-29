@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 if (!function_exists('strtoslug')) {
@@ -24,9 +25,15 @@ if (!function_exists('check_permission')) {
     {
         $user = auth()->user();
 
+        if (Cache::has('permissions')) {
+            $cachePermissions = Cache::get('permissions');
+        } else {
+            $cachePermissions = Cache::put('permissions', $user->role->permissions, 86400);
+        }
+
         if ($user && $user->role) {
-            if ($user->role->permissions) {
-                return in_array($permission, $user->role->permissions->pluck('slug')->toArray());
+            if ($cachePermissions) {
+                return in_array($permission, $cachePermissions->pluck('slug')->toArray());
             }
             return false;
         }

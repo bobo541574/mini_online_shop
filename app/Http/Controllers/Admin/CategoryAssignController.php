@@ -9,52 +9,52 @@ use App\Http\Requests\Back\Assign\CategoryAssignRequest;
 
 class CategoryAssignController extends Controller
 {
-    protected $categoryAssignRepository;
+    protected $repo;
 
-    public function __construct(CategoryAssignRepository $categoryAssignRepository)
+    public function __construct(CategoryAssignRepository $repo)
     {
-        $this->categoryAssignRepository = $categoryAssignRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $brands = $this->categoryAssignRepository->paginate(10);
+        $brands = $this->repo->paginate(10);
 
         return view('admin.brands.categories.index', compact('brands'));
     }
 
     public function create()
     {
-        $brands = $this->categoryAssignRepository->getAllBrands();
-        $categories = $this->categoryAssignRepository->getAllCategories();
+        $brands = $this->repo->getBrandsNotAttachWithCategories();
+        $categories = $this->repo->getAllCategories();
 
         return view('admin.brands.categories.create', compact('categories', 'brands'));
     }
 
     public function store(CategoryAssignRequest $request)
     {
-        $this->brandRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('assigns.categories-index')->with('status', 'brand_categories_created');
     }
 
     public function edit(Brand $brand)
     {
-        $categories = $this->categoryAssignRepository->getAllCategories();
+        $categories = $this->repo->getAllCategories();
 
         return view('admin.brands.categories.edit', compact('categories', 'brand'));
     }
 
     public function update(CategoryAssignRequest $request, Brand $brand)
     {
-        $this->categoryAssignRepository->update($request, $brand);
+        $this->repo->update($request, $brand);
 
         return redirect()->route('assigns.categories-index')->with('status', 'brand_categories_updated');
     }
 
     public function destroy(Brand $brand)
     {
-        $this->categoryAssignRepository->destroy($brand);
+        $this->repo->destroy($brand);
 
         return redirect()->route('assigns.categories-index')->with('status', 'brand_categories_deleted');
     }

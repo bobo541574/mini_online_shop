@@ -39,6 +39,9 @@
                     <thead>
                         <tr>
                             <th class="h5 fw-bold">
+                                #
+                            </th>
+                            <th class="h5 fw-bold">
                                 @lang('name')
                             </th>
                             <th class="h5 fw-bold">
@@ -50,8 +53,11 @@
                         </tr>
                     </thead>
                     <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                        @foreach ($users as $user)
+                        @foreach ($users as $key => $user)
                         <tr>
+                            <td>
+                                {{ numberTranslate($users->firstItem() + $key) }}
+                            </td>
                             <td>
                                 {{ $user->name }}
                             </td>

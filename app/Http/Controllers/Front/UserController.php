@@ -8,16 +8,16 @@ use App\Http\Repositories\Front\UserRepository;
 
 class UserController extends Controller
 {
-    protected $userRepository;
+    protected $repo;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $repo)
     {
-        $this->userRepository = $userRepository;
+        $this->repo = $repo;
     }
 
     public function contact(Request $request)
     {
-        $this->userRepository->contact($request);
+        $this->repo->contact($request);
 
         return redirect()->back()->with('success', 'contact_created');
     }

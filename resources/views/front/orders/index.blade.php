@@ -52,6 +52,9 @@
                                     @lang('status')
                                 </th>
                                 <th class="h5 fw-bold">
+                                    @lang('status')
+                                </th>
+                                <th class="h5 fw-bold">
                                     @lang('action')
                                 </th>
                             </tr>
@@ -77,6 +80,9 @@
                                 </td>
                                 <td>
                                     {{ $order->payment_status }}
+                                </td>
+                                <td>
+                                    <span class="badge bg-danger">@lang($order->admin_approvement)</span>
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">

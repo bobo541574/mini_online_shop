@@ -14,7 +14,9 @@ class LoginController extends Controller
 
     public function index()
     {
-        session()->put('redirectUrl', url()->previous());
+        if (url()->previous() != env('APP_URL') . '/login') {
+            session()->put('redirectUrl', url()->previous());
+        }
 
         return view('auth.login');
     }

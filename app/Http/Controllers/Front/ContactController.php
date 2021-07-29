@@ -8,25 +8,25 @@ use App\Http\Repositories\Front\ContactRepository;
 
 class ContactController extends Controller
 {
-    protected $contactRepository;
+    protected $repo;
 
-    public function __construct(ContactRepository $contactRepository)
+    public function __construct(ContactRepository $repo)
     {
-        $this->contactRepository = $contactRepository;
+        $this->repo = $repo;
     }
 
     public function getCititesBystate($state)
     {
-        return $this->contactRepository->getCityListByState($state);
+        return $this->repo->getCityListByState($state);
     }
 
     public function getTownshipsBycity($city)
     {
-        return $this->contactRepository->getTownshipListByCity($city);
+        return $this->repo->getTownshipListByCity($city);
     }
 
     public function storeForUser(Request $request)
     {
-        return $this->contactRepository->storeForUser($request);
+        return $this->repo->storeForUser($request);
     }
 }

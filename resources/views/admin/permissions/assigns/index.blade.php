@@ -40,6 +40,9 @@
                         <thead>
                             <tr>
                                 <th class="h5 fw-bold">
+                                    #
+                                </th>
+                                <th class="h5 fw-bold">
                                     @lang('name')
                                 </th>
                                 <th class="h5 fw-bold w-75">
@@ -51,8 +54,11 @@
                             </tr>
                         </thead>
                         <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                            @foreach ($assigns as $assign)
+                            @foreach ($assigns as $key => $assign)
                             <tr>
+                                <td>
+                                    {{ numberTranslate($assigns->firstItem() + $key) }}
+                                </td>
                                 <td>
                                     {{ $assign->name }}
                                 </td>

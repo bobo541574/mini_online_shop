@@ -10,16 +10,16 @@ use App\Http\Requests\Back\Brand\UpdateRequest;
 
 class BrandController extends Controller
 {
-    protected $brandRepository;
+    protected $repo;
 
-    public function __construct(BrandRepository $brandRepository)
+    public function __construct(BrandRepository $repo)
     {
-        $this->brandRepository = $brandRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $brands = $this->brandRepository->getAll();
+        $brands = $this->repo->getAll();
 
         return view('admin.brands.index', compact('brands'));
     }
@@ -31,7 +31,7 @@ class BrandController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->brandRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('brands.index')->with('status', 'brand_created');
     }
@@ -43,35 +43,35 @@ class BrandController extends Controller
 
     public function update(UpdateRequest $request, Brand $brand)
     {
-        $this->brandRepository->update($request, $brand);
+        $this->repo->update($request, $brand);
 
         return redirect()->route('brands.index')->with('status', 'brand_updated');
     }
 
     public function destroy($slug)
     {
-        $this->brandRepository->destroy($slug);
+        $this->repo->destroy($slug);
 
         return redirect()->route('brands.index')->with('status', 'brand_deleted');
     }
 
     public function toTrash(Brand $brand)
     {
-        $this->brandRepository->toTrash($brand);
+        $this->repo->toTrash($brand);
 
         return redirect()->route('brands.index')->with('status', 'brand_deleted');
     }
 
     public function restore($slug)
     {
-        $this->brandRepository->restore($slug);
+        $this->repo->restore($slug);
 
         return redirect()->route('brands.index')->with('status', 'brand_restored');
     }
 
     public function trashed()
     {
-        $brands = $this->brandRepository->trashed();
+        $brands = $this->repo->trashed();
 
         return view('admin.brands.trashed', compact('brands'));
     }

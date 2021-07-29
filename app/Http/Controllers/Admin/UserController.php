@@ -11,16 +11,16 @@ use App\Http\Requests\Back\User\UpdateRequest;
 
 class UserController extends Controller
 {
-    protected $userRepository;
+    protected $repo;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $repo)
     {
-        $this->userRepository = $userRepository;
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $users = $this->userRepository->getAll();
+        $users = $this->repo->getAll();
 
         return view('admin.users.index', compact('users'));
     }
@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->userRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('users.index')->with('status', 'user_created');
     }
@@ -53,14 +53,14 @@ class UserController extends Controller
 
     public function update(UpdateRequest $request, User $user)
     {
-        $this->userRepository->update($request, $user);
+        $this->repo->update($request, $user);
 
         return redirect()->route('users.index')->with('status', 'user_updated');
     }
 
     public function destroy(User $user)
     {
-        $this->userRepository->destroy($user);
+        $this->repo->destroy($user);
 
         return redirect()->route('users.index')->with('status', 'user_deleted');
     }

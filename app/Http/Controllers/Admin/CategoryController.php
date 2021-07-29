@@ -9,15 +9,15 @@ use App\Http\Requests\Back\Category\CreateRequest;
 
 class CategoryController extends Controller
 {
-    protected $categoryRepository;
+    protected $repo;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $repo)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->repo = $repo;
     }
     public function index()
     {
-        $categories = $this->categoryRepository->paginate(10);
+        $categories = $this->repo->paginate(10);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->categoryRepository->store($request);
+        $this->repo->store($request);
 
         return redirect()->route('categories.index')->with('status', 'category_created');
     }
@@ -41,35 +41,35 @@ class CategoryController extends Controller
 
     public function update(CreateRequest $request, Category $category)
     {
-        $this->categoryRepository->update($request, $category);
+        $this->repo->update($request, $category);
 
         return redirect()->route('categories.index')->with('status', 'category_updated');
     }
 
     public function destroy($slug)
     {
-        $this->categoryRepository->destroy($slug);
+        $this->repo->destroy($slug);
 
         return redirect()->route('categories.index')->with('status', 'category_deleted');
     }
 
     public function toTrash(Category $category)
     {
-        $this->categoryRepository->toTrash($category);
+        $this->repo->toTrash($category);
 
         return redirect()->route('categories.index')->with('status', 'category_deleted');
     }
 
     public function trashed()
     {
-        $categories = $this->categoryRepository->trashed();
+        $categories = $this->repo->trashed();
 
         return view('admin.categories.trashed', compact('categories'));
     }
 
     public function restore($slug)
     {
-        $this->categoryRepository->restore($slug);
+        $this->repo->restore($slug);
 
         return redirect()->route('categories.index')->with('status', 'category_restored');
     }
@@ -81,6 +81,6 @@ class CategoryController extends Controller
 
     public function findSubcategoriesById($parentId)
     {
-        return $this->categoryRepository->findSubcategoriesById($parentId);
+        return $this->repo->findSubcategoriesById($parentId);
     }
 }

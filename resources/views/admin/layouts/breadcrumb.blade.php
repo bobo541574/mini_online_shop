@@ -1,4 +1,4 @@
-<div class="row mb-2 mb-xl-3 fw-bold">
+<div class="row mb-2 mb-xl-3 fw-bold pb-2">
     <div class="col-auto mt-n1">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
