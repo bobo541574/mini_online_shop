@@ -39,6 +39,9 @@
                     <thead>
                         <tr>
                             <th class="h5 fw-bold">
+                                #
+                            </th>
+                            <th class="h5 fw-bold">
                                 @lang('name')
                             </th>
                             <th class="h5 fw-bold">
@@ -53,8 +56,11 @@
                         </tr>
                     </thead>
                     <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                        @foreach ($subcategories as $subcategory)
+                        @foreach ($subcategories as $key => $subcategory)
                         <tr>
+                            <td>
+                                {{ numberTranslate($subcategories->firstItem() + $key) }}
+                            </td>
                             <td>
                                 {{ $subcategory->name }}
                             </td>

@@ -19,7 +19,7 @@ class PermissionAssignRepository
 
     public function getAll()
     {
-        return $this->role()->with('permissions')->get();
+        return $this->role()->with('permissions')->paginate();
     }
 
     public function getAllPermissions()

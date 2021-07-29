@@ -48,6 +48,9 @@
                         <thead>
                             <tr>
                                 <th class="h5 fw-bold">
+                                    #
+                                </th>
+                                <th class="h5 fw-bold">
                                     @lang('attribute_photo')
                                 </th>
                                 <th class="h5 fw-bold">
@@ -74,8 +77,11 @@
                             </tr>
                         </thead>
                         <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                            @foreach ($attributes as $attribute)
+                            @foreach ($attributes as $key => $attribute)
                             <tr>
+                                <td>
+                                    {{ numberTranslate($attributes->firstItem() + $key) }}
+                                </td>
                                 <td>
                                     <img src="{{ asset($attribute->image) }}" class="mx-1" width="45" height="45" alt="attribute_photo">
                                 </td>

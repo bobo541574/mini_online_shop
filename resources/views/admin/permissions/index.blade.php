@@ -39,6 +39,9 @@
                     <thead>
                         <tr>
                             <th class="h5 fw-bold">
+                                #
+                            </th>
+                            <th class="h5 fw-bold">
                                 @lang('name')
                             </th>
                             <th class="h5 fw-bold">
@@ -47,8 +50,11 @@
                         </tr>
                     </thead>
                     <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                        @foreach ($permissions as $permission)
+                        @foreach ($permissions as $key => $permission)
                         <tr>
+                            <td>
+                                {{ numberTranslate($permissions->firstItem() + $key) }}
+                            </td>
                             <td>
                                 {{ $permission->name }}
                             </td>
