@@ -9,6 +9,12 @@
     .lang-img {
         width: 25px;
     }
+    .text-theme {
+        color: #232C3D !important;
+    }
+    .text-white {
+        color: #fffff !important;
+    }
 
 </style>
 

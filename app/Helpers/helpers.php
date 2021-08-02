@@ -28,7 +28,8 @@ if (!function_exists('check_permission')) {
         if (Cache::has('permissions')) {
             $cachePermissions = Cache::get('permissions');
         } else {
-            $cachePermissions = Cache::put('permissions', $user->role->permissions, 86400);
+            Cache::put('permissions', $user->role->permissions, 86400);
+            $cachePermissions = $user->role->permissions;
         }
 
         if ($user && $user->role) {

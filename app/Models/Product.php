@@ -41,4 +41,18 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function scopeFilter($query, array $filter)
+    {
+        return $query->where('name_' . session('locale'), 'like', "%" . $filter['product'] . "%")
+            ->whereHas('category', function ($query) use ($filter) {
+                return $query->where('name_' . session('locale'), 'like', "%" . $filter['category'] . "%");
+            })
+            ->whereHas('subcategory', function ($query) use ($filter) {
+                return $query->where('name_' . session('locale'), 'like', "%" . $filter['subcategory'] . "%");
+            })
+            ->whereHas('brand', function ($query) use ($filter) {
+                return $query->where('name_' . session('locale'), 'like', "%" . $filter['brand'] . "%");
+            });
+    }
 }
