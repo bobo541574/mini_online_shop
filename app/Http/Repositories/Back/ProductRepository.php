@@ -18,7 +18,7 @@ class ProductRepository
         if (request()->query) {
             $products->filter(request()->all());
         }
-        return $products->paginate($data)->appends('search', request('search'));
+        return $products->paginate($data)->appends(request()->all());
     }
 
     public function getAllAttributes($product)

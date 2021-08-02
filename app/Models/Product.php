@@ -44,15 +44,15 @@ class Product extends Model
 
     public function scopeFilter($query, array $filter)
     {
-        return $query->where('name_' . session('locale'), 'like', "%" . $filter['product'] . "%")
+        return $query->where('name_' . session('locale'), 'like', "%" . ($filter['product'] ?? false) . "%")
             ->whereHas('category', function ($query) use ($filter) {
-                return $query->where('name_' . session('locale'), 'like', "%" . $filter['category'] . "%");
+                return $query->where('name_' . session('locale'), 'like', "%" . ($filter['category'] ?? false) . "%");
             })
             ->whereHas('subcategory', function ($query) use ($filter) {
-                return $query->where('name_' . session('locale'), 'like', "%" . $filter['subcategory'] . "%");
+                return $query->where('name_' . session('locale'), 'like', "%" . ($filter['subcategory'] ?? false) . "%");
             })
             ->whereHas('brand', function ($query) use ($filter) {
-                return $query->where('name_' . session('locale'), 'like', "%" . $filter['brand'] . "%");
+                return $query->where('name_' . session('locale'), 'like', "%" . ($filter['brand'] ?? false) . "%");
             });
     }
 }
