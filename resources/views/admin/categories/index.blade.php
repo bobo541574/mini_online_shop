@@ -53,7 +53,7 @@
                         </tr>
                     </thead>
                     <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                        @foreach ($categories as $key => $category)
+                        @forelse ($categories as $key => $category)
                         <tr>
                             <td>
                                 {{ numberTranslate($categories->firstItem() + $key) }}
@@ -90,7 +90,9 @@
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                            nothing to show
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-center">

@@ -34,15 +34,15 @@
                     </div>
                 </div>
                 @endif
+                <div class="d-flex align-middle mt-2">
+                    <span class="text-primary fw-bold badge bg-light">{{ $attributes->first()->product->name }} </span>
+                    <span class="fw-bold"> - </span>
+                    <span class="text-primary fw-bold badge bg-light">{{ $attributes->first()->product->category->name }} </span>
+                    <span class="fw-bold"> - </span>
+                    <span class="text-primary fw-bold badge bg-light">{{ $attributes->first()->product->subcategory->name }} </span>
+                </div>
             </div>
             <div class="card-body">
-                <div class="d-flex align-middle">
-                    <span class="text fw-bold badge bg-success">{{ $attributes->first()->product->name }} </span>
-                    <span class="fw-bold"> - </span>
-                    <span class="text fw-bold badge bg-success">{{ $attributes->first()->product->category->name }} </span>
-                    <span class="fw-bold"> - </span>
-                    <span class="text fw-bold badge bg-success">{{ $attributes->first()->product->subcategory->name }} </span>
-                </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -86,25 +86,26 @@
                                     <img src="{{ asset($attribute->image) }}" class="mx-1" width="45" height="45" alt="attribute_photo">
                                 </td>
                                 <td>
-                                    <div class="border border-1 rounded" title="{{ $attribute->color->name }}" style="width: 50px; height: 25px; background: {{ $attribute->color->color_code }}; cursor: pointer;">
+                                    {{-- <div class="border border-1 rounded" title="{{ $attribute->color->name }}" style="width: 50px; height: 25px; background: {{ $attribute->color->color_code }}; cursor: pointer;">
 
-                                    </div>
+                                    </div> --}}
+                                    <span class="badge" style="background: {{ $attribute->color->color_code }};color: {{ $attribute->color->text_color }};">{{ $attribute->color->name }}</span>
                                     {{-- <input type="color" class="form-control-sm form-control-color border-0 bg-light" title="{{ $attribute->color->name }}" value="{{ $attribute->color->color_code }}"> --}}
                                 </td>
                                 <td>
                                     {{ $attribute->size->name }}
                                 </td>
                                 <td>
-                                    {{ $attribute->sku }}
+                                    {{ numberTranslate($attribute->sku) }}
                                 </td>
                                 <td>
-                                    {{ $attribute->buy_price }}
+                                    {{ numberTranslate($attribute->buy_price) }}
                                 </td>
                                 <td>
-                                    {{ $attribute->extra_cost }}
+                                    {{ numberTranslate($attribute->extra_cost) }}
                                 </td>
                                 <td>
-                                    {{ $attribute->sale_price }}
+                                    {{ numberTranslate($attribute->sale_price) }}
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">

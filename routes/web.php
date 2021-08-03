@@ -1,32 +1,33 @@
 <?php
 
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CategoryAssignController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ColorController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\PermissionAssignController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\ProductAttributeController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Models\Color;
+use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SizeController;
-use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Front\CartController;
-use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Front\OrderController;
-use App\Http\Controllers\Front\TransitionController;
-use App\Http\Controllers\Front\UserController as FrontUserController;
 use App\Http\Controllers\LocalizationController;
-use App\Models\ProductAttribute;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Front\TransitionController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\CategoryAssignController;
+use App\Http\Controllers\Admin\PermissionAssignController;
+use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Front\UserController as FrontUserController;
 
 Route::get('/db-seed', function () {
     return Artisan::call('db:seed --force');
@@ -34,6 +35,14 @@ Route::get('/db-seed', function () {
 
 Route::get('/clear', function () {
     return Artisan::call('optimize:clear--force');
+});
+
+Route::get('/color', function () {
+    $colors = Color::get();
+    foreach ($colors as $color) {
+        $color->color_code = "#" . rand(000000, 999999);
+        $color->save();
+    }
 });
 
 Route::get('/products/image', function () {
@@ -138,7 +147,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
             Route::put('/{category:slug}', [CategoryController::class, 'update'])->name('update');
             Route::delete('/{category:slug}', [CategoryController::class, 'destroy'])->name('destroy');
             Route::put('/{category:slug}/to-trash', [CategoryController::class, 'toTrash'])->name('to-trash');
-            Route::get('/trash-list', [CategoryController::class, 'trashed'])->name('trashed');
+            Route::get('/trash/list', [CategoryController::class, 'trashed'])->name('trashed');
             Route::post('/{category:slug}/restore', [CategoryController::class, 'restore'])->name('restore');
             Route::post('/restore', [CategoryController::class, 'restoreAll'])->name('restore-all');
         });
@@ -152,7 +161,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
             Route::put('/{subcategory:slug}', [SubCategoryController::class, 'update'])->name('update');
             Route::delete('/{subcategory:slug}', [SubCategoryController::class, 'destroy'])->name('destroy');
             Route::put('/{subcategory:slug}/to-trash', [SubCategoryController::class, 'toTrash'])->name('to-trash');
-            Route::get('/trash-list', [SubCategoryController::class, 'trashed'])->name('trashed');
+            Route::get('/trash/list', [SubCategoryController::class, 'trashed'])->name('trashed');
             Route::post('/{subcategory:slug}/restore', [SubCategoryController::class, 'restore'])->name('restore');
             Route::post('/restore', [SubCategoryController::class, 'restoreAll'])->name('restore-all');
         });
@@ -166,7 +175,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
             Route::put('/{brand:slug}', [BrandController::class, 'update'])->name('update');
             Route::delete('/{brand:slug}', [BrandController::class, 'destroy'])->name('destroy');
             Route::put('/{brand:slug}/to-trash', [BrandController::class, 'toTrash'])->name('to-trash');
-            Route::get('/trash-list', [BrandController::class, 'trashed'])->name('trashed');
+            Route::get('/trash/list', [BrandController::class, 'trashed'])->name('trashed');
             Route::post('/{brand:slug}/restore', [BrandController::class, 'restore'])->name('restore');
             Route::post('/restore', [BrandController::class, 'restoreAll'])->name('restore-all');
         });
@@ -214,7 +223,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
             Route::get('/{product:slug}/show', [ProductController::class, 'show'])->name('show');
             Route::delete('/{product:slug}', [ProductController::class, 'destroy'])->name('destroy');
             Route::put('/{product:slug}/to-trash', [ProductController::class, 'toTrash'])->name('to-trash');
-            Route::get('/trash-list', [ProductController::class, 'trashed'])->name('trashed');
+            Route::get('/trash/list', [ProductController::class, 'trashed'])->name('trashed');
             Route::post('/{product:slug}/restore', [ProductController::class, 'restore'])->name('restore');
             Route::post('/restore', [ProductController::class, 'restoreAll'])->name('restore-all');
         });
@@ -231,7 +240,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
             Route::get('/{attribute:slug}/show', [ProductAttributeController::class, 'show'])->name('show');
             Route::delete('/{attribute:slug}', [ProductAttributeController::class, 'destroy'])->name('destroy');
             Route::put('/{attribute:slug}/remove', [ProductAttributeController::class, 'remove'])->name('remove');
-            Route::get('/trash-list', [ProductAttributeController::class, 'trashed'])->name('trashed');
+            Route::get('/trash/list', [ProductAttributeController::class, 'trashed'])->name('trashed');
             Route::post('/{attribute:slug}/restore', [ProductAttributeController::class, 'restore'])->name('restore');
             Route::get('/upload-photos', [ProductAttributeController::class, 'uploadPhoto'])->name('upload-photos');
         });
