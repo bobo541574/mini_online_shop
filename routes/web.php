@@ -25,7 +25,12 @@ use App\Http\Controllers\Front\TransitionController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
 use App\Http\Controllers\LocalizationController;
 use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/db-seed', function () {
+    return Artisan::call('db:seed --force');
+});
 
 Route::get('/products/image', function () {
     $attributes = ProductAttribute::get();
