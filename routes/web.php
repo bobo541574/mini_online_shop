@@ -32,6 +32,10 @@ Route::get('/db-seed', function () {
     return Artisan::call('db:seed --force');
 });
 
+Route::get('/clear', function () {
+    return Artisan::call('optimize:clear--force');
+});
+
 Route::get('/products/image', function () {
     $attributes = ProductAttribute::get();
     foreach ($attributes as $attribute) {
