@@ -34,7 +34,7 @@ Route::get('/db-seed', function () {
 });
 
 Route::get('/clear', function () {
-    return Artisan::call('optimize:clear --force');
+    return Artisan::call('optimize:clear');
 });
 
 Route::get('/color', function () {
