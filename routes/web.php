@@ -37,6 +37,11 @@ Route::get('/clear', function () {
     return Artisan::call('optimize:clear');
 });
 
+Route::get('/permission', function () {
+    Artisan::call('permission:fresh');
+    return Artisan::call('permission:assign');
+});
+
 Route::get('/color', function () {
     $colors = Color::get();
     foreach ($colors as $color) {
