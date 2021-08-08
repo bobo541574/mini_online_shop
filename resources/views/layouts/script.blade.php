@@ -20,8 +20,6 @@
         return (is_production == "") ? false : true;
     }
 
-    console.log(isProduction())
-
     const lang = {
         'mm': [
             "၀",

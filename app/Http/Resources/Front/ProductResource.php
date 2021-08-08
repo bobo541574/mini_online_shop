@@ -22,6 +22,7 @@ class ProductResource extends JsonResource
             'brand' => new BrandResource($this->brand),
             'attribute' => new ProductAttributeResource($this->attribute),
             'slug' => $this->slug,
+            'admin_choice' => $this->admin_choice,
         ];
     }
 }

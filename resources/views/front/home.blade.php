@@ -95,6 +95,7 @@
 
         fetchProducts();
 
+        // fetch all product
         function fetchProducts(url) {
             let currentUrl = url ?? '/products';
             fetch(currentUrl, {
@@ -121,7 +122,7 @@
                     let slug = product.slug;
                     if(product.attribute) {
                         html += `
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <a href="/product/${slug}/attributes" class="card-link text-dark">
                                     <div class="card product-card">
                                         <img class="card-img-top w-75 mx-auto" src="${photo[0]}"
@@ -192,6 +193,7 @@
             })
         }
 
+        // fetch all product by category
         function fetchProductsByCategory(url) {
             fetch(url, {
                 headers: {
@@ -217,7 +219,7 @@
                     let slug = product.slug;
                     if(product.attribute) {
                         html += `
-                            <div class="col-md-3">
+                            <div class="col-4">
                                 <a href="/product/${slug}/attributes" class="card-link text-dark">
                                     <div class="card product-card">
                                         <img class="card-img-top w-75 mx-auto" src="${photo[0]}"

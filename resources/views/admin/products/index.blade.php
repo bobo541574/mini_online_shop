@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+{{-- @section('search')
+    @include('admin.products._search')
+@endsection --}}
+
 @section('content')
 
 @include('admin.layouts.breadcrumb', [
@@ -34,6 +38,9 @@
                 </div>
                 @endif
             </div>
+
+            @include('admin.products._search')
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">

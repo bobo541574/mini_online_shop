@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
-                        @foreach ($categories as $category)
+                        @forelse ($categories as $category)
                         <tr>
                             <td>
                                 {{ $category->name }}
@@ -81,7 +81,9 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                            <td class="text-center" colspan="3">nothing to show</td> 
+                        @endforelse
                     </tbody>
                 </table>
             </div>
