@@ -238,6 +238,8 @@
     "product_table": "Product Table",
     "product_name_en": "Name (EN)",
     "product_name_mm": "Name (MM)",
+    "enter_product_name_en": "Enter product name (EN)",
+    "enter_product_name_mm": "Enter product name (MM)",
     "product-attribute": "Product Attribute With Product",
     "attribute": "Product Attribute",
     "attributes": "Product Attributes",
