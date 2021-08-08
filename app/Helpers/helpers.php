@@ -25,11 +25,12 @@ if (!function_exists('check_permission')) {
     {
         $user = auth()->user();
 
-        if (Cache::has('permissions')) {
+        if (Cache::has('permissions') && session('auth_user_id') == $user->id) {
             $cachePermissions = Cache::get('permissions');
         } else {
             Cache::put('permissions', $user->role->permissions, 86400);
             $cachePermissions = $user->role->permissions;
+            session()->put('auth_user_id', $user->id);
         }
 
         if ($user && $user->role) {
