@@ -104,13 +104,13 @@ Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name(
 
 // Admin Section
 Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Product Ajax Request
     Route::get('products/{parentId}/subcategories', [CategoryController::class, 'findSubcategoriesById'])->name('products.subcategories');
     Route::get('subcategory/{subcategoryId}/brands', [SubCategoryController::class, 'findBrandsById'])->name('products.brands');
 
     Route::group(['middleware' => 'permissions'], function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         // User
         Route::get('users', [UserController::class, 'index'])->name('users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('users.create');
