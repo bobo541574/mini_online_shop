@@ -19,27 +19,27 @@ class Product extends Model
         return $this->{'name_' . session('locale')};
     }
 
-    public function attribute():HasOne
+    public function attribute()
     {
         return $this->hasOne(ProductAttribute::class);
     }
 
-    public function productAttributes():HasMany
+    public function productAttributes()
     {
         return $this->hasMany(ProductAttribute::class);
     }
 
-    public function category():BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function subcategory():BelongsTo
+    public function subcategory()
     {
         return $this->belongsTo(Category::class, 'sub_category_id');
     }
 
-    public function brand():BelongsTo
+    public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
