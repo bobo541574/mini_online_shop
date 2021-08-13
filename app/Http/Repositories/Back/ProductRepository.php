@@ -6,7 +6,7 @@ use App\Models\Product;
 
 class ProductRepository
 {
-    public function model()
+    public function model():Product
     {
         return (new Product());
     }
@@ -23,7 +23,7 @@ class ProductRepository
 
     public function getAllAttributes($product)
     {
-        return $attributes = $product->productAttributes()->with(['color', 'size'])->orderBy('arrived', 'desc')->paginate(10);
+        return $product->productAttributes()->with(['color', 'size'])->orderBy('arrived', 'desc')->paginate(10);
 
         // $product->setRelation('attributes', $product->productAttributes()->paginate(2));
     }
