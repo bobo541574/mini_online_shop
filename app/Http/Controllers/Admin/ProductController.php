@@ -35,7 +35,8 @@ class ProductController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->repo->store($request);
+        $data = $this->repo->store($request);
+
         return redirect()->route('products.index')->with('status', 'product_created');
     }
 

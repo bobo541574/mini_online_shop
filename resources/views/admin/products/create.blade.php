@@ -39,22 +39,22 @@
                             <label for="name_en" class="form-label fw-bold">@lang('product_name_en')</label>
                             <input type="text" name="name_en" value="{{ old('name_en') }}" id="name_en" class="form-control"
                                 placeholder="@lang('enter_product_name_en')">
-    
+
                             @error('name_en')
                             <div class="text-danger pt-1 mx-1">
-                                {{ $message }}
+                                @lang($message)
                             </div>
                             @enderror
                         </div>
-    
+
                         <div class="mb-3 col-md-4">
                             <label for="name_mm" class="form-label fw-bold">@lang('product_name_mm')</label>
                             <input type="text" name="name_mm" value="{{ old('name_mm') }}" id="name_mm" class="form-control"
                                 placeholder="@lang('enter_product_name_mm')">
-                    
+
                             @error('name_mm')
                             <div class="text-danger pt-1 mx-1">
-                                {{ $message }}
+                                @lang($message)
                             </div>
                             @enderror
                         </div>
@@ -67,10 +67,10 @@
                                     <option value="{{ $supplier->id }}" {{ (old('supplier') == $supplier->id) ? 'selected=selected' : ''}}>{{$supplier->name}}</option>
                                 @endforeach
                             </select>
-    
+
                             @error('supplier')
                             <div class="text-danger pt-1 mx-1">
-                                {{ $message }}
+                                @lang($message)
                             </div>
                             @enderror
                         </div>
@@ -85,10 +85,10 @@
                                     <option value="{{ $category->id }}" {{ (old('category') == $category->id) ? 'selected=selected' : ''}}>{{$category->name}}</option>
                                 @endforeach
                             </select>
-    
+
                             @error('category')
                             <div class="text-danger pt-1 mx-1">
-                                {{ $message }}
+                                @lang($message)
                             </div>
                             @enderror
                         </div>
@@ -101,10 +101,10 @@
                                     <option value="{{ $brand->id }}" {{ (old('brand') == $brand->id) ? 'selected=selected' : ''}}>{{$brand->name}}</option>
                                 @endforeach --}}
                             </select>
-    
+
                             @error('brand')
                             <div class="text-danger pt-1 mx-1">
-                                {{ $message }}
+                                @lang($message)
                             </div>
                             @enderror
                         </div>
@@ -117,24 +117,24 @@
                                     <option value="{{ $brand->id }}" {{ (old('brand') == $brand->id) ? 'selected=selected' : ''}}>{{$brand->name}}</option>
                                 @endforeach --}}
                             </select>
-    
+
                             @error('brand')
                             <div class="text-danger pt-1 mx-1">
-                                {{ $message }}
+                                @lang($message)
                             </div>
                             @enderror
                         </div>
                     </div>
-                
+
                     <div class="text-center">
                         <button class="btn btn btn-primary" type="submit">
                             @lang('create')
                         </button>
-                    </div>  
+                    </div>
                 </form>
             </div>
         </div>
-        
+
     </div>
 </div>
 
@@ -142,12 +142,11 @@
 
 @section('script')
     <script>
-        (() => {
-            let locale = '{{ session('locale') }}';
-            let category = document.querySelector('#category');
-            let subcategory = document.querySelector('#subcategory');
-            let brand = document.querySelector('#brand');
+        let subcategory = document.querySelector('#subcategory');
+        let brand = document.querySelector('#brand');
+        let category = document.querySelector('#category');
 
+        (() => {
             findSubcategoriesById(category.value);
             findBrandsById(subcategory.value);
             category.addEventListener('change', () => {
@@ -157,19 +156,19 @@
                 findBrandsById(subcategory.value);
             });
         })();
-        
+
         function findSubcategoriesById(parentId) {
             let html = "";
 
-            if(parentId != "") {
+            if(parentId !== "") {
                 fetch(`/admin/products/${parentId}/subcategories`)
                 .then(res => res.json())
                 .then(result => {
                     html += `<option value=''>@lang('select_subcategory')</option>`;
                     result.forEach(subcategory => {
-                        if(locale = 'mm') {
+                        if(locale === 'mm') {
                             html += `<option value='${subcategory.id}'>${subcategory.name_mm}</option>`;
-                        } else if(locale = 'en') {
+                        } else if(locale === 'en') {
                             html += `<option value='${subcategory.id}'>${subcategory.name_en}</option>`;
                         }
                     });
@@ -181,15 +180,15 @@
         function findBrandsById(subcategoryId) {
             let html = "";
 
-            if(subcategoryId != "") {
+            if(subcategoryId !== "") {
                 fetch(`/admin/subcategory/${subcategoryId}/brands`)
                 .then(res => res.json())
                 .then(result => {
                     html += `<option value=''>@lang('select_brand')</option>`;
                     result.forEach(brand => {
-                        if(locale = 'mm') {
+                        if(locale === 'mm') {
                             html += `<option value='${brand.id}'>${brand.name_mm}</option>`;
-                        } else if(locale = 'en') {
+                        } else if(locale === 'en') {
                             html += `<option value='${brand.id}'>${brand.name_en}</option>`;
                         }
                     });

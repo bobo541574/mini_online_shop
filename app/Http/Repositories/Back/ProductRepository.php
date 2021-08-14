@@ -13,7 +13,7 @@ class ProductRepository
         return (new Product());
     }
 
-    public function paginate($data):Paginator
+    public function paginate($data)
     {
         $products = $this->model()->with(['category', 'subcategory', 'brand', 'productAttributes'])->orderBy('created_at', 'DESC');
 
