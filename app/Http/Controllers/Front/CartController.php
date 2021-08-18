@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Front\CartRepository;
 use App\Http\Requests\Front\Cart\CreateRequest;
-use App\services\Address;
+use App\Services\Address;
 
 class CartController extends Controller
 {

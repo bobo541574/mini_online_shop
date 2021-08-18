@@ -19,9 +19,9 @@ class CheckPermission
     {
         $requestUrlName = strtoslug($request->route()->getName(), false);
 
-        if (Auth::check() && check_permission($requestUrlName)) {
+//        if (Auth::check() && check_permission($requestUrlName)) {
             return $next($request);
-        }
+//        }
 
         return abort(401);
     }

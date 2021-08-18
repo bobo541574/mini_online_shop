@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class ProductAttribute extends Model
 {
@@ -15,6 +16,16 @@ class ProductAttribute extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable')->orderBy('created_at');
     }
 
     public function color()
@@ -41,7 +52,7 @@ class ProductAttribute extends Model
 
     public function getImageAttribute()
     {
-        return $this->getPhotosAttribute()[0];
+        return $this->image()->exists() ? image_url($this->image()->first()->name) : $this->getPhotosAttribute()[0];
     }
 
     public function getSaleAttribute()

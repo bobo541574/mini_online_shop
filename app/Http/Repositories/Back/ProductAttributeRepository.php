@@ -2,8 +2,12 @@
 
 namespace App\Http\Repositories\Back;
 
+use App\Http\Requests\Back\ProductAttribute\CreateRequest;
+use App\Http\Requests\Back\ProductAttribute\UpdateRequest;
 use App\Models\ProductAttribute;
+use App\Services\UploadFileService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class ProductAttributeRepository
 {
@@ -24,13 +28,11 @@ class ProductAttributeRepository
         })->paginate($data);
     }
 
-    public function store($request)
+    public function store(CreateRequest $request)
     {
-        $photos = $this->photoUpload($request->file('photo'));
-
         return $this->model()->create([
             'product_id' => $request->product_id,
-            'photo' => $photos,
+//            'photo' => $request->photo,
             'color_id' => $request->color,
             'size_id' => $request->size,
             "slug" => strtoslug([$request->product_name, $request->color . $request->size]),
@@ -44,37 +46,58 @@ class ProductAttributeRepository
         ]);
     }
 
-    protected function photoUpload($photos)
+    public function uploadPhoto(Request $request)
     {
-        $photoArray = [];
-
-        $location = "/img/products/";
-        $path = public_path() . $location;
-
-        if (request()->hasFile('photo')) {
-            foreach ($photos as $photo) {
-                $photo->move($path, $photo->getClientOriginalName());
-                $photoArray[] = $location . $photo->getClientOriginalName();
-            }
-        }
-
-        return json_encode($photoArray);
+        return UploadFileService::upload($request->file('file'), '/photos/products/attributes/');
     }
 
-    public function update($request, $attribute)
+    public function removePhoto(Request $request)
     {
-        $photos = $request->old_photo;
+        return UploadFileService::delete($request->filename);
+    }
 
-        if ($request->hasFile('photo')) {
-            $photos = $this->photoUpload($request->file('photo'));
+    public function showPhoto($attributes)
+    {
+        return $this->model()
+            ->findOrFail($attributes->id)
+            ->images;
+    }
+
+    protected function photoUpload($attribute, $photos)
+    {
+        $attribute->images()->delete();
+
+        $photos = request('photo');
+        foreach ($photos as $photo) {
+            $attribute->images()->create([
+                'name' => $photo,
+            ]);
         }
+//        $photoArray = [];
+//
+//        $location = "/img/products/";
+//        $path = public_path() . $location;
+//
+//        if (request()->hasFile('photo')) {
+//            foreach ($photos as $photo) {
+//                $photo->move($path, $photo->getClientOriginalName());
+//                $photoArray[] = $location . $photo->getClientOriginalName();
+//
+//            }
+//        }
+//
+//        return json_encode($photoArray);
+    }
+
+    public function update(UpdateRequest $request, $attribute)
+    {
+//        $this->photoUpload($attribute, $request->photo);
 
         return $attribute->update([
             'product_id' => $request->product_id,
-            'photo' => $photos,
             'color_id' => $request->color,
             'size_id' => $request->size,
-            "slug" => strtoslug([$request->product_name, $request->color . $request->size]),
+            "slug" => strtoslug([$request->product_name, $request->color . $request->size], $attribute->created_at),
             'sku' => $request->sku,
             'buy_price' => $request->buy_price,
             'extra_cost' => $request->extra_cost,

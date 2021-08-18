@@ -24,8 +24,8 @@
                 <div class="card-body bg-light">
                     <h5 class="mb-4 fw-bolder">{{ $attribute->product->name }}</h5>
                     <div class="row justify-content-around">
-                        @foreach ($attribute->photos as $photo)
-                            <img src="{{ asset($photo) }}" alt="attribute_photo" style="width: 20%!important;">
+                        @foreach ($attribute->images as $image)
+                            <img src="{{ asset($image->image_name) }}" alt="attribute_photo" style="width: 20%!important;">
                         @endforeach
 
                     </div>
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-sm-6 col-md-3">
                             <div class="card text-center shadow-lg">
                                 <div class="card-body">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-sm-6 col-md-3">
                             <div class="card text-center shadow-lg">
                                 <div class="card-body">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 @endsection

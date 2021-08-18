@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\ProductAttribute;
+use App\Observers\ProductAttributeObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Paginator::useBootstrap();
+
+        ProductAttribute::observe(ProductAttributeObserver::class);
     }
 }

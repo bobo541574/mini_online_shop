@@ -10,7 +10,7 @@
 ])
 
 <div class="row">
-    <div class="col-md-10 mx-auto">
+    <div class="col-md-8 mx-auto">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -35,7 +35,7 @@
                     @csrf
 
                     <div class="row">
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-6">
                             <label for="name_en" class="form-label fw-bold">@lang('product_name_en')</label>
                             <input type="text" name="name_en" value="{{ old('name_en') }}" id="name_en" class="form-control"
                                 placeholder="@lang('enter_product_name_en')">
@@ -47,7 +47,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-6">
                             <label for="name_mm" class="form-label fw-bold">@lang('product_name_mm')</label>
                             <input type="text" name="name_mm" value="{{ old('name_mm') }}" id="name_mm" class="form-control"
                                 placeholder="@lang('enter_product_name_mm')">
@@ -59,12 +59,14 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-6">
                             <label for="supplier" class="form-label fw-bold">@lang('supplier')</label>
                             <select class="form-select" id="supplier" name="supplier" aria-label="Default select example">
                                 <option value="">@lang('select_supplier')</option>
                                 @foreach ($suppliers as $supplier)
-                                    <option value="{{ $supplier->id }}" {{ (old('supplier') == $supplier->id) ? 'selected=selected' : ''}}>{{$supplier->name}}</option>
+                                    <option value="{{ $supplier->id }}" {{ (old('supplier') == $supplier->id) ? 'selected=selected' : ''}}>
+                                        {{$supplier->name}}
+                                    </option>
                                 @endforeach
                             </select>
 
@@ -74,10 +76,8 @@
                             </div>
                             @enderror
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-6">
                             <label for="category" class="form-label fw-bold">@lang('category')</label>
                             <select class="form-select" id="category" name="category" aria-label="Default select example">
                                 <option value="">@lang('select_category')</option>
@@ -93,7 +93,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-6">
                             <label for="subcategories" class="form-label fw-bold">@lang('subcategories')</label>
                             <select class="form-select" id="subcategory" name="subcategories" aria-label="Default select example">
                                 <option value="">@lang('select_subcategory')</option>
@@ -109,7 +109,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-6">
                             <label for="brands" class="form-label fw-bold">@lang('brands')</label>
                             <select class="form-select" id="brand" name="brands" aria-label="Default select example">
                                 <option value="">@lang('select_brand')</option>

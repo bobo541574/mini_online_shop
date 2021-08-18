@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Back\ProductAttribute\CreateRequest;
 use App\Http\Requests\Back\ProductAttribute\UpdateRequest;
 use App\Http\Repositories\Back\ProductAttributeRepository;
+use Illuminate\Http\Request;
 
 class ProductAttributeController extends Controller
 {
@@ -95,5 +96,20 @@ class ProductAttributeController extends Controller
         $product = $this->repo->restore($slug);
 
         return redirect()->route('attributes.product', Product::find($product->id)->slug)->with('status', 'attribute_restored');
+    }
+
+    public function uploadPhoto(Request $request)
+    {
+        return $this->repo->uploadPhoto($request);
+    }
+
+    public function removePhoto(Request $request)
+    {
+        return $this->repo->removePhoto($request);
+    }
+
+    public function showPhoto(ProductAttribute $attribute)
+    {
+        return $this->repo->showPhoto($attribute);
     }
 }

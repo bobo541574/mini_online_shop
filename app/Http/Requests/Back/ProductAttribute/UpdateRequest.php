@@ -30,7 +30,7 @@ class UpdateRequest extends FormRequest
             'buy_price' => 'required',
             'extra_cost' => 'required',
             'sale_price' => 'required',
-            'photo.*' => 'image',
+//            'photo.*' => 'image',
             'arrived' => 'required',
             'description_en' => 'required',
             'description_mm' => 'required',

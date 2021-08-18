@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/db-seed', function () {
     return Artisan::call('db:seed --force');
@@ -48,6 +49,10 @@ Route::get('/color', function () {
         $color->color_code = "#" . rand(000000, 999999);
         $color->save();
     }
+});
+
+Route::get('/image', function () {
+    return Storage::disk('public')->delete("photos/products/attributes/L68dcRDjJ69M1raDVI0GyXiUsc2hdEVG5eyjTb8r-2021-08-18-12-41-04.png");
 });
 
 Route::get('/products/image', function () {
@@ -247,7 +252,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
             Route::put('/{attribute:slug}/remove', [ProductAttributeController::class, 'remove'])->name('remove');
             Route::get('/trash/list', [ProductAttributeController::class, 'trashed'])->name('trashed');
             Route::post('/{attribute:slug}/restore', [ProductAttributeController::class, 'restore'])->name('restore');
-            Route::get('/upload-photos', [ProductAttributeController::class, 'uploadPhoto'])->name('upload-photos');
+            Route::post('/{attribute:id}/show/photos', [ProductAttributeController::class, 'showPhoto'])->name('show-photos');
+            Route::post('/upload/photos', [ProductAttributeController::class, 'uploadPhoto'])->name('upload-photos');
+            Route::post('/delete/photos', [ProductAttributeController::class, 'removePhoto'])->name('remove-photos');
         });
     });
 });
