@@ -58,8 +58,11 @@ Route::get('/image', function () {
 Route::get('/products/image', function () {
     $attributes = ProductAttribute::get();
     foreach ($attributes as $attribute) {
-        $attribute->photo = json_encode(["/img/products/product - 1.svg", "/img/products/product - 2.svg", "/img/products/product - 3.svg"]);
-        $attribute->save();
+        $attribute->images()->createMany([
+            ["name" => "/photos/products/attributes/4ZWtt1dudpPP47rv2cnzzZjLRkkbP6qskLNriFG1-2021-08-21-2-12-37.png"],
+            ["name" => "/photos/products/attributes/HVLNb8WUtKx4KK6o5hIjUGJZBygXPl0A9lAIxHfK-2021-08-21-2-12-42.png"],
+            ["name" => "/photos/products/attributes/tPVp5jojQtfPqtLbPyGRu7V8I4fGhF1FsSkoJALa-2021-08-21-2-12-44.png"]
+        ]);
     }
 });
 

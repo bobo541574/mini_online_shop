@@ -32,7 +32,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-responsive table-striped table-hover">
-                    <thead>
+                    <thead class="table-light">
                         <tr>
                             <th class="h5 fw-bold">
                                 @lang('name')
@@ -45,7 +45,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                    <tbody class="{{ table_font_with_locale() }}">
                         @forelse ($categories as $category)
                         <tr>
                             <td>
@@ -60,29 +60,27 @@
                                     @lang('inactive')
                                 @endif
                             </td>
-                            <td class="d-flex justify-content-around">
-                                <form action="{{ route('categories.restore', $category) }}" method="post" class="inline">
-                                    @csrf
-                                    <button class="border-0 text-danger bg-light" title="@lang('category_restore')">
-                                        <div class="my-2">
+                            <td>
+                                <div class="d-flex justify-content-around my-2">
+                                    <form action="{{ route('categories.restore', $category) }}" method="post" class="inline">
+                                        @csrf
+                                        <button class="border-0 text-danger bg-light" title="@lang('category_restore')">
                                             <i class="align-middle text-warning" data-feather="refresh-cw"></i>
-                                        </div>
-                                    </button>
-                                </form>
+                                        </button>
+                                    </form>
 
-                                <form action="{{ route('categories.destroy', $category) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="border-0 text-danger bg-light" title="@lang('category_delete')">
-                                        <div class="my-2">
+                                    <form action="{{ route('categories.destroy', $category) }}" method="post" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="border-0 text-danger bg-light" title="@lang('category_delete')">
                                             <i class="align-middle" data-feather="trash-2"></i>
-                                        </div>
-                                    </button>
-                                </form>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @empty
-                            <td class="text-center" colspan="3">nothing to show</td> 
+                            <td class="text-center" colspan="3">nothing to show</td>
                         @endforelse
                     </tbody>
                 </table>

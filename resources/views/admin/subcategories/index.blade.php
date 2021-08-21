@@ -36,7 +36,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-responsive table-striped table-hover">
-                    <thead>
+                    <thead class="table-light">
                         <tr>
                             <th class="h5 fw-bold">
                                 #
@@ -55,7 +55,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                    <tbody class="{{ table_font_with_locale() }}">
                         @foreach ($subcategories as $key => $subcategory)
                         <tr>
                             <td>
@@ -77,20 +77,16 @@
                                 @endif
                             </td>
                             <td>
-                                <div class="d-flex justify-content-around">
+                                <div class="d-flex justify-content-around my-2">
                                     <a href="{{ route('subcategories.edit', $subcategory) }}" class="" title="@lang('subcategory_edit')">
-                                        <div class="my-2">
-                                            <i class="align-middle text-warning" data-feather="edit"></i>
-                                        </div>
+                                        <i class="align-middle text-warning" data-feather="edit"></i>
                                     </a>
-    
+
                                     <form action="{{ route('subcategories.to-trash', $subcategory) }}" method="post" class="inline">
                                         @csrf
                                         @method('PUT')
                                         <button class="border-0 text-danger bg-light" title="@lang('subcategory_remove')">
-                                            <div class="my-2">
-                                                <i class="align-middle" data-feather="trash"></i>
-                                            </div>
+                                            <i class="align-middle" data-feather="trash"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -101,7 +97,7 @@
                 </table>
                 <div class="d-flex justify-content-center">
                     {{ $subcategories->links() }}
-                </div> 
+                </div>
             </div>
         </div>
     </div>

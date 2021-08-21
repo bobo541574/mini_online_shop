@@ -34,7 +34,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-responsive table-striped table-hover">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th class="h5 fw-bold">
                                     #
@@ -47,7 +47,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                        <tbody class="{{ table_font_with_locale() }}">
                             @foreach ($sizes as $key => $size)
                             <tr>
                                 <td>
@@ -57,20 +57,16 @@
                                     {{ $size->name }}
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-around">
+                                    <div class="d-flex justify-content-around my-2">
                                         <a href="{{ route('sizes.edit', $size) }}" class="" title="@lang('size_edit')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-warning" data-feather="edit"></i>
-                                            </div>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </a>
-        
+
                                         <form action="{{ route('sizes.destroy', $size) }}" method="post" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button class="border-0 text-danger bg-light" title="@lang('size_delete')">
-                                                <div class="my-2">
-                                                    <i class="align-middle" data-feather="trash-2"></i>
-                                                </div>
+                                                <i class="align-middle" data-feather="trash-2"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -82,7 +78,7 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     {{ $sizes->links() }}
-                </div> 
+                </div>
             </div>
         </div>
     </div>

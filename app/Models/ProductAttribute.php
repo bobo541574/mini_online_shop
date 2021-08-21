@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 
 class ProductAttribute extends Model
 {
@@ -52,7 +51,7 @@ class ProductAttribute extends Model
 
     public function getImageAttribute()
     {
-        return $this->image()->exists() ? image_url($this->image()->first()->name) : $this->getPhotosAttribute()[0];
+        return image_url($this->image()->first()->name) ;
     }
 
     public function getSaleAttribute()

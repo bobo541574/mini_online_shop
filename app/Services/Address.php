@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\App;
 
 class Address
 {
-    protected $config;
+    protected array $config;
 
     protected $locale;
 
@@ -16,7 +16,7 @@ class Address
         $this->locale(App::getLocale());
     }
 
-    public function locale($locale)
+    public function locale($locale): Address
     {
         $this->locale = $locale;
         return $this;
@@ -27,17 +27,17 @@ class Address
         return $this->get('regions');
     }
 
-    public function cityListByState($stateId = 'ayeyarwady')
+    public function cityListByState($stateId = "ayeyarwady")
     {
         return $this->get('cities')[$stateId];
     }
 
-    public function townshipListByCity($cityId = 'bogale')
+    public function townshipListByCity($cityId = "bogale")
     {
         return $this->get('townships')[$cityId];
     }
 
-    public function findAddress($address)
+    public function findAddress($address): string
     {
         $data = [
             ...$this->findTownship($address->city, $address->township),
@@ -63,7 +63,7 @@ class Address
         });
     }
 
-    public function findCity($state, $name)
+    public function findCity($state, $name): array
     {
         $cities = $this->get('cities');
 
@@ -72,7 +72,7 @@ class Address
         });
     }
 
-    public function findTownship($city, $name)
+    public function findTownship($city, $name): array
     {
         $townships = $this->get('townships');
 

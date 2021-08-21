@@ -34,7 +34,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-responsive table-striped table-hover">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th class="h5 fw-bold">
                                     @lang('name')
@@ -59,7 +59,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                        <tbody class="{{ table_font_with_locale() }}">
                             @foreach ($orders as $order)
                             <tr>
                                 <td>
@@ -85,25 +85,20 @@
                                     <span class="badge bg-danger">@lang($order->admin_approvement)</span>
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-around">
-
+                                    <div class="d-flex justify-content-around my-2">
                                         <a href="{{ route('front.orders.show', $order) }}" class="" title="@lang('order_detail')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-warning" data-feather="eye"></i>
-                                            </div>
+                                            <i class="align-middle text-warning" data-feather="eye"></i>
                                         </a>
                                         {{-- <a href="{{ route('orders.edit', $order) }}" class="" title="@lang('order_edit')">
                                             <div class="my-2">
                                                 <i class="align-middle text-warning" data-feather="edit"></i>
                                             </div>
                                         </a> --}}
-        
+
                                         <form action="{{ route('front.orders.to-trash', $order) }}" method="post" class="inline">
                                             @csrf
                                             <button class="border-0 text-danger bg-light" title="@lang('order_delete')">
-                                                <div class="my-2">
-                                                    <i class="align-middle" data-feather="x"></i>
-                                                </div>
+                                                <i class="align-middle" data-feather="x"></i>
                                             </button>
                                         </form>
                                     </div>

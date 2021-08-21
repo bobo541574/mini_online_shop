@@ -32,7 +32,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-responsive table-striped table-hover">
-                    <thead>
+                    <thead class="table-light">
                         <tr>
                             <th class="h5 fw-bold">
                                 @lang('name')
@@ -48,7 +48,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                    <tbody class="{{ table_font_with_locale() }}">
                         @foreach ($subcategories as $subcategory)
                         <tr>
                             <td>
@@ -66,25 +66,23 @@
                                     @lang('inactive')
                                 @endif
                             </td>
-                            <td class="d-flex justify-content-around">
-                                <form action="{{ route('subcategories.restore', $subcategory) }}" method="post" class="inline">
-                                    @csrf
-                                    <button class="border-0 text-danger bg-light" title="@lang('subcategory_restore')">
-                                        <div class="my-2">
+                            <td>
+                                <div class="d-flex justify-content-around my-2">
+                                    <form action="{{ route('subcategories.restore', $subcategory) }}" method="post" class="inline">
+                                        @csrf
+                                        <button class="border-0 text-danger bg-light" title="@lang('subcategory_restore')">
                                             <i class="align-middle text-warning" data-feather="refresh-cw"></i>
-                                        </div>
-                                    </button>
-                                </form>
+                                        </button>
+                                    </form>
 
-                                <form action="{{ route('subcategories.destroy', $subcategory) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="border-0 text-danger bg-light" title="@lang('subcategory_delete')">
-                                        <div class="my-2">
+                                    <form action="{{ route('subcategories.destroy', $subcategory) }}" method="post" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="border-0 text-danger bg-light" title="@lang('subcategory_delete')">
                                             <i class="align-middle" data-feather="trash-2"></i>
-                                        </div>
-                                    </button>
-                                </form>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

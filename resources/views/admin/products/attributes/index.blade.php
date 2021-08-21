@@ -4,8 +4,8 @@
 
 @include('admin.layouts.breadcrumb', [
 'items' => [
-        'attribute_table' => route('attributes.index'),
-        'create' => null
+        'product_table' => route('products.index'),
+        'attribute_table' => '',
     ]
 ])
 
@@ -45,7 +45,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th class="h5 fw-bold">
                                     #
@@ -76,7 +76,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                        <tbody class="{{ table_font_with_locale() }}">
                             @foreach ($attributes as $key => $attribute)
                             <tr>
                                 <td>
@@ -108,19 +108,15 @@
                                     {{ numberTranslate($attribute->sale_price) }}
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-around">
+                                    <div class="d-flex justify-content-around my-2">
                                         <a href="{{ route('attributes.show', $attribute) }}" class=""
                                             title="@lang('attribute_detail')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-info" data-feather="eye"></i>
-                                            </div>
+                                            <i class="align-middle text-info" data-feather="eye"></i>
                                         </a>
 
                                         <a href="{{ route('attributes.edit', $attribute) }}" class=""
                                             title="@lang('attribute_edit')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-warning" data-feather="edit"></i>
-                                            </div>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </a>
 
                                         <form action="{{ route('attributes.remove', $attribute) }}" method="post"
@@ -129,9 +125,7 @@
                                             @method('PUT')
                                             <button class="border-0 text-danger bg-light"
                                                 title="@lang('attribute_remove')">
-                                                <div class="my-2">
-                                                    <i class="align-middle" data-feather="trash"></i>
-                                                </div>
+                                                <i class="align-middle" data-feather="trash"></i>
                                             </button>
                                         </form>
                                     </div>
