@@ -39,12 +39,14 @@
                 @endif
             </div>
 
+            <span class="mt-0 mb-3 border-bottom"></span>
+
             @include('admin.products._search')
 
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th class="h5 fw-bold">
                                     #
@@ -66,7 +68,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                        <tbody class="{{ table_font_with_locale() }}">
                             @foreach ($products as $key => $product)
                             <tr>
                                 <td>
@@ -85,42 +87,34 @@
                                     {{ $product->brand->name }}
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-around">
+                                    <div class="d-flex justify-content-around my-2">
                                         <a href="{{ route('attributes.create', $product) }}" class="" title="@lang('attribute_create')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-info" data-feather="plus-circle"></i>
-                                            </div>
+                                            <i class="align-middle text-info" data-feather="plus-circle"></i>
                                         </a>
 
-                                        {{-- @if ($product->productAttributes)  
+                                        {{-- @if ($product->productAttributes)
                                             <a href="{{ route('attributes.index') }}" class="" title="@lang('attributes')">
-                                                <div class="my-2">
+                                                <div class=">
                                                     <i class="align-middle text-info" data-feather="list"></i>
                                                 </div>
                                             </a>
                                         @endif --}}
-                                        @if ($product->productAttributes)  
+                                        @if ($product->productAttributes)
                                             <a href="{{ route('attributes.product', $product->slug) }}" class="" title="@lang('attributes')">
-                                                <div class="my-2">
-                                                    <i class="align-middle text-info" data-feather="list"></i>
-                                                </div>
+                                                <i class="align-middle text-info" data-feather="list"></i>
                                             </a>
                                         @endif
 
-    
+
                                         <a href="{{ route('products.edit', $product) }}" class="" title="@lang('product_edit')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-warning" data-feather="edit"></i>
-                                            </div>
+                                            <i class="align-middle text-warning" data-feather="edit"></i>
                                         </a>
-        
+
                                         <form action="{{ route('products.to-trash', $product) }}" method="post" class="inline">
                                             @csrf
                                             @method('PUT')
                                             <button class="border-0 text-danger bg-light" title="@lang('product_remove')">
-                                                <div class="my-2">
-                                                    <i class="align-middle" data-feather="trash"></i>
-                                                </div>
+                                                <i class="align-middle" data-feather="trash"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -131,7 +125,7 @@
                     </table>
                     <div class="d-flex justify-content-center">
                         {{ $products->links() }}
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>

@@ -93,3 +93,11 @@ if (!function_exists('image_url')) {
         return 'storage/' . $data;
     }
 }
+
+// Table Body Font Weight Change With Locale
+if (!function_exists('table_font_with_locale')) {
+    function table_font_with_locale()
+    {
+        return (session('locale') === "mm") ? "fw-bold" : '';
+    }
+}
