@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Back\Product\CreateRequest;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Supplier;
@@ -30,6 +31,13 @@ class ProductController extends Controller
         $suppliers = Supplier::orderBy('name_' . session('locale'))->get();
 
         return view('admin.products.create', compact('categories', 'suppliers'));
+    }
+
+    public function store(CreateRequest $request)
+    {
+        $data = $this->repo->store($request);
+
+        return redirect()->route('products.index')->with('status', 'product_created');
     }
 
     public function show(Product $product)

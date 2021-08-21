@@ -43,7 +43,7 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            <thead>
+                            <thead class="table-light">
                                 <tr>
                                     <th class="h5 fw-bold">
                                         @lang('attribute_photo')
@@ -71,7 +71,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                            <tbody class="{{ table_font_with_locale() }}">
                                 @foreach ($attributes as $attribute)
                                 <tr>
                                     <td>
@@ -99,13 +99,11 @@
                                         {{ $attribute->sale_price }}
                                     </td>
                                     <td>
-                                        <div class="d-flex justify-content-around">
+                                        <div class="d-flex justify-content-around my-2">
                                             <form action="{{ route('attributes.restore', $attribute) }}" method="post" class="inline">
                                                 @csrf
                                                 <button class="border-0 text-danger bg-light" title="@lang('attribute_restore')">
-                                                    <div class="my-2">
-                                                        <i class="align-middle text-warning" data-feather="refresh-cw"></i>
-                                                    </div>
+                                                    <i class="align-middle" data-feather="refresh-cw"></i>
                                                 </button>
                                             </form>
 
@@ -115,9 +113,7 @@
                                                 @method('DELETE')
                                                 <button class="border-0 text-danger bg-light"
                                                     title="@lang('attribute_delete')">
-                                                    <div class="my-2">
-                                                        <i class="align-middle" data-feather="trash-2"></i>
-                                                    </div>
+                                                    <i class="align-middle" data-feather="trash-2"></i>
                                                 </button>
                                             </form>
                                         </div>

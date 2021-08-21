@@ -30,7 +30,9 @@ class BaldeServiceProvider extends ServiceProvider
             $role = false;
 
             if (auth()->user()) {
-                $role = auth()->user()->role_id;
+                if (count(auth()->user()->role->permissions) != 0) {
+                    $role = true;
+                }
             }
 
             return $role;

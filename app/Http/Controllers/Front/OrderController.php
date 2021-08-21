@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Order;
 use App\Models\Payment;
-use App\services\Address;
+use App\Services\Address;
 use Illuminate\Http\Request;
 use App\Models\ProductAttribute;
 use App\Http\Controllers\Controller;

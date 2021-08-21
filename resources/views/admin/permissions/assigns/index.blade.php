@@ -37,7 +37,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th class="h5 fw-bold">
                                     #
@@ -53,7 +53,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                        <tbody class="{{ table_font_with_locale() }}">
                             @foreach ($assigns as $key => $assign)
                             <tr>
                                 <td>
@@ -67,13 +67,13 @@
                                         <span class="badge btn-info">{{ $permission->name }}</span>
                                     @endforeach
                                 </td>
-                                
-                                <td class="">
-                                    <a href="{{ route('assigns.permissions-edit', $assign) }}" class="" title="@lang('assign_edit')">
-                                        <div class="my-2">
+
+                                <td>
+                                    <div class="my-2">
+                                        <a href="{{ route('assigns.permissions-edit', $assign) }}" class="" title="@lang('assign_edit')">
                                             <i class="align-middle text-warning" data-feather="edit"></i>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -83,7 +83,7 @@
             </div>
             <div class="d-flex justify-content-center">
                 {{-- {{ $assigns->links() }} --}}
-            </div>  
+            </div>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\services\Address;
+use App\Services\Address;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

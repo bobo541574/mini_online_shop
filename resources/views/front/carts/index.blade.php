@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-responsive table-striped table-hover">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th class="h5 fw-bold">
                                     @lang('name')
@@ -47,7 +47,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                        <tbody class="{{ table_font_with_locale() }}">
                             @foreach ($carts as $cart)
                             <tr>
                                 <td>
@@ -67,21 +67,17 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-around">
+                                    <div class="d-flex justify-content-around my-2">
 
                                         <a href="{{ route('front.carts.show', $cart) }}" class="" title="@lang('cart_detail')">
-                                            <div class="my-2">
-                                                <i class="align-middle text-warning" data-feather="eye"></i>
-                                            </div>
+                                            <i class="align-middle text-warning" data-feather="eye"></i>
                                         </a>
-        
+
                                         <form action="{{ route('front.carts.destroy', $cart) }}" method="post" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button class="border-0 text-danger bg-light" title="@lang('cart_delete')">
-                                                <div class="my-2">
-                                                    <i class="align-middle" data-feather="x"></i>
-                                                </div>
+                                                <i class="align-middle" data-feather="x"></i>
                                             </button>
                                         </form>
                                     </div>

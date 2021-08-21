@@ -17,6 +17,16 @@ class ProductAttribute extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable')->orderBy('created_at');
+    }
+
     public function color()
     {
         return $this->belongsTo(Color::class);
@@ -41,7 +51,7 @@ class ProductAttribute extends Model
 
     public function getImageAttribute()
     {
-        return $this->getPhotosAttribute()[0];
+        return image_url($this->image()->first()->name) ;
     }
 
     public function getSaleAttribute()

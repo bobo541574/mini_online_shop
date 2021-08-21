@@ -9,14 +9,18 @@ if (!function_exists('strtoslug')) {
     {
         $time = '';
         if ($timestamp) {
-            $time = str_replace(':', '-', Carbon::now());
+            if (is_bool($timestamp)) {
+                $time = '-' . str_replace(':', '-', Carbon::now());
+            } else {
+                $time = '-' . str_replace(':', '-', Carbon::parse($timestamp)->format('Y-m-d-g-i-s'));
+            }
         }
 
         if (is_array($arg)) {
-            return Str::slug(implode($sperator, str_replace('.', '-', $arg)) . '-' . $time);
+            return Str::slug(implode($sperator, str_replace('.', '-', $arg)) . $time);
         }
 
-        return Str::slug(str_replace('.', '-', $arg) . '-' . $time);
+        return Str::slug(str_replace('.', '-', $arg) . $time);
     }
 }
 
@@ -25,11 +29,12 @@ if (!function_exists('check_permission')) {
     {
         $user = auth()->user();
 
-        if (Cache::has('permissions')) {
+        if (Cache::has('permissions') && session('auth_user_id') == $user->id) {
             $cachePermissions = Cache::get('permissions');
         } else {
             Cache::put('permissions', $user->role->permissions, 86400);
             $cachePermissions = $user->role->permissions;
+            session()->put('auth_user_id', $user->id);
         }
 
         if ($user && $user->role) {
@@ -78,5 +83,21 @@ if (!function_exists('numberTranslate')) {
             $array[] = trans($value, [], session('locale'));
         }
         return implode("", $array);
+    }
+}
+
+// Image Retrieve From Storage
+if (!function_exists('image_url')) {
+    function image_url($data)
+    {
+        return 'storage/' . $data;
+    }
+}
+
+// Table Body Font Weight Change With Locale
+if (!function_exists('table_font_with_locale')) {
+    function table_font_with_locale()
+    {
+        return (session('locale') === "mm") ? "fw-bold" : '';
     }
 }

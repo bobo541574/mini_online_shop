@@ -36,7 +36,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-responsive table-striped table-hover">
-                    <thead>
+                    <thead class="table-light">
                         <tr>
                             <th class="h5 fw-bold">
                                 #
@@ -49,7 +49,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="{{ session('locale') == 'mm' ? 'fw-bold' : null }}">
+                    <tbody class="{{ table_font_with_locale() }}">
                         @foreach ($permissions as $key => $permission)
                         <tr>
                             <td>
@@ -58,22 +58,18 @@
                             <td>
                                 {{ $permission->name }}
                             </td>
-                            
+
                             <td>
-                                <div class="d-flex justify-content-around">
+                                <div class="d-flex justify-content-around my-2">
                                     <a href="{{ route('permissions.edit', $permission) }}" class="" title="@lang('permission_edit')">
-                                        <div class="my-2">
-                                            <i class="align-middle text-warning" data-feather="edit"></i>
-                                        </div>
+                                        <i class="align-middle text-warning" data-feather="edit"></i>
                                     </a>
-    
+
                                     <form action="{{ route('permissions.destroy', $permission) }}" method="post" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button class="border-0 text-danger bg-light" title="@lang('permission_delete')">
-                                            <div class="my-2">
-                                                <i class="align-middle" data-feather="trash-2"></i>
-                                            </div>
+                                            <i class="align-middle" data-feather="trash-2"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -85,7 +81,7 @@
             </div>
             <div class="d-flex justify-content-center">
                 {{ $permissions->links('pagination::bootstrap-4') }}
-            </div>  
+            </div>
         </div>
     </div>
 </div>

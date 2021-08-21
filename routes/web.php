@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\CategoryAssignController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/db-seed', function () {
     return Artisan::call('db:seed --force');
@@ -50,11 +51,18 @@ Route::get('/color', function () {
     }
 });
 
+Route::get('/image', function () {
+    return Storage::disk('public')->delete("photos/products/attributes/L68dcRDjJ69M1raDVI0GyXiUsc2hdEVG5eyjTb8r-2021-08-18-12-41-04.png");
+});
+
 Route::get('/products/image', function () {
     $attributes = ProductAttribute::get();
     foreach ($attributes as $attribute) {
-        $attribute->photo = json_encode(["/img/products/product - 1.svg", "/img/products/product - 2.svg", "/img/products/product - 3.svg"]);
-        $attribute->save();
+        $attribute->images()->createMany([
+            ["name" => "/photos/products/attributes/4ZWtt1dudpPP47rv2cnzzZjLRkkbP6qskLNriFG1-2021-08-21-2-12-37.png"],
+            ["name" => "/photos/products/attributes/HVLNb8WUtKx4KK6o5hIjUGJZBygXPl0A9lAIxHfK-2021-08-21-2-12-42.png"],
+            ["name" => "/photos/products/attributes/tPVp5jojQtfPqtLbPyGRu7V8I4fGhF1FsSkoJALa-2021-08-21-2-12-44.png"]
+        ]);
     }
 });
 
@@ -104,13 +112,13 @@ Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name(
 
 // Admin Section
 Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Product Ajax Request
     Route::get('products/{parentId}/subcategories', [CategoryController::class, 'findSubcategoriesById'])->name('products.subcategories');
     Route::get('subcategory/{subcategoryId}/brands', [SubCategoryController::class, 'findBrandsById'])->name('products.brands');
 
     Route::group(['middleware' => 'permissions'], function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         // User
         Route::get('users', [UserController::class, 'index'])->name('users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('users.create');
@@ -247,7 +255,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
             Route::put('/{attribute:slug}/remove', [ProductAttributeController::class, 'remove'])->name('remove');
             Route::get('/trash/list', [ProductAttributeController::class, 'trashed'])->name('trashed');
             Route::post('/{attribute:slug}/restore', [ProductAttributeController::class, 'restore'])->name('restore');
-            Route::get('/upload-photos', [ProductAttributeController::class, 'uploadPhoto'])->name('upload-photos');
+            Route::post('/{attribute:id}/show/photos', [ProductAttributeController::class, 'showPhoto'])->name('show-photos');
+            Route::post('/upload/photos', [ProductAttributeController::class, 'uploadPhoto'])->name('upload-photos');
+            Route::post('/delete/photos', [ProductAttributeController::class, 'removePhoto'])->name('remove-photos');
         });
     });
 });

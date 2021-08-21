@@ -3,7 +3,7 @@
 namespace App\Http\Repositories\Front;
 
 use App\Models\Contact;
-use App\services\Address;
+use App\Services\Address;
 
 class ContactRepository
 {

@@ -26,9 +26,9 @@ class CreateRequest extends FormRequest
         return [
             'name_en' => 'required',
             'name_mm' => 'required',
-            'photo' => 'required|image',
-            'description_en' => 'required',
-            'description_mm' => 'required',
+//            'photo' => 'required|image',
+//            'description_en' => 'required',
+//            'description_mm' => 'required',
         ];
     }
 
