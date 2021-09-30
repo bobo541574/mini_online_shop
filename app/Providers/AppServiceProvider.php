@@ -33,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrap();
 
-        ProductAttribute::observe(ProductAttributeObserver::class);
+        // ProductAttribute::observe(ProductAttributeObserver::class);
     }
 }
