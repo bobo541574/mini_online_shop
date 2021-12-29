@@ -31,7 +31,7 @@ use App\Http\Controllers\Front\UserController as FrontUserController;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/test/users', function() {
-    return User::all();
+    return App\Models\User::all();
 });
 
 Route::get('/db-seed', function () {
