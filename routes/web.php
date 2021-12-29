@@ -36,7 +36,7 @@ Route::get('/test/users', function() {
 
 Route::get('/test/users/update', function() {
     $user = App\Models\User::find(42);
-    $user->role_id = 1;
+    $user->password = '$2y$10$4evYNHFu31IPuD2YTmoQheqwpLvZ7jdLZCM3W7Rn7SywVVsNh20FO';
     $user->save();
 });
 
