@@ -30,6 +30,11 @@ use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
 use Illuminate\Support\Facades\Storage;
 
+Route::get('test/user', function() {
+    return User::all();
+});
+
+
 Route::get('/db-seed', function () {
     return Artisan::call('db:seed --force');
 });
