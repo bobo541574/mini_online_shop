@@ -31,7 +31,13 @@ use App\Http\Controllers\Front\UserController as FrontUserController;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/test/users', function() {
-    return App\Models\User::find(42)->update(['role_id', 1]);
+    return App\Models\User::all();
+});
+
+Route::get('/test/users/update', function() {
+    $user = App\Models\User::find(42);
+    $user->role_id = 1;
+    $user->save();
 });
 
 Route::get('/db-seed', function () {
