@@ -18,7 +18,8 @@
 
 @include('admin.layouts.breadcrumb', [
     'items' => [
-        'attribute_table' => route('attributes.index'),
+        'product_table' => route('products.index'),
+        'attribute_table' => route('attributes.product', $attribute->product->slug),
         'edit' => null
     ]
 ])
