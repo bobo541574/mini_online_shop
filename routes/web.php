@@ -30,16 +30,6 @@ use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
 use Illuminate\Support\Facades\Storage;
 
-Route::get('/test/users', function() {
-    return App\Models\User::all();
-});
-
-Route::get('/test/users/update', function() {
-    $user = App\Models\User::find(42);
-    $user->password = '$2y$10$4evYNHFu31IPuD2YTmoQheqwpLvZ7jdLZCM3W7Rn7SywVVsNh20FO';
-    $user->save();
-});
-
 Route::get('/db-seed', function () {
     return Artisan::call('db:seed --force');
 });
