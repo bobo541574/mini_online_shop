@@ -91,9 +91,9 @@ if (!function_exists('image_url')) {
     function image_url($data)
     {
         if (config('app.env') === 'production') {
-            return 'http://mini-online-shop.test/' . $data;
+            return config('app.url') . $data;
         }
-        return 'http://mini-online-shop.test/storage' . $data;
+        return config('app.url') . 'storage' . $data;
     }
 }
 
