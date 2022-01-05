@@ -71,6 +71,11 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;

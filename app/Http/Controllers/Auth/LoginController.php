@@ -14,11 +14,32 @@ class LoginController extends Controller
 
     public function index()
     {
-        if (url()->previous() != env('APP_URL') . '/login') {
-            session()->put('redirectUrl', url()->previous());
-        }
+        $this->redirectSolver();
 
         return view('auth.login');
+    }
+
+    protected function redirectSolver()
+    {
+        // session မှ မ save ချင်တဲ့ route တွေကို အောက်က list မှထည့်မယ်။
+        $except = [
+            'register',
+            'login',
+        ];
+
+        $status = collect($except)->contains(function ($value, $key) {
+            return route($value) == url()->previous();
+        });
+
+        if (!$status) {
+
+            if (session('redirectUrl') == null)
+                session()->put('redirectUrl', url('/'));
+            else
+                session()->put('redirectUrl', url()->previous());
+        }
+
+        return;
     }
 
     public function store(Request $request)

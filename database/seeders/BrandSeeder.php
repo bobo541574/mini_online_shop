@@ -14,6 +14,10 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        Brand::factory(20)->create();
+        Brand::factory(20)->create()->each(function ($brand) {
+            $brand->image()->create([
+                'name' => '/img/brands/brand.png'
+            ]);
+        });
     }
 }

@@ -51,7 +51,7 @@ class ProductAttribute extends Model
 
     public function getImageAttribute()
     {
-        return image_url($this->image()->first()->name) ;
+        return image_url($this->images()->first()->name);
     }
 
     public function getSaleAttribute()

@@ -40,6 +40,11 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('status', 'product_created');
     }
 
+    public function edit(Product $product)
+    {
+        return abort(503);
+    }
+
     public function show(Product $product)
     {
         $attributes = $this->repo->getAllAttributes($product);

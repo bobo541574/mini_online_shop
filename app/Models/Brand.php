@@ -24,6 +24,11 @@ class Brand extends Model
         return $this->belongsToMany(Category::class, 'brand_categories')->withTimestamps();
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     public function getCategoriesIdAttribute()
     {
         return $this->categories->pluck('id')->toArray();

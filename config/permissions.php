@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'Admin' => [
+        ['name_en' => 'Dashboard', 'name_mm' => 'ထိန်းချုပ်စင်တာ', 'slug' => 'admin-dashboard'],
+    ],
     'User' => [
         ['name_en' => 'List', 'name_mm' => 'စရင်း', 'slug' => 'users-index'],
         ['name_en' => 'Create', 'name_mm' => 'ပြုလုပ်ရန်', 'slug' => 'users-create'],

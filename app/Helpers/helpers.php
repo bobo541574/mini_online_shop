@@ -29,6 +29,7 @@ if (!function_exists('check_permission')) {
     {
         $user = auth()->user();
 
+        // dd(Cache::get('permissions')->pluck('slug'));
         if (Cache::has('permissions') && session('auth_user_id') == $user->id) {
             $cachePermissions = Cache::get('permissions');
         } else {
@@ -90,7 +91,7 @@ if (!function_exists('numberTranslate')) {
 if (!function_exists('image_url')) {
     function image_url($data)
     {
-        return 'storage/' . $data;
+        return 'storage' . $data;
     }
 }
 

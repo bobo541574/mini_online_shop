@@ -43,7 +43,6 @@ class BrandFactory extends Factory
         return [
             'name_en' => "Test Brand - " . ($en),
             'name_mm' => "အမှတ်တံဆိပ် - " . ($mm),
-            'photo' => json_encode("/img/brands/brand.png"),
             'slug' => strtoslug("Test Brand - " . ($en) . "-" . now()),
             'description_en' => "Test Brand - " . ($en),
             'description_mm' => "အမှတ်တံဆိပ် - " . ($mm),

@@ -17,7 +17,6 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('name_mm');
-            $table->string('photo');
             $table->string('slug');
             $table->text('description_en');
             $table->text('description_mm');
