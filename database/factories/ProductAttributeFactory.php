@@ -43,7 +43,6 @@ class ProductAttributeFactory extends Factory
             'color_id' => $this->color_id,
             'size_id' => $this->size_id,
             'slug' => strtoslug("Test Product - " . ($this->product_id) . "-" . ($this->color_id . $this->size_id) . "-" . now()),
-            'photo' => json_encode(["/img/products/product - 1.svg", "/img/products/product - 2.svg", "/img/products/product - 3.svg"]),
             'sku' => rand(1, 50),
             'buy_price' => rand(1500, 10000),
             'extra_cost' => rand(100, 300),

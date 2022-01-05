@@ -14,6 +14,14 @@ class ProductAttributeSeeder extends Seeder
      */
     public function run()
     {
-        ProductAttribute::factory(600)->create();
+        $images = ["/img/products/product - 1.svg", "/img/products/product - 2.svg", "/img/products/product - 3.svg"];
+
+        ProductAttribute::factory(600)->create()->each(function ($attribute) use ($images) {
+            foreach ($images as $image) {
+                $attribute->images()->create([
+                    'name' => $image
+                ]);
+            }
+        });
     }
 }

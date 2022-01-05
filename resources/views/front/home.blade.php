@@ -118,14 +118,15 @@
                 let products = data.data;
                 let html = "";
                 products.forEach(product => {
-                    let photo = JSON.parse(product.attribute.photo);
+                    // let photo = JSON.parse(product.attribute.photo);
+                    let photo = product.attribute.photo;
                     let slug = product.slug;
                     if(product.attribute) {
                         html += `
                             <div class="col-4">
                                 <a href="/product/${slug}/attributes" class="card-link text-dark">
                                     <div class="card product-card">
-                                        <img class="card-img-top w-75 mx-auto" src="${photo[0]}"
+                                        <img class="card-img-top w-75 mx-auto" src="${photo}"
                                             alt="product_${product.attribute.id}">
                                         <hr />
                                         <div class="card-body px-2 my-0 pt-0 pb-3 mt-0">
@@ -215,14 +216,15 @@
                 let products = data.data;
                 let html = "";
                 products.forEach(product => {
-                    let photo = JSON.parse(product.attribute.photo);
+                    // let photo = JSON.parse(product.attribute.photo);
+                    let photo = product.attribute.photo;
                     let slug = product.slug;
                     if(product.attribute) {
                         html += `
                             <div class="col-4">
                                 <a href="/product/${slug}/attributes" class="card-link text-dark">
                                     <div class="card product-card">
-                                        <img class="card-img-top w-75 mx-auto" src="${photo[0]}"
+                                        <img class="card-img-top w-75 mx-auto" src="${photo}"
                                             alt="product_${product.attribute.id}">
                                         <hr />
                                         <div class="card-body px-2 my-0 pt-0 pb-3 mt-0">

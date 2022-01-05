@@ -19,7 +19,6 @@ class CreateProductAttributesTable extends Migration
             $table->unsignedBigInteger('color_id');
             $table->unsignedBigInteger('size_id');
             $table->string('slug');
-            $table->string('photo');
             $table->string('sku')->default(0);
             $table->decimal('extra_cost', 5, 2)->default(0);
             $table->decimal('delivery_cost', 5, 2)->default(0);
