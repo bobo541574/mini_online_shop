@@ -91,7 +91,10 @@ if (!function_exists('numberTranslate')) {
 if (!function_exists('image_url')) {
     function image_url($data)
     {
-        return 'storage' . $data;
+        if (config('app.env') === 'production') {
+            return 'http://mini-online-shop.test/' . $data;
+        }
+        return 'http://mini-online-shop.test/storage' . $data;
     }
 }
 

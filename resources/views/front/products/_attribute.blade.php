@@ -11,16 +11,16 @@
             <div id="preview-{{ $attribute->id }}" class="preview col-md-4 {{ $loop->first ? '' : 'd-none' }}">
                 <div class="row text-center">
                     <div class="preview-pic tab-content">
-                        @foreach ($attribute->photos as $key => $photo)
+                        @foreach ($attribute->images as $key => $image)
                         <div class="tab-pane {{ $loop->first ? 'active' : '' }}"
-                            id="pic-{{ $key }}-{{ $attribute->id }}"><img src="{{ asset($photo) }}" class="w-75" />
+                            id="pic-{{ $key }}-{{ $attribute->id }}"><img src="{{ asset($image->name) }}" class="w-75" />
                         </div>
                         @endforeach
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
-                        @foreach ($attribute->photos as $key => $photo)
+                        @foreach ($attribute->images as $key => $image)
                         <li><a data-bs-target="#pic-{{ $key }}-{{ $attribute->id }}" data-bs-toggle="tab"><img
-                                    src="{{ asset($photo) }}" /></a></li>
+                                    src="{{ asset($image->name) }}" /></a></li>
                         @endforeach
                     </ul>
                 </div>
