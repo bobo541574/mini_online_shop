@@ -134,7 +134,12 @@
 @endsection
 
 @section('script')
-<script>
-
-</script>
+    <script>
+        $(document).ready(function() {
+            $("#brand").select2({
+                placeholder: "@lang('brand')"
+            });
+        });
+    </script>
 @endsection
+

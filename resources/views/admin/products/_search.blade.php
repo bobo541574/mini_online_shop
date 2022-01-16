@@ -12,8 +12,15 @@
             <input type="text" name="subcategory" value="{{ request('subcategory') }}" class="form-control" placeholder="@lang('subcategory')…" aria-label="Subcategory">
         </div>
 
-        <div class="col-2">
+        {{-- <div class="col-2">
             <input type="text" name="brand" value="{{ request('brand') }}" class="form-control" placeholder="@lang('brand')…" aria-label="Brand">
+        </div> --}}
+        <div class="col-2">
+            <select class="form-select" id="brand" name="brand" aria-label="Default select example">
+                @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}" {{ (request()->query('brand') == $brand->id) ? "selected=selected" : ""}}>{{$brand->name}}</option>
+                @endforeach
+            </select>
         </div>
 
         <button class="btn btn-success" type="submit">

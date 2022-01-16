@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Supplier;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Back\ProductRepository;
+use App\Models\Brand;
 
 class ProductController extends Controller
 {
@@ -21,8 +22,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->repo->paginate(10);
+        $brands = Brand::select(['id', 'name_mm', 'name_en'])->get();
 
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products', 'brands'));
     }
 
     public function create()

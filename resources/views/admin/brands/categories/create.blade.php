@@ -82,7 +82,9 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#categories').select2();
+            $('#categories').select2({
+                placeholder: "@lang('select_subcategory')"
+            });
             $('#brand').select2();
         })
     </script>

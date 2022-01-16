@@ -52,7 +52,7 @@ class Product extends Model
                 return $query->where('name_' . session('locale'), 'like', "%" . ($filter['subcategory'] ?? false) . "%");
             })
             ->whereHas('brand', function ($query) use ($filter) {
-                return $query->where('name_' . session('locale'), 'like', "%" . ($filter['brand'] ?? false) . "%");
+                return $query->where('id', ($filter['brand'] ?? false));
             });
     }
 }
