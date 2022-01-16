@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
                 'last_name' => "Bo",
                 'user_name' => "bobo57",
                 'email' => "admin@gmail.com",
+                'role_id' => 1,
                 'email_verified_at' => now(),
                 'phone' => "09978551328",
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
