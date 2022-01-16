@@ -23,6 +23,7 @@
                     <i class="align-middle" data-feather="users"></i> <span class="align-middle">@lang('users')</span>
                 </a>
                 <ul id="users" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('email.create') }}">@lang('email')</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('users.index') }}">@lang('users')</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('permissions.index') }}">@lang('permissions')</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('roles.index') }}">@lang('roles')</a></li>

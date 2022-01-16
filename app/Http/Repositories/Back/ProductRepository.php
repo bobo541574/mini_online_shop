@@ -17,7 +17,7 @@ class ProductRepository
     {
         $products = $this->model()->with(['category', 'subcategory', 'brand', 'productAttributes'])->orderBy('created_at', 'DESC');
 
-        if (request()->query) {
+        if (count(request()->query) > 0) {
             $products->filter(request()->all());
         }
         return $products->paginate($data)->appends(request()->all());

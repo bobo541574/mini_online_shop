@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Front\TransitionController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryAssignController;
+use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\PermissionAssignController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
@@ -112,6 +113,9 @@ Route::post('/product/add-to-cart', [HomeController::class, 'addToCart'])->name(
 
 // Admin Section
 Route::group(['prefix' => 'admin', 'middleware' => 'backend'], function () {
+    // Email
+    Route::get('email/create', [EmailController::class, 'create'])->name('email.create');
+    Route::post('email/send', [EmailController::class, 'send'])->name('email.send');
 
     // Product Ajax Request
     Route::get('products/{parentId}/subcategories', [CategoryController::class, 'findSubcategoriesById'])->name('products.subcategories');

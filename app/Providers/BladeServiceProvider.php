@@ -29,7 +29,7 @@ class BladeServiceProvider extends ServiceProvider
         Blade::if('hasrole', function () {
             $role = false;
 
-            if (auth()->user() && auth()->user()->role != 0) {
+            if (auth()->user() && auth()->user()->role_id != 0) {
                 if (count(auth()->user()->role->permissions) != 0) {
                     $role = true;
                 }
