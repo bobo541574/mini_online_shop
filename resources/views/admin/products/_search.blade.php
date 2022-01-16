@@ -17,6 +17,7 @@
         </div> --}}
         <div class="col-2">
             <select class="form-select" id="brand" name="brand" aria-label="Default select example">
+                <option value=""></option>
                 @foreach ($brands as $brand)
                     <option value="{{ $brand->id }}" {{ (request()->query('brand') == $brand->id) ? "selected=selected" : ""}}>{{$brand->name}}</option>
                 @endforeach
